@@ -1,0 +1,19 @@
+/* Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body, .dropdown-menu {
+    background-color: #242930;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-header {
+    background-color: #1C2329;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2B3138;
+}
