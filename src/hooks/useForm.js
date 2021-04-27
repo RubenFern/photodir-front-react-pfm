@@ -14,11 +14,5 @@ export const useForm = (initialState = {}) =>
         // El target.value apunta a name o a email porque así los llamé en su atributo name del input
     }
 
-    const handleSubmit = (e) =>
-    {
-        e.preventDefault();
-        console.log(state);
-    }
-
-    return [state, handleInputChange, handleSubmit];
+    return [state, handleInputChange];
 }
