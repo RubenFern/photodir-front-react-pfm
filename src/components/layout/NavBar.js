@@ -6,6 +6,7 @@ import { types } from '../types/types';
 
 export const NavBar = () => 
 {
+    
     const {user: {logged, name}, dispatch} = useContext(AuthContext);
     const history = useHistory();
 
@@ -14,6 +15,8 @@ export const NavBar = () =>
         dispatch({
             type: types.logout
         });
+
+        localStorage.setItem('token', '');
 
         history.replace('/login');
     }
