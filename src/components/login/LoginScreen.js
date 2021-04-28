@@ -3,9 +3,10 @@ import React, { useContext } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../auth/AuthContext';
 import { NavBar } from '../layout/NavBar';
-import { types } from '../types/types';
+import { login as authLogin } from '../auth/auth';
 
 import './LoginScreen.css';
+
 
 export const LoginScreen = ({ history }) => 
 {
@@ -16,22 +17,16 @@ export const LoginScreen = ({ history }) =>
 
     const {user_name, password} = state;
 
-    // Uso el método dispatch que almacené en el useContext
+    // Uso el método dispatch para que almacené en el useContext los datos de usuario
     const { dispatch } = useContext(AuthContext);
 
     // Obtengo los valores del usuario
-    const login = (e) =>
+    const login = async(e) =>
     {
         e.preventDefault();
 
-        dispatch({
-            type: types.login,
-            payload: {
-                name: 'Ruben'
-            }
-        });
-
-        history.replace('/home');
+        // Llamo al método de autenticación para guardar los datos de sesión del usuario en toda la aplicación
+        await authLogin(user_name, password, dispatch, history);       
     }
 
     return (
