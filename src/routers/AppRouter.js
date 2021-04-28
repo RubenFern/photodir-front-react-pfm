@@ -2,14 +2,12 @@ import React, { useContext } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 import { AuthContext } from '../components/auth/AuthContext';
-import { LoginScreen } from '../components/login/LoginScreen';
-import { RegisterScreen } from '../components/login/RegisterScreen';
 import { PrivateRoute } from './PrivateRoutes';
 import { AuthRoutes } from './AuthRoutes';
-import { UserAuthRouter } from './UserAuthRouter';
-import { HomeUserPage } from '../components/app/public/HomeUserPage';
-import { ImagesUserPage } from '../components/app/public/ImagesUserPage';
 
+// Exporto las ruta de los componentes por legibilidad
+import { routes } from './componentsRoutes';
+const { LoginScreen, RegisterScreen, HomePage, ImagesPage, HomeUserPage, ImagesUserPage } = routes;
 
 export const AppRouter = () => 
 {
@@ -20,15 +18,20 @@ export const AppRouter = () =>
         <Router>
             <>
                 <Switch>
+                    {
+                        // Ruta protegidas dependiendo si el usuario está logueado o no
+                    }
                     <AuthRoutes exact path='/login' isAuth={logged} component={LoginScreen} />
                     <AuthRoutes exact path='/registro' isAuth={logged} component={RegisterScreen} />
 
-                    <PrivateRoute path='/home' isAuth={logged} component={UserAuthRouter} />
+                    <PrivateRoute exact path="/home" isAuth={logged} component={HomePage} />
+                    <PrivateRoute exact path="/home/imagenes" isAuth={logged} component={ImagesPage} />
 
-                    {// Rutas a la que puede acceder cualquier usuario
+                    {
+                    // Rutas a la que puede acceder cualquier usuario
                     }
-                    <Route exact path="/explore/:username" component={HomeUserPage} />
-                    <Route exact path="/explore/:username/imagenes" component={ImagesUserPage} />
+                    <Route exact path="/home/:username" component={HomeUserPage} />
+                    <Route exact path="/home/:username/imagenes" component={ImagesUserPage} />
 
                     <Redirect to="/home" />
                 </Switch>
