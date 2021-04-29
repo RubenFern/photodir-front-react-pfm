@@ -18,7 +18,7 @@ export const LoginScreen = ({ history }) =>
     const {user_name, password} = state;
 
     // Uso el método dispatch para que almacené en el useContext los datos de usuario
-    const { dispatch } = useContext(AuthContext);
+    const { user: {message}, dispatch } = useContext(AuthContext);
 
     // Obtengo los valores del usuario
     const login = async(e) =>
@@ -32,6 +32,13 @@ export const LoginScreen = ({ history }) =>
     return (
         <>
             <NavBar />
+
+            {
+                (message) &&
+                    <div className="container mt-5 m-auto alert alert-danger" role="alert">
+                        {message}
+                    </div>
+            }
 
             <div className="text-white center-content">
                 <form className="form-login" onSubmit={login}>
