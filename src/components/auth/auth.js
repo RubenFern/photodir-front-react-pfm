@@ -9,28 +9,43 @@ const login = async(user_name, password, dispatch, history) =>
 {
     const res = await fetchNoToken('login', {user_name, password}, 'POST');
     
-    const { logged, message, token, user } = await res.json();
-    const { image, is_admin: isAdmin, name, user_name: userName, email, creation_date, uid } = user;
+    const { logged, message, token, user, errors = [] } = await res.json();
 
     // Si el usuario es correcto, almaceno el Token
     if (logged)
     {
+        const { image, is_admin: isAdmin, name, user_name: userName, uid, creation_date: registerDate } = user;
+
         localStorage.setItem('token', token);
 
         dispatch({
             type: types.login,
             payload: {
                 image, 
-                isAdmin, 
+                is_admin: isAdmin, 
                 name, 
-                userName, 
-                email, 
-                creation_date, 
-                uid
+                user_name: userName, 
+                uid, 
+                creation_date: registerDate
             }
         });
 
         history.replace('/home');
+    } else if (errors.length > 0)
+    {
+        dispatch({
+            payload: {
+                message: errors[0].msg
+            }
+        });
+
+    } else
+    {
+        dispatch({
+            payload: {
+                message
+            }
+        });
     }
 }
 
