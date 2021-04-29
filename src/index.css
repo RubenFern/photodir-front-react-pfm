@@ -13,6 +13,8 @@ body, .dropdown-menu {
     background-color: #1C2329;
 }
 
-.dropdown-menu a:hover {
-    background-color: #2B3138;
+.dropdown-item:hover {
+    background-color: #242930;
+    color: #fff;
+    opacity: 100%;
 }
