@@ -6,7 +6,6 @@ import { types } from '../types/types';
 
 export const NavBar = () => 
 {
-    
     const {user: {logged, name}, dispatch} = useContext(AuthContext);
     const history = useHistory();
 
@@ -38,7 +37,7 @@ export const NavBar = () =>
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
                                 <li className="nav-item dropdown ">
-                                    <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span className="nav-link dropdown-toggle user" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {name}
                                     </span>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
