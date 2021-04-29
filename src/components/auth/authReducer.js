@@ -21,6 +21,10 @@ export const authReducer = (state = {}, action) =>
             }
     
         default:
-            break;
+            
+            return {
+                ...action.payload,
+                logged: false
+            }
     }    
 }
