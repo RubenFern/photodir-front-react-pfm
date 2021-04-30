@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
-import { AuthContext } from '../components/auth/AuthContext';
+import { AuthContext } from '../hooks/useContext';
 import { PrivateRoute } from './PrivateRoutes';
 import { AuthRoutes } from './AuthRoutes';
 
