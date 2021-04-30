@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 
-import { AuthContext } from './components/auth/AuthContext'
-import { authReducer } from './components/auth/authReducer'
+import { AuthContext } from './hooks/useContext'
+import { reducer } from './hooks/useReducer'
 import { AppRouter } from './routers/AppRouter'
 
 /**
@@ -18,7 +18,7 @@ const init = () =>
 
 export const App = () => 
 {
-    const [user, dispatch] = useReducer(authReducer, {}, init)
+    const [user, dispatch] = useReducer(reducer, {}, init);
 
     // Cada vez que haya un cambio en el valor del usuario lo almaceno
     useEffect(() => {
