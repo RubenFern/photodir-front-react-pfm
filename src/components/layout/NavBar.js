@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 
-import { AuthContext } from '../auth/AuthContext';
+import { AuthContext } from '../../hooks/useContext';
 import { types } from '../types/types';
 
 export const NavBar = () => 
