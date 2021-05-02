@@ -1,34 +1,15 @@
-import React, { useEffect, useReducer } from 'react'
+import React from 'react';
+import { Provider } from 'react-redux';
 
-import { AuthContext } from './hooks/useContext'
-import { reducer } from './hooks/useReducer'
-import { AppRouter } from './routers/AppRouter'
-
-/**
- * Creo un useReducer para almacenar los datos del usuario y y con el useContext
- * comparto los valores a todos los componentes de mi aplicación.
- * 
- * El AuthContext me permite englobar toda mi aplicación en él y poder acceder a
- * los datos que le indique, en este caso el usuario y el método dispatch
-*/
-const init = () =>
-{
-    return JSON.parse(localStorage.getItem('user_connect')) || {logged: false};
-}
+import { store } from './components/redux/store/store';
+import { AppRouter } from './routers/AppRouter';
 
 export const App = () => 
 {
-    const [user, dispatch] = useReducer(reducer, {}, init);
-
-    // Cada vez que haya un cambio en el valor del usuario lo almaceno
-    useEffect(() => {
-        localStorage.setItem('user_connect', JSON.stringify(user));
-        
-    }, [user])
-
+    // Con el Provider de redux puedo acceder a la información del fichero store.js en toda la app
     return (
-        <AuthContext.Provider value={ {user, dispatch} }>
+        <Provider store={ store }>
            <AppRouter /> 
-        </AuthContext.Provider>
+        </Provider>
     )
 }
