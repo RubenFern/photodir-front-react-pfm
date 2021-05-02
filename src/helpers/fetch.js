@@ -23,13 +23,37 @@ const fetchNoToken = (endpoint, data, method = 'GET') =>
 }
 
 // Peticiones a mi API con Token de acceso
-const fetchToken = (path, data, method = 'GET') =>
+const fetchWithToken = (endpoint, data, method = 'GET') =>
 {
+    const url = `${api}/${endpoint}`;
+    const token = localStorage.getItem('token') || '';
 
+    if (method === 'GET')
+    {
+        return fetch(url,
+        {
+            method,
+            headers: {
+                'ky-token': token,
+            }
+        });
+    } else
+    {
+        return fetch(url, 
+        {
+            method,
+            headers: 
+            {
+                'Content-type': 'application/json',
+                'ky-token': token
+            },
+            body: JSON.stringify(data)
+        });
+    }
 }
 
 export 
 {
     fetchNoToken,
-    fetchToken
+    fetchWithToken
 }
