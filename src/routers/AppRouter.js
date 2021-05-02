@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react';
+import {  useSelector } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
-import { AuthContext } from '../hooks/useContext';
 import { PrivateRoute } from './PrivateRoutes';
 import { AuthRoutes } from './AuthRoutes';
 
@@ -11,8 +11,8 @@ const { LoginScreen, RegisterScreen, HomePage, ImagesPage, HomeUserPage, ImagesU
 
 export const AppRouter = () => 
 {
+    const { logged } = useSelector(state => state.auth);
 
-    const {user: {logged}} = useContext(AuthContext);
 
     return (
         <Router>
