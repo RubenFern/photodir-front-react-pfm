@@ -1,14 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { validatePassword } from '../../helpers/validatePassword';
 import { useForm } from '../../hooks/useForm';
-import { AuthContext } from '../../hooks/useContext';
 import { NavBar } from '../layout/NavBar';
-import { register as authRegister } from '../auth/auth';
+import { startRegister } from '../redux/actions/auth';
 
 export const RegisterScreen = ({ history }) => 
 {
+    // Llamo al dispatch de Redux
+    const dispatch = useDispatch();
+
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
 
@@ -22,8 +25,6 @@ export const RegisterScreen = ({ history }) =>
     });
 
     const { name, user_name, email, password, password2, image } = state;
-
-    const { user: {message}, dispatch } = useContext(AuthContext);
 
 
     const register = async(e) =>
@@ -49,20 +50,14 @@ export const RegisterScreen = ({ history }) =>
             return;
         }
 
-        // Realizo la petición a la API para añadir el usuario
-        await authRegister(state, dispatch, history);
+        // Llamo al action del registro
+        dispatch(startRegister({name, user_name, email, password, image}));
     }
+
 
     return (
         <>
             <NavBar />
-
-            {
-                (message) &&
-                    <div className="container mt-5 m-auto alert alert-danger" role="alert">
-                        {message}
-                    </div>
-            }
 
             <div className="text-white center-content">
                 <form className="form-login" onSubmit={register}>

@@ -1,55 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
-import { AuthContext } from '../../hooks/useContext';
 import { NavBar } from '../layout/NavBar';
-import { login as authLogin } from '../auth/auth';
+import { startLogin } from '../redux/actions/auth';
 
 import './LoginScreen.css';
-import { Link } from 'react-router-dom';
 
 
 export const LoginScreen = ({ history }) => 
 {
+    // Llamo al dispatch de Redux
+    const dispatch = useDispatch();
+
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
 
-    const [state, handleInputChange] = useForm({
-        user_name: '',
+    const [formValues, handleInputChange] = useForm({
+        userName: '',
         password: ''
     });
 
-    const {user_name, password} = state;
-
-    // Uso el método dispatch para que almacené en el useContext los datos de usuario
-    const { user: {message}, dispatch } = useContext(AuthContext);
+    const {userName, password} = formValues;
 
     // Obtengo los valores del usuario
-    const login = async(e) =>
+    const login = (e) =>
     {
         e.preventDefault();
 
         // Si algún campo está vacío marco el error
-        if (user_name === '' || password === '')
+        if (userName === '' || password === '')
         {
             setvalid(false);
             return;
         }
 
-        // Llamo al método de autenticación para guardar los datos de sesión del usuario en toda la aplicación
-        await authLogin(user_name, password, dispatch, history);       
+        // Llamo al método startLogin del action auth.js con los datos del usuario
+        dispatch( startLogin(userName, password) );
     }
 
     return (
         <>
             <NavBar />
-
-            {
-                (message) &&
-                    <div className="container mt-5 m-auto alert alert-danger" role="alert">
-                        {message}
-                    </div>
-            }
 
             <div className="text-white center-content">
                 <form className="form-login" onSubmit={login}>
@@ -58,12 +51,12 @@ export const LoginScreen = ({ history }) =>
                         <label htmlFor="user_name">Nombre de usuario:</label>
                         <input 
                             type="text" 
-                            id="user_name" 
-                            name="user_name"
-                            className={`form-control ${ (!valid && user_name === '') && "is-invalid" } `}
+                            id="userName" 
+                            name="userName"
+                            className={`form-control ${ (!valid && userName === '') && "is-invalid" } `}
                             placeholder="Introduce tu nombre de usuario"
                             onChange={handleInputChange}
-                            value={user_name}
+                            value={userName}
                         />
                         <div className="invalid-feedback">
                             Debes introducir tu nombre de usuario

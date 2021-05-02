@@ -1,29 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getAlbums } from '../../../helpers/getAlbums';
-import { reducer } from '../../../hooks/useReducer';
+import React from 'react';
 
-import { AuthContext } from '../../../hooks/useContext';
+//import { getAlbums } from '../../../helpers/getAlbums';
 import { NavBar } from '../../layout/NavBar';
 
 export const HomePage = () => 
 {
-    // Obtengo el nombre del usuario conectado para mostrar sus álbumes
-    const { user: { name } } = useContext(AuthContext);
-
-    // Creo un useState para manejar los álbumes
-    const [albums, setalbums] = useState([]);
-
-    useEffect( () => 
-    {
-        
-        const fetchAlbums = async() =>
-        {
-            const arrayAlbums = await getAlbums(name);
-            setalbums(arrayAlbums);
-        }
-        
-        fetchAlbums();
-    }, [name]);
+    
 
     return (
         <>
@@ -35,7 +17,7 @@ export const HomePage = () =>
                 <div className="conatiner">
                     <div className="row row-cols-4">
                     {
-                        albums.map( ({image, uid, name, description, creation_date: date}) => 
+                        /*albums.map( ({image, uid, name, description, creation_date: date}) => 
                         (
                             <div
                                 key={uid}
@@ -50,7 +32,7 @@ export const HomePage = () =>
                                     {date}
                                 </p>
                             </div>
-                        ))
+                        ))*/
                     }
                     </div>
                 </div>
