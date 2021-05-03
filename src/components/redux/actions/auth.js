@@ -1,14 +1,14 @@
 import Swal from "sweetalert2";
 
-import { fetchNoToken } from "../../../helpers/fetch";
-import { types } from "../types/types"
+import { fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
+import { types } from "../types/types";
 
 const startLogin = (user_name, password) =>
 {
     // Con Thunk realizo el return de forma sícncrona a mi API para recibir los datos del usuario
     return async(dispatch) =>
     {
-        const res = await fetchNoToken('login', {user_name, password}, 'POST');
+        const res = await fetchNoToken('auth', {user_name, password}, 'POST');
         const { logged, token, user, message, errors = [] } = await res.json();
 
         // Si el login es correcto
@@ -66,8 +66,15 @@ const startRegister = (data) =>
 
 const startLogout = () =>
 {
-    return (dispatch) =>
+    return async(dispatch) =>
     {
+        const { ok } = await fetchWithToken('auth/logout');
+        
+        if (ok)
+        {
+            Swal.fire('¡Vuelve pronto!', 'Has cerrado sesión', 'success');
+        }
+
         localStorage.clear();
 
         dispatch({ type: types.logout });
