@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ImagesUserPage = () => 
+export const AlbumUserPage = () => 
 {
     return (
         <div>
