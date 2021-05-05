@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { startLogout } from '../redux/actions/auth';
 
@@ -17,7 +18,7 @@ export const NavBar = () =>
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-header">
             <div className="container">
-                <a className="navbar-brand" href="/home">PhotoDir</a>
+                <NavLink className="navbar-brand" exact to="/home">PhotoDir</NavLink>
                 {
                     (logged) &&
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
