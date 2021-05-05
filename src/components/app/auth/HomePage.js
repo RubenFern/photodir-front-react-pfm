@@ -21,32 +21,30 @@ export const HomePage = () =>
         <>
             <NavBar />
 
-            <div className="container mt-5">
-                <h1 className="text-light">Álbumes del usuario</h1>
+            <div className="container-fluid mt-5">
+                <h1 className="text-light container">Álbumes del usuario</h1>
 
-                <div className="conatiner">
-                    <div className="row row-cols-4">
+                <ul className="container-fluid card-list">
+	
                     {
                         // Usar 2 componentes 
                         (album !== undefined && album.length > 0) ? album.map( ({image, uid, name, description, creation_date: date}) => 
                         (
-                            <div
-                                key={uid}
-                                className="text-light"
-                            >
-                                <h1>{image}</h1>
-                                <h2>{name}</h2>
-                                <p>
-                                    {description}
-                                </p>
-                                <p>
-                                    {date}
-                                </p>
-                            </div>
+                            <li className="card" key={uid}>
+                                <a className="card-image" href="">
+                                    <img src={`/${image}`} alt={image} />
+                                </a>
+                                <a className="card-description" href="">
+                                    <h2>{name}</h2>
+                                    <p>{description}</p>
+                                    <p className="date">{date}</p>
+                                </a>
+                            </li>
+
                         )) : <h2 className="text-light">Este usuario no tiene álbumes :(</h2>
                     }
-                    </div>
-                </div>
+                    
+                </ul>
             </div>
         </>
     )
