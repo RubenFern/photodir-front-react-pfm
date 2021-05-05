@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
 import { NavBar } from '../layout/NavBar';
@@ -44,7 +44,7 @@ export const LoginScreen = ({ history }) =>
         <>
             <NavBar />
 
-            <div className="text-white center-content">
+            <div className="text-white center-content bg-image">
                 <form className="form-login" onSubmit={login}>
                     <h1 className="text-center">Bienvenido</h1>
                     <div className="form-group">
@@ -88,7 +88,7 @@ export const LoginScreen = ({ history }) =>
                     <p
                         className="text-center m-auto mt-4"
                     >
-                        ¿No tienes una cuenta? <Link to="/registro" className="link"> Regístrate</Link>
+                        ¿No tienes una cuenta? <NavLink exact to="/registro" className="link"> Regístrate</NavLink>
                     </p>
                 </form>
             </div>
