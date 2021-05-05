@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { validatePassword } from '../../helpers/validatePassword';
 import { useForm } from '../../hooks/useForm';
@@ -21,10 +21,9 @@ export const RegisterScreen = ({ history }) =>
         email: '',
         password: '',
         password2: '',
-        image: ''
     });
 
-    const { name, user_name, email, password, password2, image } = state;
+    const { name, user_name, email, password, password2 } = state;
 
 
     const register = async(e) =>
@@ -51,7 +50,7 @@ export const RegisterScreen = ({ history }) =>
         }
 
         // Llamo al action del registro
-        dispatch(startRegister({name, user_name, email, password, image}));
+        dispatch(startRegister({name, user_name, email, password}));
     }
 
 
@@ -59,7 +58,7 @@ export const RegisterScreen = ({ history }) =>
         <>
             <NavBar />
 
-            <div className="text-white center-content">
+            <div className="text-white center-content bg-image">
                 <form className="form-login" onSubmit={register}>
                     <h1 className="text-center">REGISTRO</h1>
                     <div className="form-group">
@@ -144,19 +143,6 @@ export const RegisterScreen = ({ history }) =>
                         </div>
                     </div>
                     <br />
-                    <div className="form-group">
-                        <label htmlFor="image">Foto de Perfil: (Opcional)</label>
-                        <input 
-                            type="file" 
-                            id="image" 
-                            name="image"
-                            className="form-control" 
-                            placeholder="Introduce tu nombre de usuario"
-                            onChange={handleInputChange}
-                            value={image}
-                        />
-                    </div>
-                    <br />
                     <div className="form-group submit">
                         <button className="btn btn-danger">
                             Iniciar Sesión
@@ -165,7 +151,7 @@ export const RegisterScreen = ({ history }) =>
                     <p
                         className="text-center m-auto mt-4"
                     >
-                        ¿Ya tienes una cuenta? <Link to="/login" className="link"> Inicia Sesión</Link>
+                        ¿Ya tienes una cuenta? <NavLink exact to="/login" className="link"> Inicia Sesión</NavLink>
                     </p>
                 </form>
             </div>
