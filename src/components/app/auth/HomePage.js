@@ -22,7 +22,11 @@ export const HomePage = () =>
             <NavBar />
 
             <div className="container-fluid mt-5">
-                <h1 className="text-light container">Álbumes del usuario</h1>
+                <div className="d-flex flex-column flex-md-row justify-content-md-around">
+                    <h1 className="text-light text-center">Álbumes del usuario</h1>
+                    <button className="btn btn-danger">Crear álbum</button>
+                </div>
+                
 
                 <ul className="container-fluid card-list">
 	
