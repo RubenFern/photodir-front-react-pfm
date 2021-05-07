@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
+import { AddAlbum } from './AddAlbum';
+import { FormModal } from './FormModal';
+
 
 export const HomePage = () => 
 {
@@ -10,12 +13,13 @@ export const HomePage = () =>
     const { user: { user_name } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    useEffect(() => 
-    {
-        dispatch(getAlbums(user_name)); 
-    }, [user_name, dispatch]);
+    const albums = useSelector(state => state.album);
+    const {album} = albums;
 
-    const {album} = useSelector(state => state.album);
+    useLayoutEffect(() => 
+    {
+        dispatch(getAlbums(user_name));
+    }, [user_name, dispatch, albums.length]);
 
     return (
         <>
@@ -24,7 +28,7 @@ export const HomePage = () =>
             <div className="container-fluid mt-5">
                 <div className="d-flex flex-column flex-md-row justify-content-md-around">
                     <h1 className="text-light text-center">Álbumes del usuario</h1>
-                    <button className="btn btn-danger">Crear álbum</button>
+                    <AddAlbum />
                 </div>
                 
 
@@ -32,17 +36,17 @@ export const HomePage = () =>
 	
                     {
                         // Usar 2 componentes 
-                        (album !== undefined && album.length > 0) ? album.map( ({image, uid, name, description, creation_date: date}) => 
+                        (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid, name, description, creation_date: date}) => 
                         (
                             <li className="card" key={uid}>
-                                <a className="card-image" href="">
+                                <span className="card-image">
                                     <img src={`/${image}`} alt={image} />
-                                </a>
-                                <a className="card-description" href="">
+                                </span>
+                                <span className="card-description">
                                     <h2>{name}</h2>
                                     <p>{description}</p>
                                     <p className="date">{date}</p>
-                                </a>
+                                </span>
                             </li>
 
                         )) : <h2 className="text-light">Este usuario no tiene álbumes :(</h2>
@@ -50,6 +54,8 @@ export const HomePage = () =>
                     
                 </ul>
             </div>
+
+            <FormModal />
         </>
     )
 }

@@ -1,9 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-export const AddAlbum = () => {
+import { types } from '../../redux/types/types';
+
+export const AddAlbum = () => 
+{
+    const dispatch = useDispatch();
+
+    const openModal = () =>
+    {
+        dispatch({type: types.openModal});
+    }
+
     return (
-        <div>
-            
-        </div>
+        <button 
+            className="btn btn-danger"
+            onClick={openModal}
+        >
+            <i className="fa fa-plus-square" aria-hidden="true"></i>
+            <span> Crear álbum</span>
+        </button>
     )
 }
