@@ -6,9 +6,6 @@ import { useForm } from '../../hooks/useForm';
 import { NavBar } from '../layout/NavBar';
 import { startLogin } from '../redux/actions/auth';
 
-import './LoginScreen.css';
-
-
 export const LoginScreen = ({ history }) => 
 {
     // Llamo al dispatch de Redux
