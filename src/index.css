@@ -20,10 +20,58 @@ body, .dropdown-menu {
     margin: 0;
 }
 
+.btn, .btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.main-color {
+    color: #de744c;
+}
+
+.bg-main-color {
+    background-color: #de744c;
+}
+
+.secondary-color {
+    color: #deb13c;
+}
+
+.bg-secondary-color {
+    background-color: #deb13c;
+}
+
 .dropdown-item:hover {
     background-color: #242930;
     color: #fff;
     opacity: 100%;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.form-login {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 2rem 1rem;
+    border-radius: 20px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 1200px) {
+    .form-login {
+        max-width: 50vw;
+    }
 }
 
 .link {
@@ -92,8 +140,50 @@ body, .dropdown-menu {
     color: #8A8A8A;
 }
 
-.card-description > .date {
+.card-description > .date, .bottom {
     position: absolute;
     bottom: 5px;
 }
 /* FIN CSS imágenes */
+
+/* CSS Modal Form */
+.ReactModalPortal > div{
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: opacity .3s ease-in-out;
+    z-index: 999;
+}
+
+.modal-fondo {
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    display: inline;
+    max-height: 620px;
+    max-width: 500px;
+    outline: none;
+    padding: 10px;
+}
+/* Fin CSS Modal Form */
