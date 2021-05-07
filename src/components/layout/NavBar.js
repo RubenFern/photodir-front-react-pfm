@@ -33,7 +33,8 @@ export const NavBar = () =>
 
                                 <li className="nav-item dropdown ">
                                     <span className="nav-link dropdown-toggle user" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {user_name}
+                                        <i className="fa fa-user" aria-hidden="true"></i>
+                                        <span> {user_name}</span>
                                     </span>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li className="text-white">
