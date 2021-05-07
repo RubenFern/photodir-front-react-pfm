@@ -3,6 +3,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { albumReducer } from '../reducers/albumReducer';
 import { authReducer } from '../reducers/authReducer';
+import { modalReducer } from '../reducers/modalReducer';
 
 /**
  * Habilito la herramienta de desarrollo de redux tools y además aplico el middleware de thunk para
@@ -17,7 +18,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const reducers = combineReducers(
 {
     auth: authReducer,
-    album: albumReducer
+    album: albumReducer,
+    modal: modalReducer
 });
 
 export const store = createStore(

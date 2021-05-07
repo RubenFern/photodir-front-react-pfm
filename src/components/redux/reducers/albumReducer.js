@@ -7,14 +7,15 @@ export const albumReducer = (state = initialState, action) =>
     switch (action.type) {
         case types.viewAlbums:
             return {
-                ...state,
                 album: action.payload
             }
             
         case types.addAlbum:
-            return {
-                
-            }
+            const { album } = state;
+            return [
+                ...album,
+                action.payload
+            ]
 
         default:
             return state;
