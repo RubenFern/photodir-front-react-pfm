@@ -19,19 +19,19 @@ export const AppRouter = () =>
             <>
                 <Switch>
                     {
-                        // Ruta protegidas dependiendo si el usuario está logueado o no
+                    // Ruta protegidas dependiendo si el usuario está logueado o no
                     }
                     <AuthRoutes exact path='/login' isAuth={logged} component={LoginScreen} />
                     <AuthRoutes exact path='/registro' isAuth={logged} component={RegisterScreen} />
 
                     <PrivateRoute exact path="/home" isAuth={logged} component={HomePage} />
-                    <PrivateRoute exact path="/home/imagenes" isAuth={logged} component={AlbumPage} />
+                    <PrivateRoute exact path="/home/:album" isAuth={logged} component={AlbumPage} />
 
                     {
                     // Rutas a la que puede acceder cualquier usuario
                     }
-                    <Route exact path="/home/:username" component={HomeUserPage} />
-                    <Route exact path="/home/:username/imagenes" component={AlbumUserPage} />
+                    <Route exact path="/explore/:username" component={HomeUserPage} />
+                    <Route exact path="/explore/:username/imagenes" component={AlbumUserPage} />
 
                     <Redirect to="/home" />
                 </Switch>
