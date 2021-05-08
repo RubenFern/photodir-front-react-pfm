@@ -12,5 +12,8 @@ export const types =
     closeModal: '[Modal] Close',
 
     viewAlbums: '[Album] viewAlbums',
-    addAlbum: '[Album] addAlbum'
+    addAlbum: '[Album] addAlbum',
+
+    viewPhotos: '[Photo] viewPhotos',
+    addPhoto: '[Photo] addPhoto'
 }
