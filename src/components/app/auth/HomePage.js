@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
@@ -28,26 +29,26 @@ export const HomePage = () =>
             <div className="container-fluid mt-5">
                 <div className="d-flex flex-column flex-md-row justify-content-md-around">
                     <h1 className="text-light text-center">Álbumes del usuario</h1>
-                    <AddAlbum />
+                    <AddAlbum action="Crear Álbum" />
                 </div>
                 
 
-                <ul className="container-fluid card-list">
+                <ul className="container-fluid card-list pointer">
 	
                     {
                         // Usar 2 componentes 
                         (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid, name, description, creation_date: date}) => 
                         (
-                            <li className="card" key={uid}>
+                            <NavLink className="card" to={`/home/${name}`} key={uid}>
                                 <span className="card-image">
-                                    <img src={`/${image}`} alt={image} />
+                                    <img src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
                                 </span>
                                 <span className="card-description">
                                     <h2>{name}</h2>
                                     <p>{description}</p>
                                     <p className="date">{date}</p>
                                 </span>
-                            </li>
+                            </NavLink>
 
                         )) : <h2 className="text-light">Este usuario no tiene álbumes :(</h2>
                     }
@@ -55,7 +56,7 @@ export const HomePage = () =>
                 </ul>
             </div>
 
-            <FormModal />
+            <FormModal tipo="album" />
         </>
     )
 }

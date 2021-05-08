@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { types } from '../../redux/types/types';
 
-export const AddAlbum = () => 
+export const AddAlbum = ({action}) => 
 {
     const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ export const AddAlbum = () =>
             onClick={openModal}
         >
             <i className="fa fa-plus-square" aria-hidden="true"></i>
-            <span> Crear álbum</span>
+            <span> {action}</span>
         </button>
     )
 }
