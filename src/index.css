@@ -25,6 +25,10 @@ body, .dropdown-menu {
     box-shadow: none;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .main-color {
     color: #de744c;
 }
@@ -52,7 +56,6 @@ body, .dropdown-menu {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 1rem;
 }
 
 .form-login {
@@ -187,3 +190,7 @@ body, .dropdown-menu {
     padding: 10px;
 }
 /* Fin CSS Modal Form */
+
+.small {
+    font-size: .7rem;
+}
