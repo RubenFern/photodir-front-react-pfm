@@ -53,14 +53,14 @@ const fetchWithToken = (endpoint, data, method = 'GET') =>
     }
 }
 
-const fetchImage = (endpoint, infoImagen, method = 'GET') =>
+const fetchImage = (endpoint, infoImage, method = 'GET') =>
 {
     const url = `${api}/${endpoint}`;
     const token = localStorage.getItem('token') || '';
 
     // Creo el form data de la imagen para pdoer almacenarla en la API
     const formData = new FormData();
-    formData.append('image', infoImagen);
+    formData.append('image', infoImage);
 
     return fetch(url,
     {
