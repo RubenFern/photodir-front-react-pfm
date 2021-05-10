@@ -13,6 +13,7 @@ export const types =
 
     viewAlbums: '[Album] viewAlbums',
     addAlbum: '[Album] addAlbum',
+    editAlbum: '[Album] editAlbum',
 
     viewPhotos: '[Photo] viewPhotos',
     addPhoto: '[Photo] addPhoto'

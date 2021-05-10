@@ -6,16 +6,19 @@ export const albumReducer = (state = initialState, action) =>
 {
     switch (action.type) {
         case types.viewAlbums:
-            return {
-                album: action.payload
-            }
+            return action.payload
             
         case types.addAlbum:
-            const { album } = state;
             return [
-                ...album,
+                ...state,
                 action.payload
             ]
+
+        case types.editAlbum:
+            return state.map(
+                // Si el id de la iteracion es igual al que edité, devuelvo el editado, si no el objeto original
+                album => (album.uid === action.payload.uid) ? action.payload : album
+            )
 
         default:
             return state;

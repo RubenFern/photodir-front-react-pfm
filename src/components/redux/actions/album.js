@@ -46,8 +46,29 @@ const addAlbum = (data) =>
     }
 }
 
+const editAlbum = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { name, image, description, oldName } = data;
+
+        // comprobar si cambió la image. Modificar y borrar la anterior
+
+
+        // Modifico los campos
+        const res = await fetchWithToken(`albumes/${oldName}`, {name, image, description}, 'PUT');
+        const album = await res.json();
+
+        dispatch({
+            type: types.editAlbum,
+            payload: album
+        });
+    }
+}
+
 export 
 {
     getAlbums,
-    addAlbum
+    addAlbum,
+    editAlbum
 }
