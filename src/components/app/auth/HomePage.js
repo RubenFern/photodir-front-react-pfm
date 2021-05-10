@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
-import { AddAlbum } from './AddAlbum';
+import { AddComponent } from './components/helpers/AddComponent';
+import { DeleteComponent } from './components/helpers/DeleteComponent';
+import { EditComponent } from './components/helpers/EditComponent';
 import { FormModal } from './FormModal';
 
 
@@ -14,41 +16,51 @@ export const HomePage = () =>
     const { user: { user_name } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const albums = useSelector(state => state.album);
-    const {album} = albums;
+    const album = useSelector(state => state.album);
+
+    // Ordeno los álbumes por fecha
+    album.sort( (a, b) =>
+    {
+        return new Date(a.creation_date) - new Date(b.creation_date);
+    });
 
     useLayoutEffect(() => 
     {
         dispatch(getAlbums(user_name));
-    }, [user_name, dispatch, albums.length]);
+        console.log('recarga')
+    }, [user_name, dispatch, album.length]);
 
     return (
         <>
             <NavBar />
 
             <div className="container-fluid mt-5">
-                <div className="d-flex flex-column flex-md-row justify-content-md-around">
+                <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
                     <h1 className="text-light text-center">Álbumes del usuario</h1>
-                    <AddAlbum action="Crear Álbum" />
+                    <AddComponent action="Crear Álbum" />
                 </div>
                 
 
-                <ul className="container-fluid card-list pointer">
+                <ul className="container-fluid card-list">
 	
                     {
                         // Usar 2 componentes 
-                        (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid, name, description, creation_date: date}) => 
+                        (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
                         (
-                            <NavLink className="card" to={`/home/${name}`} key={uid}>
-                                <span className="card-image">
-                                    <img src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
-                                </span>
+                            <li key={uid} className="card">
+                                <NavLink className="card-image" to={`/home/${name}`}>
+                                    <img className="pointer" src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
+                                </NavLink>
                                 <span className="card-description">
                                     <h2>{name}</h2>
                                     <p>{description}</p>
-                                    <p className="date">{date}</p>
+                                    <div className="d-flex w-100 justify-content-md-around align-items-center date">
+                                        <p>{creation_date}</p>
+                                        <EditComponent action="Editar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
+                                        <DeleteComponent action="Eliminar" />
+                                    </div>
                                 </span>
-                            </NavLink>
+                            </li>
 
                         )) : <h2 className="text-light">Este usuario no tiene álbumes :(</h2>
                     }
@@ -56,7 +68,7 @@ export const HomePage = () =>
                 </ul>
             </div>
 
-            <FormModal tipo="album" />
+            <FormModal tipo="album" album={album} />
         </>
     )
 }

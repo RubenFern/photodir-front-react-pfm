@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { NavBar } from '../../layout/NavBar';
 import { FormModal } from './FormModal';
-import { AddAlbum } from './AddAlbum';
+import { AddComponent } from './components/helpers/AddComponent';
 import { useParams } from 'react-router';
 import { getPhotos } from '../../redux/actions/photo';
+import { EditComponent } from './components/helpers/EditComponent';
 
 export const AlbumPage = () => 
 {
@@ -21,6 +22,7 @@ export const AlbumPage = () =>
     useLayoutEffect(() => 
     {
         dispatch(getPhotos(`${user_name}/${album}`));
+        console.log('recagra')
     }, [user_name, album, dispatch, arrayPhotos.length]);
 
     return (
@@ -28,9 +30,12 @@ export const AlbumPage = () =>
             <NavBar />
 
             <div className="container-fluid mt-5">
-                <div className="d-flex flex-column flex-md-row justify-content-md-around">
-                    <h1 className="text-light text-center">{album}</h1>
-                    <AddAlbum action="Añadir Fotografía" />
+                <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
+                    <div className="d-flex align-items-center">
+                        <h1 className="text-light text-center">{album}</h1>
+                        <EditComponent action="Editar Álbum" />
+                    </div>
+                    <AddComponent action="Añadir Fotografía" />
                 </div>
                 
 
