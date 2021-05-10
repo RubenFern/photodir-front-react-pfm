@@ -45,6 +45,12 @@ body, .dropdown-menu {
     background-color: #deb13c;
 }
 
+.centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .dropdown-item:hover {
     background-color: #242930;
     color: #fff;
@@ -88,7 +94,7 @@ body, .dropdown-menu {
 /* CSS imágenes */
 .card-image {
 	display: block;
-	min-height: 10rem;
+	min-height: 11rem;
 }
 
 .card-image > img {
@@ -108,7 +114,8 @@ body, .dropdown-menu {
 .card {
 	display: inline-block;
 	width: 100%;
-	max-width: 20rem;
+	max-width: 25rem;
+    min-height: 27rem;
 	margin: 1rem;
 	font-size: 1rem;
 	text-decoration: none;
@@ -184,7 +191,7 @@ body, .dropdown-menu {
     border-radius: 5px;
     color: #fff;
     display: inline;
-    max-height: 620px;
+    max-height: 700px;
     max-width: 500px;
     outline: none;
     padding: 10px;
@@ -194,3 +201,44 @@ body, .dropdown-menu {
 .small {
     font-size: .7rem;
 }
+
+.radius-image {
+    display: inline-block;
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.radius-image > img {
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+}
+
+.upload-image {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-image > input {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.button {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 6px 18px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: default;
+}
+
