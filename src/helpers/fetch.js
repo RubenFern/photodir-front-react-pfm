@@ -53,7 +53,7 @@ const fetchWithToken = (endpoint, data, method = 'GET') =>
     }
 }
 
-const fetchImage = (endpoint, infoImage, method = 'GET') =>
+const fetchImage = (endpoint, infoImage, method = 'GET', oldImage = '') =>
 {
     const url = `${api}/${endpoint}`;
     const token = localStorage.getItem('token') || '';
@@ -68,6 +68,7 @@ const fetchImage = (endpoint, infoImage, method = 'GET') =>
         headers:
         {
             'ky-token': token,
+            oldImage
         },
         body: formData
     })
