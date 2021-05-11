@@ -50,10 +50,20 @@ const editAlbum = (data) =>
 {
     return async(dispatch) =>
     {
-        const { name, image, description, oldName } = data;
+        const { name, image: fileImage, description, oldName, oldImage } = data;
+        let image = oldImage;
 
-        // comprobar si cambió la image. Modificar y borrar la anterior
+        // Si modificó la imagen elimino la anterior y la cambio por la nueva la almaceno en la API
+        if (fileImage.lastModified)
+        {
+            image = fileImage.name;
 
+            const resSaveImage = await fetchImage('upload/album', fileImage, 'POST', oldImage);
+            const { resp: { nameImgUpload } } = await resSaveImage.json();
+
+            // Guardo la nueva imagen
+            image = nameImgUpload;
+        }
 
         // Modifico los campos
         const res = await fetchWithToken(`albumes/${oldName}`, {name, image, description}, 'PUT');
@@ -66,9 +76,25 @@ const editAlbum = (data) =>
     }
 }
 
+const deleteAlbum = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { image, name, description } = data;
+        const res = await fetchWithToken(`albumes/${name}`, {name, image, description}, 'DELETE');
+        const { album } = await res.json();
+
+        dispatch({
+            type: types.deleteAlbum,
+            payload: album
+        });
+    }
+}
+
 export 
 {
     getAlbums,
     addAlbum,
-    editAlbum
+    editAlbum,
+    deleteAlbum
 }

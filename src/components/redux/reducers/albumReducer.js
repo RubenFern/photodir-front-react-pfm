@@ -20,6 +20,10 @@ export const albumReducer = (state = initialState, action) =>
                 album => (album.uid === action.payload.uid) ? action.payload : album
             )
 
+        case types.deleteAlbum:
+            // Filtro para no añadir el álbum que coincida con el eliminado
+            return state.filter( album => album.uid !== action.payload.uid);
+
         default:
             return state;
     }
