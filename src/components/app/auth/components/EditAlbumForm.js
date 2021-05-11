@@ -35,7 +35,7 @@ export const EditAlbumForm = ({ closeModal}) =>
         }
 
         // Realizo las peticiones a la API para editar el álbum
-        dispatch(editAlbum({uid, name, description, image, creation_date, oldName}));
+        dispatch(editAlbum({uid, name, description, image, creation_date, oldName, oldImage}));
 
         closeModal();
     }
@@ -47,7 +47,12 @@ export const EditAlbumForm = ({ closeModal}) =>
             <div className="form-group d-flex justify-content-md-around mb-3">
                 <div className="upload-image">
                     <button className="button">Editar Imagen</button>
-                    <input type="file" name="myfile" />
+                    <input 
+                        type="file"
+                        id="image"
+                        name="image" 
+                        onChange={(e) => setimage(e.target.files[0])}
+                    />
                 </div>
                 <div>
                     <button className="button">Eliminar Imagen</button>

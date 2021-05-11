@@ -57,7 +57,7 @@ export const HomePage = () =>
                                     <div className="d-flex w-100 justify-content-md-around align-items-center date">
                                         <p>{creation_date}</p>
                                         <EditComponent action="Editar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
-                                        <DeleteComponent action="Eliminar" />
+                                        <DeleteComponent action="Eliminar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
                                     </div>
                                 </span>
                             </li>

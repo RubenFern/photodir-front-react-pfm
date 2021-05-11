@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
-import { types } from '../../../../redux/types/types';
 import Swal from "sweetalert2";
 
-export const DeleteComponent = ({action}) => 
+import { deleteAlbum } from '../../../../redux/actions/album';
+
+export const DeleteComponent = ({ action, image, name, description, uid, creation_date }) => 
 {
     const dispatch = useDispatch();
 
@@ -23,11 +23,12 @@ export const DeleteComponent = ({action}) =>
         {
             if (res.isConfirmed) 
             {
-                // Action de reducer
+                // Eliminio el álbum si el usuario lo confirmó
+                dispatch(deleteAlbum({image, name, description, uid, creation_date}));
+
                 Swal.fire('Eliminado', 'Tu álbum se ha eliminado', 'success');
             }
         })
-        //dispatch({type: types.openModal});
     }
 
     return (
