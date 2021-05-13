@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useForm } from '../../../../hooks/useForm';
-import { addPhoto } from '../../../redux/actions/photo';
+import { useForm } from '../../../../../hooks/useForm';
+import { addPhoto } from '../../../../redux/actions/photo';
 
-export const PhotoModal = ({closeModal, album}) => 
+export const AddPhotoForm = ({closeModal, album}) => 
 {
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
 
     const [state, handleInputChange] = useForm({
-        titulo: '',
+        title: '',
         description: '',
     });
 
     const [image, setimage] = useState(null);
-    const { titulo, description } = state;
+    const { title, description } = state;
 
     const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ export const PhotoModal = ({closeModal, album}) =>
     {
         e.preventDefault();
 
-        // Obligo a escribir el nombre del álbum
+        // Obligo a añadir una imagen
         if (!image)
         {
             setvalid(false);
@@ -31,7 +31,7 @@ export const PhotoModal = ({closeModal, album}) =>
         }
 
         // Realizo las peticiones a la API para guardar el álbum
-        dispatch(addPhoto({titulo, description, image}, album));
+        dispatch(addPhoto({title, description, image}, album));
 
         closeModal();
     }
@@ -43,13 +43,13 @@ export const PhotoModal = ({closeModal, album}) =>
                 <label htmlFor="name">Título: <small className="small">(Opcional)</small></label>
                 <input 
                     type="text" 
-                    id="titulo" 
-                    name="titulo"
+                    id="title" 
+                    name="title"
                     className="form-control"
                     placeholder="Añade un título a la fotografía"
                     autoComplete="off"
                     onChange={handleInputChange}
-                    value={titulo}
+                    value={title}
                 />
             </div>
             <br />

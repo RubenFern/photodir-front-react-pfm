@@ -21,8 +21,8 @@ const addPhoto = (data, album) =>
     return async(dispatch) =>
     {
         const { title, description, image } = data;
-        console.log(image)
-        // Si el usuario añadió una imagen la guardo, si no le asigno la imagen por defecto mediante la API
+
+        // Sólo creo la publicación si subió una imagen
         if (image !== null)
         {
             // Alamceno la imagen en la API 
@@ -41,8 +41,43 @@ const addPhoto = (data, album) =>
     }
 }
 
+const editPhoto = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { uid, title, description } = data;
+
+        const res = await fetchWithToken(`fotografias/${uid}`, {title, description}, 'PUT');
+        const { photo } = await res.json();
+
+        dispatch({
+            type: types.editPhoto,
+            payload: photo
+        });
+    }
+}
+
+const deletePhoto = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { uid, image } = data;
+
+        const res = await fetchWithToken(`fotografias/${uid}`, {image}, 'DELETE');
+        const { photo } = await res.json();
+        console.log(photo)
+
+        dispatch({
+            type: types.deletePhoto,
+            payload: photo
+        });
+    }
+}
+
 export 
 {
     getPhotos,
-    addPhoto
+    addPhoto,
+    editPhoto,
+    deletePhoto
 }

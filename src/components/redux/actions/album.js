@@ -80,8 +80,8 @@ const deleteAlbum = (data) =>
 {
     return async(dispatch) =>
     {
-        const { image, name, description } = data;
-        const res = await fetchWithToken(`albumes/${name}`, {name, image, description}, 'DELETE');
+        const { image, name } = data;
+        const res = await fetchWithToken(`albumes/${name}`, {image}, 'DELETE');
         const { album } = await res.json();
 
         dispatch({

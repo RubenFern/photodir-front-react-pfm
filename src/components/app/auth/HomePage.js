@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
 import { AddComponent } from './components/helpers/AddComponent';
-import { DeleteComponent } from './components/helpers/DeleteComponent';
-import { EditComponent } from './components/helpers/EditComponent';
+import { DeleteComponent } from './components/Albums/DeleteComponent';
+import { EditComponent } from './components/Albums/EditComponent';
 import { FormModal } from './FormModal';
 
 
@@ -41,7 +41,7 @@ export const HomePage = () =>
                 </div>
                 
 
-                <ul className="container-fluid card-list">
+                <ul className="container-fluid card-list animate__animated animate__fadeIn">
 	
                     {
                         // Usar 2 componentes 

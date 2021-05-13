@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from "sweetalert2";
+import { deletePhoto } from '../../../../redux/actions/photo';
 
-import { deleteAlbum } from '../../../../redux/actions/album';
 
-export const DeleteComponent = ({ action, image, name, description, uid, creation_date }) => 
+export const DeleteComponent = ({ action, uid, image}) => 
 {
     const dispatch = useDispatch();
 
@@ -12,8 +12,8 @@ export const DeleteComponent = ({ action, image, name, description, uid, creatio
     {
         Swal.fire(
         {
-            title: '¿Estás seguro de borrar el álbum?',
-            text: 'Se eliminarán todas las imágenes que estén dentro de él',
+            title: '¿Estás seguro de borrar la fotografía?',
+            text: 'Se eliminará por completo y no la podrás recuperar. ¿Estás seguro?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -23,10 +23,10 @@ export const DeleteComponent = ({ action, image, name, description, uid, creatio
         {
             if (res.isConfirmed) 
             {
-                // Eliminio el álbum si el usuario lo confirmó
-                dispatch(deleteAlbum({image, name, description, uid, creation_date}));
+                // Elimino la imagen si el usuario lo confirmó
+                dispatch(deletePhoto({uid, image}));
 
-                Swal.fire('Eliminado', 'Tu álbum se ha eliminado', 'success');
+                Swal.fire('Eliminado', 'Tu fotografía se ha eliminado', 'success');
             }
         })
     }
@@ -36,7 +36,7 @@ export const DeleteComponent = ({ action, image, name, description, uid, creatio
             className="btn btn-danger h-75"
             onClick={openModal}
         >
-            <i className="fa fa-plus-square" aria-hidden="true"></i>
+            <i className="fa fa-trash-alt" aria-hidden="true"></i>
             <span> {action}</span>
         </button>
     )

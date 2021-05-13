@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useForm } from '../../../../hooks/useForm';
-import { editAlbum } from '../../../redux/actions/album';
+import { useForm } from '../../../../../hooks/useForm';
+import { editAlbum } from '../../../../redux/actions/album';
 
 export const EditAlbumForm = ({ closeModal}) => 
 {

@@ -17,5 +17,7 @@ export const types =
     deleteAlbum: '[Album] deleteALbum',
 
     viewPhotos: '[Photo] viewPhotos',
-    addPhoto: '[Photo] addPhoto'
+    addPhoto: '[Photo] addPhoto',
+    editPhoto: '[Photo] editPhoto',
+    deletePhoto: '[Photo] deletePhoto'
 }

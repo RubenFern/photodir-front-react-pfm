@@ -26,10 +26,10 @@ export const EditComponent = ({action, uid, image, name, description, creation_d
 
     return (
         <button 
-            className="btn btn-primary h-75"
+            className="btn bg-main-color text-light h-75"
             onClick={openModal}
         >
-            <i className="fa fa-plus-square" aria-hidden="true"></i>
+            <i className="fa fa-edit" aria-hidden="true"></i>
             <span> {action}</span>
         </button>
     )

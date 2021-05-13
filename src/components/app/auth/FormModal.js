@@ -3,8 +3,8 @@ import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { types } from '../../redux/types/types';
-import { AlbumModal } from './components/AlbumModal';
-import { PhotoModal } from './components/PhotoModal';
+import { AlbumModal } from './components/Albums/AlbumModal';
+import { PhotoModal } from './components/Photos/PhotoModal';
 
 // CSS de React-Modal
 const customStyles = 
@@ -21,7 +21,7 @@ const customStyles =
 };
 ReactModal.setAppElement('#root');
 
-export const FormModal = ({tipo, album}) => 
+export const FormModal = ({tipo, album = {}}) => 
 {
     const dispatch = useDispatch();
     const { modalOpen } = useSelector(state => state.modal)   
