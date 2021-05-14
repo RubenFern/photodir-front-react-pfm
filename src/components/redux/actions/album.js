@@ -27,11 +27,11 @@ const addAlbum = (data) =>
         // Si el usuario añadió una imagen la guardo, si no le asigno la imagen por defecto mediante la API
         if (infoImage)
         {
-            // Alamceno la imagen en la API 
+            // Almaceno la imagen en la API 
             const resSaveImage = await fetchImage('upload/album', infoImage, 'POST');
             const { resp: { nameImgUpload } } = await resSaveImage.json();
             
-            // Si se subió una imagen guardo el nombre 
+            // Guardo el nuevo nombre de la imagen 
             image = nameImgUpload;
         }
 
