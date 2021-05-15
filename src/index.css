@@ -287,3 +287,8 @@ body, .dropdown-menu {
     text-align: center;
 }
 /* Fin CSS fotografías */
+
+#results {
+    position: absolute;
+    margin-top: 3rem;
+}
