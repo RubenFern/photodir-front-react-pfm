@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { startLogout } from '../redux/actions/auth';
+import { Search } from './Search';
 
 export const NavBar = () => 
 {
@@ -25,6 +26,8 @@ export const NavBar = () =>
                         <span className="navbar-toggler-icon"></span>
                     </button>  
                 }
+
+                <Search />
                 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {
