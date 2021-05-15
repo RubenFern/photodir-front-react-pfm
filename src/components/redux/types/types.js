@@ -19,5 +19,10 @@ export const types =
     viewPhotos: '[Photo] viewPhotos',
     addPhoto: '[Photo] addPhoto',
     editPhoto: '[Photo] editPhoto',
-    deletePhoto: '[Photo] deletePhoto'
+    deletePhoto: '[Photo] deletePhoto',
+
+    viewUsers: '[Users] viewUsers',
+
+    reloadTrue: '[Reload] reloadTrue',
+    reloadFalse: '[Reload] reloadFalse'
 }

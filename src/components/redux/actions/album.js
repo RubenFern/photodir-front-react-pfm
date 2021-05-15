@@ -43,6 +43,11 @@ const addAlbum = (data) =>
             type: types.addAlbum,
             payload: album
         });
+
+        // Activo la recarga
+        dispatch({
+            type: types.reloadTrue
+        });
     }
 }
 
@@ -73,6 +78,11 @@ const editAlbum = (data) =>
             type: types.editAlbum,
             payload: album
         });
+
+        // Activo la recarga
+        dispatch({
+            type: types.reloadTrue
+        });
     }
 }
 
@@ -87,6 +97,11 @@ const deleteAlbum = (data) =>
         dispatch({
             type: types.deleteAlbum,
             payload: album
+        });
+
+        // Activo la recarga
+        dispatch({
+            type: types.reloadTrue
         });
     }
 }

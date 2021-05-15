@@ -5,6 +5,8 @@ import { albumReducer } from '../reducers/albumReducer';
 import { authReducer } from '../reducers/authReducer';
 import { modalReducer } from '../reducers/modalReducer';
 import { photoReducer } from '../reducers/photoReducer';
+import { reloadReducer } from '../reducers/reloadReducer';
+import { userReducer } from '../reducers/userReducer';
 
 /**
  * Habilito la herramienta de desarrollo de redux tools y además aplico el middleware de thunk para
@@ -21,7 +23,9 @@ const reducers = combineReducers(
     auth: authReducer,
     album: albumReducer,
     modal: modalReducer,
-    photos: photoReducer
+    photos: photoReducer,
+    reload: reloadReducer,
+    user: userReducer
 });
 
 export const store = createStore(

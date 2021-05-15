@@ -15,14 +15,14 @@ export const photoReducer = (state = initialState, action) =>
             ]
         
         case types.editPhoto:
-            return state.map(
-                // Si el id de la iteracion es igual al que edité, devuelvo el editado, si no el objeto original
-                photo => (photo.uid === action.payload.uid) ? action.payload : photo
-            )
-        
+            // Retorno la imagen editada
+            return action.payload
+            
+            
         case types.deletePhoto:
             // Filtro para no añadir el eliminado
-            return state.filter( photo => photo.uid !== action.payload.uid);
+            //return state.filter( photo => photo.uid !== action.payload.uid);
+            return action.payload
 
         default:
             return state;

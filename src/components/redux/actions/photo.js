@@ -16,6 +16,20 @@ const getPhotos = (path) =>
     }
 }
 
+const getPhoto = (path) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchNoToken(`fotografias/${path}`);
+        const { photo } = await res.json();
+
+        dispatch({
+            type: types.viewPhotos,
+            payload: photo
+        });
+    }
+}
+
 const addPhoto = (data, album) =>
 {
     return async(dispatch) =>
@@ -37,6 +51,11 @@ const addPhoto = (data, album) =>
                 type: types.addPhoto,
                 payload: photo
             });
+
+            // Activo la recarga
+            dispatch({
+                type: types.reloadTrue
+            });
         } 
     }
 }
@@ -54,6 +73,11 @@ const editPhoto = (data) =>
             type: types.editPhoto,
             payload: photo
         });
+
+        // Activo la recarga
+        dispatch({
+            type: types.reloadTrue
+        });
     }
 }
 
@@ -65,11 +89,15 @@ const deletePhoto = (data) =>
 
         const res = await fetchWithToken(`fotografias/${uid}`, {image}, 'DELETE');
         const { photo } = await res.json();
-        console.log(photo)
 
         dispatch({
             type: types.deletePhoto,
             payload: photo
+        });
+
+        // Activo la recarga
+        dispatch({
+            type: types.reloadTrue
         });
     }
 }
@@ -77,6 +105,7 @@ const deletePhoto = (data) =>
 export 
 {
     getPhotos,
+    getPhoto,
     addPhoto,
     editPhoto,
     deletePhoto
