@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../../../hooks/useForm';
 import { editAlbum } from '../../../../redux/actions/album';
 
-export const EditAlbumForm = ({ closeModal}) => 
+export const EditAlbumForm = ({ closeModal }) => 
 {
     // Recibo los datos del álbum desde el state
     const { modalOpen, data: { uid, name: oldName, image: oldImage, description: oldDescription, creation_date } } = useSelector(state => state.modal);

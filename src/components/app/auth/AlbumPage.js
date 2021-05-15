@@ -7,6 +7,7 @@ import { AddComponent } from './components/helpers/AddComponent';
 import { useParams } from 'react-router';
 import { getPhotos } from '../../redux/actions/photo';
 import { NavLink } from 'react-router-dom';
+import { types } from '../../redux/types/types';
 
 export const AlbumPage = () => 
 {
@@ -17,12 +18,21 @@ export const AlbumPage = () =>
     const dispatch = useDispatch();
 
     const photos = useSelector(state => state.photos);
+    const reload = useSelector(state => state.reload);
 
     useLayoutEffect(() => 
     {
         dispatch(getPhotos(`${user_name}/${album}`));
         console.log('recargaphoto')
-    }, [user_name, album, dispatch, photos.length]);
+
+        // Finalizo el renderizado desactivando el reload
+        return () =>
+        {
+            dispatch({
+                type: types.reloadFalse
+            });
+        }   
+    }, [user_name, album, dispatch, reload]);
 
     return (
         <>
@@ -41,7 +51,7 @@ export const AlbumPage = () =>
 	
                 {
                     // Usar 2 componentes 
-                    (photos !== undefined && photos.length > 0) ? photos.reverse().map( ({image, uid, title, description, creation_date}) => 
+                    (photos !== undefined && photos.length > 0) ? photos.reverse().map( ({image, uid = '', title, description, creation_date}) => 
                     (
                         // En el NavLink retorno las props de la imagen
                         <NavLink to={{ pathname: `/home/${album}/${image}`, state: { uid, image, title, description, creation_date } }} className="gallery-item" key={uid}>

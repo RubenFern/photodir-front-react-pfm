@@ -1,18 +1,37 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
 import { NavBar } from '../../layout/NavBar';
+import { getPhoto } from '../../redux/actions/photo';
+import { types } from '../../redux/types/types';
 import { DeleteComponent } from './components/Photos/DeleteComponent';
 import { EditComponent } from './components/Photos/EditComponent';
 import { FormModal } from './FormModal';
 
 export const PhotoPage = ({ history }) => 
 {
-    // Realizo una petición para no depender de los datos de la página anterior PROBAR A SACAR EL ID DEL REDUCER PORQUE AL ACTUALIZAR ESTE CAMBIA Y COGE EL VALOR ACTUALIZADO
-    const { state: { uid, title, description, image, creation_date } } = useLocation();
+    const { state: { uid } } = useLocation();
     const { user: { user_name } } = useSelector(state => state.auth);
+    const { title, description, image, creation_date } = useSelector(state => state.photos);
+    const reload = useSelector(state => state.reload);
 
+    const dispatch = useDispatch();
+
+    useLayoutEffect(() => 
+    {
+        // Obtengo los datos de la imagen para no depender de la página anterior y poder recargar los datos al editar  
+        dispatch(getPhoto(uid));
+        console.log('recargaphoto')
+
+        // Finalizo el renderizado desactivando el reload
+        return () =>
+        {
+            dispatch({
+                type: types.reloadFalse
+            });
+        }   
+    }, [uid, dispatch, reload]);
 
     const back = () =>
     {

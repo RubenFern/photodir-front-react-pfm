@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import Swal from "sweetalert2";
-import { deletePhoto } from '../../../../redux/actions/photo';
 
+import { deletePhoto } from '../../../../redux/actions/photo';
 
 export const DeleteComponent = ({ action, uid, image}) => 
 {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const openModal = () =>
     {
@@ -25,6 +27,11 @@ export const DeleteComponent = ({ action, uid, image}) =>
             {
                 // Elimino la imagen si el usuario lo confirmó
                 dispatch(deletePhoto({uid, image}));
+
+                // Redirecciono al album
+                const { location: { pathname } } = history;
+                const path = pathname.split('/');
+                history.replace(`/home/${path[2]}`);
 
                 Swal.fire('Eliminado', 'Tu fotografía se ha eliminado', 'success');
             }

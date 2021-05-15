@@ -8,6 +8,7 @@ import { AddComponent } from './components/helpers/AddComponent';
 import { DeleteComponent } from './components/Albums/DeleteComponent';
 import { EditComponent } from './components/Albums/EditComponent';
 import { FormModal } from './FormModal';
+import { types } from '../../redux/types/types';
 
 
 export const HomePage = () => 
@@ -17,6 +18,7 @@ export const HomePage = () =>
     const dispatch = useDispatch();
 
     const album = useSelector(state => state.album);
+    const reload = useSelector(state => state.reload);
 
     // Ordeno los álbumes por fecha
     album.sort( (a, b) =>
@@ -28,7 +30,15 @@ export const HomePage = () =>
     {
         dispatch(getAlbums(user_name));
         console.log('recarga')
-    }, [user_name, dispatch, album.length]);
+
+        // Finalizo el renderizado desactivando el reload
+        return () =>
+        {
+            dispatch({
+                type: types.reloadFalse
+            });
+        }         
+    }, [user_name, dispatch, reload]);
 
     return (
         <>
