@@ -16,12 +16,18 @@ const getPhotos = (path) =>
     }
 }
 
-const getPhoto = (path) =>
+const getPhoto = (path, history) =>
 {
     return async(dispatch) =>
     {
         const res = await fetchNoToken(`fotografias/${path}`);
         const { photo } = await res.json();
+        
+        if (photo === undefined)
+        {
+            history.replace('/home');
+            return;
+        }
 
         dispatch({
             type: types.viewPhotos,

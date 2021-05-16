@@ -29,16 +29,15 @@ export const authReducer = (state = initialState, action) =>
         case types.login:
             // El payolad contiene los datos del usuario
             return {
-                ...state,
                 user: action.payload, // Recibo los datos del dispatch
                 logged: true
             }    
 
         case types.logout:
             return {
-                ...state,
-                logged: false
-            };    
+                logged: false,
+                user: {}
+            } 
 
         default:
             return state;

@@ -23,6 +23,8 @@ export const types =
 
     viewUsers: '[Users] viewUsers',
 
+    explore: '[Explore] explore',
+
     reloadTrue: '[Reload] reloadTrue',
     reloadFalse: '[Reload] reloadFalse'
 }

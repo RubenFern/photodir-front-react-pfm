@@ -3,6 +3,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { albumReducer } from '../reducers/albumReducer';
 import { authReducer } from '../reducers/authReducer';
+import { exploreReducer } from '../reducers/exploreReducer';
 import { modalReducer } from '../reducers/modalReducer';
 import { photoReducer } from '../reducers/photoReducer';
 import { reloadReducer } from '../reducers/reloadReducer';
@@ -25,7 +26,8 @@ const reducers = combineReducers(
     modal: modalReducer,
     photos: photoReducer,
     reload: reloadReducer,
-    user: userReducer
+    user: userReducer,
+    explore: exploreReducer
 });
 
 export const store = createStore(
