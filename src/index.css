@@ -291,4 +291,5 @@ body, .dropdown-menu {
 #results {
     position: absolute;
     margin-top: 3rem;
+    z-index: 99;
 }
