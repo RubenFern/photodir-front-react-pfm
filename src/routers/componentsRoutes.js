@@ -4,7 +4,9 @@ import { HomeUserPage } from '../components/app/public/HomeUserPage';
 import { AlbumUserPage } from '../components/app/public/AlbumUserPage';
 import { HomePage } from '../components/app/auth/HomePage';
 import { AlbumPage } from '../components/app/auth/AlbumPage';
-import { PhotoPage } from '../components/app/auth/PhotoPage'
+import { PhotoPage } from '../components/app/auth/PhotoPage';
+import { AdminPage } from '../components/app/admin/AdminPage';
+import { PhotoUserPage } from '../components/app/public/PhotoUserPage';
 
 export const routes =
 {
@@ -14,5 +16,7 @@ export const routes =
     AlbumPage,
     PhotoPage,
     HomeUserPage,
+    PhotoUserPage,
+    AdminPage,
     AlbumUserPage
 }
