@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
@@ -14,7 +14,15 @@ import { types } from '../../redux/types/types';
 export const HomePage = () => 
 {
     // Obtengo el nombre de usuario del usuario conectado
-    const { user: { user_name } } = useSelector(state => state.auth);
+    const { user: { user_name, is_admin } } = useSelector(state => state.auth);
+    const history = useHistory();
+
+    if (is_admin)
+    {
+        // Si es admin redirecciono a su home si la posibilidad de ir hacia atrás
+        history.replace('/panel');
+    }
+
     const dispatch = useDispatch();
 
     const album = useSelector(state => state.album);

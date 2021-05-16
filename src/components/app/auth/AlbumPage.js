@@ -50,19 +50,19 @@ export const AlbumPage = () =>
                 <div className="container-fluid gallery pointer mt-3">
 	
                 {
-                    // Usar 2 componentes 
-                    (photos !== undefined && photos.length > 0) ? photos.reverse().map( ({image, uid = '', title, description, creation_date}) => 
-                    (
-                        // En el NavLink retorno las props de la imagen
-                        <NavLink to={{ pathname: `/home/${album}/${image}`, state: { uid, image, title, description, creation_date } }} className="gallery-item" key={uid}>
-                            <img 
-                                className="gallery-img" 
-                                src={`http://localhost:3010/api/upload/photo/${user_name}/${image}`} 
-                                alt={image}
-                            />
-                        </NavLink>
+                // Usar 2 componentes 
+                (photos !== undefined && photos.length > 0) ? photos.reverse().map( ({image, uid = '', title, description, creation_date}) => 
+                (
+                    // En el NavLink retorno las props de la imagen
+                    <NavLink to={`/home/${album}/${image}`} className="gallery-item" key={uid}>
+                        <img 
+                            className="gallery-img" 
+                            src={`http://localhost:3010/api/upload/photo/${user_name}/${image}`} 
+                            alt={image}
+                        />
+                    </NavLink>
 
-                    )) : <h2 className="text-light">Este usuario no tiene fotografías :(</h2>
+                )) : <h2 className="text-light">Este usuario no tiene fotografías :(</h2>
                 }
                     
                 </div>

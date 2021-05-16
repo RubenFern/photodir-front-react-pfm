@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 
 import { NavBar } from '../../layout/NavBar';
 import { getPhoto } from '../../redux/actions/photo';
@@ -11,9 +11,10 @@ import { FormModal } from './FormModal';
 
 export const PhotoPage = ({ history }) => 
 {
-    const { state: { uid } } = useLocation();
+    const { photo } = useParams();
+    
     const { user: { user_name } } = useSelector(state => state.auth);
-    const { title, description, image, creation_date } = useSelector(state => state.photos);
+    const { uid, title, description, image, creation_date } = useSelector(state => state.photos);
     const reload = useSelector(state => state.reload);
 
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const PhotoPage = ({ history }) =>
     useLayoutEffect(() => 
     {
         // Obtengo los datos de la imagen para no depender de la página anterior y poder recargar los datos al editar  
-        dispatch(getPhoto(uid));
+        dispatch(getPhoto(photo, history));
         console.log('recargaphoto')
 
         // Finalizo el renderizado desactivando el reload
@@ -31,11 +32,17 @@ export const PhotoPage = ({ history }) =>
                 type: types.reloadFalse
             });
         }   
-    }, [uid, dispatch, reload]);
+    }, [photo, dispatch, history, reload]);
 
     const back = () =>
     {
-        history.goBack();
+        if (history.length <= 2)
+        {
+            history.push('/home');
+        } else
+        {
+            history.goBack();
+        }
     }
 
     return (
