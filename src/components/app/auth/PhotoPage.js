@@ -18,7 +18,7 @@ export const PhotoPage = ({ history }) =>
     console.log(CheckLike)
     
     const { user: { user_name } } = useSelector(state => state.auth);
-    const { uid, title, description, image, creation_date } = useSelector(state => state.photos);
+    const { uid, title, description, image, creation_date, likes } = useSelector(state => state.photos);
     const reload = useSelector(state => state.reload);
 
     const dispatch = useDispatch();
@@ -64,7 +64,8 @@ export const PhotoPage = ({ history }) =>
                             onClick={back}
                         />
                         <input id="heart" onChange={ () => setCheckLike(!CheckLike) } type="checkbox" />
-                        <label id="lbl-heart" htmlFor="heart"><i className="fas fa-heart"></i></label>
+                        <label id="lbl-heart" htmlFor="heart"><i className="fas fa-heart"></i> </label>
+                        <label className="text-light">{likes} Me gusta</label>
                     </div>
                 </div>
                 <div className="d-flex justify-content-end mt-4">
