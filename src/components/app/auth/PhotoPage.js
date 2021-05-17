@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
@@ -12,6 +12,10 @@ import { FormModal } from './FormModal';
 export const PhotoPage = ({ history }) => 
 {
     const { photo } = useParams();
+    
+    // State de prueba para el like de la imagen
+    const [CheckLike, setCheckLike] = useState(false);
+    console.log(CheckLike)
     
     const { user: { user_name } } = useSelector(state => state.auth);
     const { uid, title, description, image, creation_date } = useSelector(state => state.photos);
@@ -59,8 +63,9 @@ export const PhotoPage = ({ history }) =>
                             alt={image}
                             onClick={back}
                         />
+                        <input id="heart" onChange={ () => setCheckLike(!CheckLike) } type="checkbox" />
+                        <label id="lbl-heart" htmlFor="heart"><i className="fas fa-heart"></i></label>
                     </div>
-                    
                 </div>
                 <div className="d-flex justify-content-end mt-4">
                     <div className="h-25">

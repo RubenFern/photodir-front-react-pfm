@@ -8,8 +8,9 @@ export const AdminPage = () =>
         <>
             <NavBar />
 
-
-            <h1 className="text-light">ADMIN</h1>
+            <div className="container-fluid mt-5">
+                
+            </div>
         </>
     )
 }
