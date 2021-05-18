@@ -29,8 +29,7 @@ const getPhoto = (path, history) =>
             return;
         }
 
-        const { uid: uid_photo } = photo;
-        const res2 = await fetchNoToken(`likesphoto/viewlikes/${uid_photo}`);
+        const res2 = await fetchNoToken(`likesphoto/viewlikes/${photo.image}`);
         const { likes } = await res2.json();
 
         photo.likes = likes;
