@@ -25,6 +25,10 @@ body, .dropdown-menu {
     box-shadow: none;
 }
 
+.text-justify {
+    text-align: justify;
+}
+
 .pointer {
     cursor: pointer;
 }
