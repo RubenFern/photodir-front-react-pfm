@@ -4,8 +4,9 @@ import { useForm } from '../../../hooks/useForm';
 
 import { NavBar } from '../../layout/NavBar';
 import { editUser } from '../../redux/actions/user';
+import { DeleteUser } from './components/User/DeleteUser';
 
-export const PerfilPage = () => 
+export const PerfilPage = ({ history }) => 
 {
     const { user: { user_name, image: oldImage } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export const PerfilPage = () =>
         <>
             <NavBar />
 
-            <div className="container-fluid mt-5">
+            <div className="container mt-5">
 
                 {
                     // Cabecera con la información del usuario
@@ -128,6 +129,7 @@ export const PerfilPage = () =>
                 </form>    
                 </div>
                 
+                <DeleteUser history={history} />
             </div>
         </>
     )

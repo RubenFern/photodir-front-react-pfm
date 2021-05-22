@@ -23,7 +23,7 @@ const editUser = (data) =>
 {
     return async(dispatch) =>
     {
-        const  res = await fetchWithToken('editar-perfil', data, 'PUT');
+        const res = await fetchWithToken('user', data, 'PUT');
         const { user } = await res.json();
 
         if (user)
@@ -36,8 +36,21 @@ const editUser = (data) =>
     }
 }
 
+const deleteUser = () =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken('user', {}, 'DELETE');
+        await res.json();
+
+        // Elimino la sesión actual
+        dispatch({ type: types.logout });
+    }
+}
+
 export
 {
     searchUsers,
-    editUser
+    editUser,
+    deleteUser
 }

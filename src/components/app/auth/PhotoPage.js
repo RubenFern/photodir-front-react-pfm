@@ -57,6 +57,9 @@ export const PhotoPage = ({ history }) =>
                         <label id="lbl-heart" htmlFor="heart"><i className="fas fa-heart"></i> </label>
                         <label className="text-light">{likes} Me gusta</label>
                     </div>
+                    <p className="text-light mt-3 text-justify w-75">
+                        {description}
+                    </p>
                 </div>
                 <div className="d-flex justify-content-end mt-4">
                     <div className="h-25">

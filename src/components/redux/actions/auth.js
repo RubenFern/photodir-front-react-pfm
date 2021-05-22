@@ -22,28 +22,27 @@ const startLogin = (user_name, password) =>
              * Una vez guardo el Token, guardo los datos de usuario en el state de Redux para
              * poder acceder a ellos desde toda la apliación
              */
-            dispatch(authLogin(user));
-        } else if (errors.length > 0)
+            dispatch({
+                type: types.login,
+                payload: user
+            });
+        } 
+        else if (errors.length > 0)
         {
             Swal.fire('Ups', errors[0].msg, 'error');
-        } else
+        } 
+        else
         {
             Swal.fire('Ups', message, 'error');
         }
     }
 }
 
-const authLogin = (data) =>
-({
-    type: types.login,
-    payload: data
-});
-
 const startRegister = (data) =>
 {
     return async(dispatch) =>
     {
-        const res = await fetchNoToken('user/registro', data, 'POST');
+        const res = await fetchNoToken('user', data, 'POST');
         const { logged, message, errors = [] } = await res.json();
         
         if (logged)
@@ -54,10 +53,12 @@ const startRegister = (data) =>
             //inicie sesión y genere su token
             dispatch(startLogin(user_name, password));
 
-        } else if (errors.length > 0)
+        } 
+        else if (errors.length > 0)
         {
             Swal.fire('Ups', errors[0].msg, 'error');
-        } else
+        } 
+        else
         {
             Swal.fire('Ups', message, 'error');
         }

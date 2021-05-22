@@ -37,7 +37,7 @@ export const HomePage = () =>
 
     useLayoutEffect(() => 
     {
-        dispatch(getAlbums(user_name));
+        dispatch(getAlbums(user_name, history));
         console.log('recarga')
 
         // Finalizo el renderizado desactivando el reload

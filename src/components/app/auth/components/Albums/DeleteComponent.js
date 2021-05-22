@@ -28,7 +28,7 @@ export const DeleteComponent = ({ action, image, name, description, uid, creatio
 
                 Swal.fire('Eliminado', 'Tu álbum se ha eliminado', 'success');
             }
-        })
+        });
     }
 
     return (

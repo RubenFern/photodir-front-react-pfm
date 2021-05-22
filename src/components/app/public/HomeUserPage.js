@@ -8,7 +8,7 @@ import { getAlbums } from '../../redux/actions/album';
 import { getUser } from '../../redux/actions/explore';
 import { types } from '../../redux/types/types';
 
-export const HomeUserPage = () => 
+export const HomeUserPage = ({ history }) => 
 {
     const { username } = useParams();
     const { name, image, creation_date } = useSelector(state => state.explore);
@@ -25,7 +25,7 @@ export const HomeUserPage = () =>
 
         // Realizo las peticiones para obtener la información de usuario y los álbumes
         dispatch(getUser(username));
-        dispatch(getAlbums(username));
+        dispatch(getAlbums(username, history));
 
         console.log("Home usuarios")
 
