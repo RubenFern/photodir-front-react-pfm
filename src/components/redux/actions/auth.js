@@ -43,7 +43,7 @@ const startRegister = (data) =>
 {
     return async(dispatch) =>
     {
-        const res = await fetchNoToken('registro', data, 'POST');
+        const res = await fetchNoToken('user/registro', data, 'POST');
         const { logged, message, errors = [] } = await res.json();
         
         if (logged)

@@ -1,4 +1,4 @@
-import { fetchNoToken } from "../../../helpers/fetch";
+import { fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
 import { types } from "../types/types";
 
 
@@ -19,7 +19,25 @@ const searchUsers = (search) =>
     }
 }
 
+const editUser = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const  res = await fetchWithToken('editar-perfil', data, 'PUT');
+        const { user } = await res.json();
+
+        if (user)
+        {
+            dispatch({
+                type: types.login,
+                payload: user
+            });
+        }
+    }
+}
+
 export
 {
-    searchUsers
+    searchUsers,
+    editUser
 }

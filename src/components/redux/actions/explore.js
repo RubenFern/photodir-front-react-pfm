@@ -6,7 +6,7 @@ const getUser = (search) =>
 {
     return async(dispatch) =>
     {
-        const res = await fetchNoToken(`/${search}`);
+        const res = await fetchNoToken(`user/${search}`);
         const { user } = await res.json();
 
         if (user)

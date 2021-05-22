@@ -9,6 +9,7 @@ import { DeleteComponent } from './components/Albums/DeleteComponent';
 import { EditComponent } from './components/Albums/EditComponent';
 import { FormModal } from './FormModal';
 import { types } from '../../redux/types/types';
+import { back } from '../../../helpers/back';
 
 
 export const HomePage = () => 
@@ -53,36 +54,35 @@ export const HomePage = () =>
             <NavBar />
 
             <div className="container-fluid mt-5">
+                    
                 <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
-                    <h1 className="text-light text-center">Álbumes del usuario</h1>
+                    <h1 className="text-light text-center"><i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i> Estos son tus álbumes</h1>
                     <AddComponent action="Crear Álbum" />
                 </div>
                 
 
                 <ul className="container-fluid card-list animate__animated animate__fadeIn">
-	
-                    {
-                        // Usar 2 componentes 
-                        (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
-                        (
-                            <li key={uid} className="card">
-                                <NavLink className="card-image" to={`/home/${name}`}>
-                                    <img className="pointer" src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
-                                </NavLink>
-                                <span className="card-description">
-                                    <h2>{name}</h2>
-                                    <p>{description}</p>
-                                    <div className="d-flex w-100 justify-content-md-around align-items-center date">
-                                        <p>{creation_date}</p>
-                                        <EditComponent action="Editar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
-                                        <DeleteComponent action="Eliminar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
-                                    </div>
-                                </span>
-                            </li>
+                {
+                    // Usar 2 componentes 
+                    (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
+                    (
+                        <li key={uid} className="card">
+                            <NavLink className="card-image" to={`/home/${name}`}>
+                                <img className="pointer" src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
+                            </NavLink>
+                            <span className="card-description">
+                                <h2>{name}</h2>
+                                <p>{description}</p>
+                                <div className="d-flex w-100 justify-content-md-around align-items-center date">
+                                    <p>{creation_date}</p>
+                                    <EditComponent action="Editar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
+                                    <DeleteComponent action="Eliminar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
+                                </div>
+                            </span>
+                        </li>
 
-                        )) : <h2 className="text-light">Este usuario no tiene álbumes :(</h2>
-                    }
-                    
+                    )) : <h2 className="text-light">Parece que no tienes ningún álbum... ¡Prueba a crear uno!</h2>
+                } 
                 </ul>
             </div>
 

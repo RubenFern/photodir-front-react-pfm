@@ -8,8 +8,9 @@ import { useParams } from 'react-router';
 import { getPhotos } from '../../redux/actions/photo';
 import { NavLink } from 'react-router-dom';
 import { types } from '../../redux/types/types';
+import { back } from '../../../helpers/back';
 
-export const AlbumPage = () => 
+export const AlbumPage = ({ history }) => 
 {
     const { album } = useParams();
 
@@ -22,7 +23,7 @@ export const AlbumPage = () =>
 
     useLayoutEffect(() => 
     {
-        dispatch(getPhotos(`${user_name}/${album}`));
+        dispatch(getPhotos(`${user_name}/${album}`, history));
         console.log('recargaphoto')
 
         // Finalizo el renderizado desactivando el reload
@@ -41,7 +42,7 @@ export const AlbumPage = () =>
             <div className="container-fluid w-img mt-5 animate__animated animate__fadeIn">
                 <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
                     <div className="d-flex align-items-center">
-                        <h1 className="text-light text-center">{album}</h1>
+                        <h1 className="text-light text-center"><i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i> {album}</h1>
                     </div>
                     <AddComponent action="Añadir Fotografía" />
                 </div>

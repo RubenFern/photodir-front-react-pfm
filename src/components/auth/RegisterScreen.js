@@ -60,7 +60,7 @@ export const RegisterScreen = ({ history }) =>
 
             <div className="text-white center-content bg-image">
                 <form className="form-login" onSubmit={register}>
-                    <h1 className="text-center">REGISTRO</h1>
+                    <h1 className="text-center">¡Regístrate!</h1>
                     <div className="form-group">
                         <label htmlFor="name">Nombre:</label>
                         <input 
@@ -133,7 +133,7 @@ export const RegisterScreen = ({ history }) =>
                             id="password2"
                             name="password2"
                             className={`form-control ${ (!valid && (password !== password2)) && "is-invalid" } `}  
-                            placeholder="Introduce una contraseña"
+                            placeholder="Repite la contraseña"
                             autoComplete="on"
                             onChange={handleInputChange}
                             value={password2} 
@@ -145,7 +145,7 @@ export const RegisterScreen = ({ history }) =>
                     <br />
                     <div className="form-group submit">
                         <button className="btn btn-danger">
-                            Iniciar Sesión
+                            Regístrate
                         </button>
                     </div>
                     <p

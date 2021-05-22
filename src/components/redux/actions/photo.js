@@ -1,13 +1,19 @@
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
 import { types } from "../types/types";
 
-const getPhotos = (path) =>
+const getPhotos = (path, history) =>
 {
     return async(dispatch) =>
     {
         // Uso un path variable para usar la función en el home del usuario conectado, y cuando se busque por usuario
         const res = await fetchNoToken(`fotografias/${path}`);
         const { photos } = await res.json();
+
+        if (photos === undefined)
+        {
+            history.replace('/home');
+            return;
+        }
 
         dispatch({
             type: types.viewPhotos,
@@ -29,7 +35,8 @@ const getPhoto = (path, history) =>
             return;
         }
 
-        const res2 = await fetchNoToken(`likesphoto/viewlikes/${photo.image}`);
+        // Guardo los likes de la imagen
+        const res2 = await fetchNoToken(`likesphoto/${photo.image}`);
         const { likes } = await res2.json();
 
         photo.likes = likes;

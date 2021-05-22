@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { back } from '../../../helpers/back';
 
 import { NavBar } from '../../layout/NavBar';
 import { getPhoto } from '../../redux/actions/photo';
@@ -38,17 +39,6 @@ export const PhotoPage = ({ history }) =>
         }   
     }, [photo, dispatch, history, reload]);
 
-    const back = () =>
-    {
-        if (history.length <= 2)
-        {
-            history.push('/home');
-        } else
-        {
-            history.goBack();
-        }
-    }
-
     return (
         <>
             <NavBar />
@@ -61,7 +51,7 @@ export const PhotoPage = ({ history }) =>
                             className="only-img" 
                             src={`http://localhost:3010/api/upload/photo/${user_name}/${image}`} 
                             alt={image}
-                            onClick={back}
+                            onClick={() => back(history)}
                         />
                         <input id="heart" onChange={ () => setCheckLike(!CheckLike) } type="checkbox" />
                         <label id="lbl-heart" htmlFor="heart"><i className="fas fa-heart"></i> </label>

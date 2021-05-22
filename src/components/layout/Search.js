@@ -38,24 +38,29 @@ export const Search = () =>
 
 
     return (
-        <div className="d-flex flex-column text-center w-100 mx-5">
+        <div className="searchbox d-flex flex-column w-100 mx-5">
             <input 
                 id="search"
                 name="search"
                 value={search}
                 onChange={handleInputChange}
                 autoComplete="off"
+                type="search"
                 placeholder="Busca un usuario..."
-                className="h-25 w-100"
+                className="form-control"
             />
             {
             (users.length > 0) 
             ? 
-            <div id="results" className="d-block">
+            <div id="results" className="list-group">
                 {
                 users.map( ({ user_name }) =>
                 (
-                    <NavLink to={`/explore/${user_name}`} key={user_name}>
+                    <NavLink 
+                        className="bg-success list-group-item" 
+                        to={`/explore/${user_name}`} 
+                        key={user_name}
+                    >
                         <h3>{user_name}</h3>
                     </NavLink>
                 ))
