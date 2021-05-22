@@ -45,6 +45,10 @@ body, .dropdown-menu {
     background-color: #deb13c;
 }
 
+.text-white {
+    color: #fff;
+}
+
 .centrado {
     display: flex;
     justify-content: center;
@@ -290,8 +294,9 @@ body, .dropdown-menu {
 
 #results {
     position: absolute;
-    margin-top: 3rem;
+    margin-top: 2.4rem;
     z-index: 99;
+    width: 30%;
 }
 
 /* Like button */
