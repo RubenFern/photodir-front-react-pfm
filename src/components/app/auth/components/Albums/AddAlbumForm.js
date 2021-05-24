@@ -30,6 +30,13 @@ export const AddAlbumForm = ({ closeModal }) =>
             return;
         }
 
+        // Compruebo que no use más de 180 caracteres
+        if (description.length > 180)
+        {
+            setvalid(false);
+            return;
+        }
+
         // Realizo las peticiones a la API para guardar el álbum
         dispatch(addAlbum({name, description, infoImage}));
 
@@ -63,13 +70,16 @@ export const AddAlbumForm = ({ closeModal }) =>
                     id="description" 
                     name="description"
                     rows="6"
-                    className="form-control"
+                    className={`form-control ${ (!valid && description.length > 180) && "is-invalid" } `}
                     placeholder="Añade una descripción"
                     autoComplete="off"
                     onChange={handleInputChange}
                     value={description}
                 >
                 </textarea>
+                <div className="invalid-feedback">
+                    Has superado el límite de 180 caracteres
+                </div>
             </div>
             <br />
             <div className="form-group">

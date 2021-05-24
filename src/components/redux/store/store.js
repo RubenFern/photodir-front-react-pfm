@@ -8,6 +8,7 @@ import { modalReducer } from '../reducers/modalReducer';
 import { photoReducer } from '../reducers/photoReducer';
 import { reloadReducer } from '../reducers/reloadReducer';
 import { userReducer } from '../reducers/userReducer';
+import { userLikedReducer } from '../reducers/userLikedReducer';
 
 /**
  * Habilito la herramienta de desarrollo de redux tools y además aplico el middleware de thunk para
@@ -27,7 +28,8 @@ const reducers = combineReducers(
     photos: photoReducer,
     reload: reloadReducer,
     user: userReducer,
-    explore: exploreReducer
+    explore: exploreReducer,
+    userliked: userLikedReducer
 });
 
 export const store = createStore(

@@ -1,0 +1,64 @@
+.alb-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.alb-card {
+    width: 33rem;
+    height: 34rem;
+    border-radius: 8px;
+    box-shadow: .4rem .6rem .6rem rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all .25s;
+}
+
+.alb-card:hover {
+    transform: translateY(-15px);
+    box-shadow: .4rem .6rem .6rem rgba(0, 0, 0, 0.4);
+}
+
+.img {
+    width: 33rem;
+    height: auto;
+}
+
+.alb-card > div > h4 {
+    font-weight: 600;
+}
+
+.alb-card > div > p {
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.text-grey {
+    color: #8A8A8A;
+}
+
+.foot {
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+    .alb-container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .alb-card {
+        margin: 0 0 2rem 0;
+        width: 20rem;
+        height: 30rem;
+    }
+
+    .img {
+        width: 20rem;
+        height: auto;
+    }
+}

@@ -26,5 +26,8 @@ export const types =
     explore: '[Explore] explore',
 
     reloadTrue: '[Reload] reloadTrue',
-    reloadFalse: '[Reload] reloadFalse'
+    reloadFalse: '[Reload] reloadFalse',
+
+    like: '[Like] like',
+    notlike: '[Like] notLike'
 }

@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
+
+import { back } from '../../../helpers/back';
 import { NavBar } from '../../layout/NavBar';
 import { getPhotos } from '../../redux/actions/photo';
 
-export const AlbumUserPage = () => 
+export const AlbumUserPage = ({ history }) => 
 {
     const { username, album } = useParams();
     const photos = useSelector(state => state.photos);
@@ -27,7 +29,7 @@ export const AlbumUserPage = () =>
             <div className="container-fluid w-img mt-5 animate__animated animate__fadeIn">
                 <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
                     <div className="d-flex align-items-center">
-                        <h1 className="text-light text-center">{album}</h1>
+                        <h1 className="text-light text-center"><i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i> {album}</h1>
                     </div>
                 </div>                
 

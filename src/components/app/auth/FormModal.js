@@ -41,6 +41,7 @@ export const FormModal = ({tipo, album = {}}) =>
             className="modal"
             overlayClassName="modal-fondo"
         >
+            <button type="button" className="btn-close btn-close-white" onClick={closeModal} aria-label="Close"></button>
         {
             // Reutilizo el modal y llamo a los componentes dependiendo la página en la que esté
             (tipo === 'album') ? <AlbumModal key={album.uid} closeModal={closeModal} /> : <PhotoModal key={album.uid} closeModal={closeModal} album={album} />

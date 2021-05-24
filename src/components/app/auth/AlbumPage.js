@@ -33,7 +33,7 @@ export const AlbumPage = ({ history }) =>
                 type: types.reloadFalse
             });
         }   
-    }, [user_name, album, dispatch, reload]);
+    }, [user_name, history, album, dispatch, reload]);
 
     return (
         <>

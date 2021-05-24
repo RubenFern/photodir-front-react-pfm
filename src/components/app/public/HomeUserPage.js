@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import { back } from '../../../helpers/back';
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
 import { getUser } from '../../redux/actions/explore';
@@ -37,7 +38,7 @@ export const HomeUserPage = ({ history }) =>
 
         <div className="container-fluid mt-5">
                 <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
-                    <h1 className="text-light text-center">Álbumes del usuario</h1>
+                    <h1 className="text-light text-center"><i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i> Álbumes del usuario</h1>
                 </div>
 
                 <ul className="container-fluid card-list animate__animated animate__fadeIn">

@@ -7,7 +7,7 @@ import { editAlbum } from '../../../../redux/actions/album';
 export const EditAlbumForm = ({ closeModal }) => 
 {
     // Recibo los datos del álbum desde el state
-    const { modalOpen, data: { uid, name: oldName, image: oldImage, description: oldDescription, creation_date } } = useSelector(state => state.modal);
+    const { modalOpen, data: { name: oldName, image: oldImage, description: oldDescription, creation_date } } = useSelector(state => state.modal);
     const { user: { user_name } } = useSelector(state => state.auth);
 
     // Creo el state para validar los campos del formulario
@@ -34,8 +34,15 @@ export const EditAlbumForm = ({ closeModal }) =>
             return;
         }
 
+        // Compruebo que no use más de 180 caracteres
+        if (description.length > 180)
+        {
+            setvalid(false);
+            return;
+        }
+
         // Realizo las peticiones a la API para editar el álbum
-        dispatch(editAlbum({uid, name, description, image, creation_date, oldName, oldImage}));
+        dispatch(editAlbum({name, description, image, oldName, oldImage}));
 
         closeModal();
     }
@@ -71,7 +78,7 @@ export const EditAlbumForm = ({ closeModal }) =>
                     type="text" 
                     id="name" 
                     name="name"
-                    className={`form-control ${ (!valid && oldName === '') && "is-invalid" } `} 
+                    className={`form-control ${ (!valid && oldName === '') && "is-invalid" } `}
                     placeholder="¿Cómo quieres llamar al álbum?"
                     autoComplete="off"
                     onChange={handleInputChange}
@@ -88,13 +95,16 @@ export const EditAlbumForm = ({ closeModal }) =>
                     id="description" 
                     name="description"
                     rows="4"
-                    className="form-control"
+                    className={`form-control ${ (!valid && description.length > 180) && "is-invalid" } `} 
                     placeholder="Añade una descripción"
                     autoComplete="off"
                     onChange={handleInputChange}
                     value={description}
                 >
                 </textarea>
+                <div className="invalid-feedback">
+                    Has superado el límite de 180 caracteres
+                </div>
             </div>
             <br />
             <button

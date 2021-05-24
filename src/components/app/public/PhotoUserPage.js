@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { NavBar } from '../../layout/NavBar';
 import { getPhoto } from '../../redux/actions/photo';
+import { types } from '../../redux/types/types';
+import { Like } from '../auth/components/Like';
 
 export const PhotoUserPage = ({ history }) => 
 {
     const { username, album, photo } = useParams();
 
-    const { title, description, image, creation_date } = useSelector(state => state.photos);
+    const { logged } = useSelector(state => state.auth);
+    const { title, description, image, creation_date, likes } = useSelector(state => state.photos);
+    const reload = useSelector(state => state.reload);
 
     const dispatch = useDispatch();
 
@@ -18,7 +22,15 @@ export const PhotoUserPage = ({ history }) =>
         dispatch(getPhoto(photo, history));
         console.log('FOTO de usuario')
 
-    }, [photo, dispatch, history]);
+        // Finalizo el renderizado desactivando el reload
+        return () =>
+        {
+            dispatch({
+                type: types.reloadFalse
+            });
+        }   
+
+    }, [photo, dispatch, history, reload]);
 
     const back = () =>
     {
@@ -37,7 +49,6 @@ export const PhotoUserPage = ({ history }) =>
             
             <div className="container">
                 <div className="gallery mt-3">
-                    <h1 className="title-img container">{title}</h1>
                     <div className="only-item animate__animated animate__fadeIn">
                         <img 
                             className="only-img" 
@@ -45,7 +56,9 @@ export const PhotoUserPage = ({ history }) =>
                             alt={image}
                             onClick={back}
                         />
+                    { (logged) && <Like likes={likes} image={image} /> }
                     </div>
+                    <h1 className="title-img container">{title}</h1>
                     
                 </div>
             </div>

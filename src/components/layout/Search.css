@@ -1,0 +1,9 @@
+.searchbar {
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 990px) {
+    .searchbar {
+        margin: 0 2rem 0 2rem;
+    }
+}

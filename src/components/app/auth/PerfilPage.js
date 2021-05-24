@@ -8,13 +8,13 @@ import { DeleteUser } from './components/User/DeleteUser';
 
 export const PerfilPage = ({ history }) => 
 {
-    const { user: { user_name, image: oldImage } } = useSelector(state => state.auth);
+    const { user: { user_name, name: oldName, image: oldImage } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const [valid, setvalid] = useState(true);
 
     const [state, handleInputChange] = useForm({
-        name: '',
+        name: oldName,
         password: '',
         password2: '',
     });
@@ -32,7 +32,7 @@ export const PerfilPage = ({ history }) =>
             return;
         }
 
-        dispatch(editUser({ name, password }));
+        dispatch(editUser({ name, password, image, oldImage }, history));
     }
 
     return (

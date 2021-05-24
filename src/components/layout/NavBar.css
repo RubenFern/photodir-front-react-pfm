@@ -1,0 +1,17 @@
+.settings {
+    display: none;
+}
+
+.settings-rs {
+    display: block;
+}
+
+@media screen and (min-width: 990px) {
+    .settings {
+        display: block;
+    }
+
+    .settings-rs {
+        display: none;
+    }
+}

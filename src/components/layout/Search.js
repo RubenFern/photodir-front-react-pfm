@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import { searchUsers } from '../redux/actions/user';
 import { types } from '../redux/types/types';
+
+
 
 export const Search = () => 
 {
@@ -38,7 +41,7 @@ export const Search = () =>
 
 
     return (
-        <div className="searchbox d-flex flex-column w-100 mx-5">
+        <div className="d-flex w-100 flex-column searchbar mx-lg-5 mt-2 mt-lg-0">
             <input 
                 id="search"
                 name="search"
