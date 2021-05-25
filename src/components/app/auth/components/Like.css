@@ -1,0 +1,33 @@
+#heart {
+    position: relative;
+    left: -100vw;
+    top: 0;
+}
+
+#lbl-heart {
+    color: #aab8c2;
+    cursor: pointer;
+    font-size: 3rem;
+    align-self: center;  
+    transition: color 0.1s ease-in-out;
+}
+
+#lbl-heart:hover {
+    color: grey;
+}
+
+#lbl-heart::selection, #lbl-heart::-moz-selection {
+    color: none;
+    background: transparent;
+}
+
+#heart:checked  + label {
+    color: #e2264d;
+}
+
+@media screen and (min-width: 766px) {
+    .text {
+        width: 100px;
+    }
+}
+

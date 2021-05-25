@@ -73,6 +73,12 @@ body, .dropdown-menu {
 }
 
 .form-login {
+    width: 100%;
+    padding: 2rem 1rem;
+    border-radius: 20px;
+}
+
+.form-perfil {
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     padding: 2rem 1rem;
@@ -89,6 +95,10 @@ body, .dropdown-menu {
     .form-login {
         max-width: 50vw;
     }
+
+    .form-perfil {
+        max-width: 40vw;
+    }
 }
 
 .link {
@@ -98,48 +108,6 @@ body, .dropdown-menu {
 .description {
     color: #8A8A8A;
 }
-
-/* CSS Modal Form */
-.ReactModalPortal > div{
-    opacity: 0;
-}
-
-.ReactModalPortal .ReactModal__Overlay {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    transition: opacity .3s ease-in-out;
-    z-index: 999;
-}
-
-.modal-fondo {
-    background-color: rgba(0, 0, 0, 0.4);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    position: fixed;
-}
-
-.ReactModalPortal .ReactModal__Overlay--after-open {
-    opacity: 1;
-}
-
-.ReactModalPortal .ReactModal__Overlay--before-close {
-    opacity: 0;
-}
-
-.modal {
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    color: #fff;
-    display: inline;
-    max-height: 700px;
-    max-width: 500px;
-    outline: none;
-    padding: 10px;
-}
-/* Fin CSS Modal Form */
 
 .small {
     font-size: .7rem;
@@ -185,84 +153,9 @@ body, .dropdown-menu {
     cursor: default;
 }
 
-/* CSS fotografías */
-.w-img {
-    max-width: 80%;
-}
-
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.gallery-item {
-    flex: 1 0 20rem;
-    margin: .5rem;
-    max-width: 30rem;
-    box-shadow: .4rem .6rem .6rem rgba(0, 0, 0, 0.4);
-    height: 100%;
-    overflow: hidden;
-}
-
-.gallery-img {
-    display: block;
-    width: 100%;
-    border-radius: 10px;
-}
-
-.only-item {
-    max-width: 70rem;
-    margin: .2rem;
-    box-shadow: .3rem .4rem .4rem rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-}
-
-.only-img {
-    display: block;
-    width: 100%;
-    border-radius: 10px;
-}
-
-.title-img {
-    font-family: Lucida Handwriting;
-    color: #CACACA;
-    text-align: center;
-}
-/* Fin CSS fotografías */
-
 #results {
     position: absolute;
     margin-top: 2.4rem;
     z-index: 99;
     width: 30%;
 }
-
-/* Like button */
-#heart {
-    position: relative;
-    left: -100vw;
-    top: 0;
-}
-
-#lbl-heart {
-    color: #aab8c2;
-    cursor: pointer;
-    font-size: 3rem;
-    align-self: center;  
-    transition: color 0.1s ease-in-out;
-}
-
-#lbl-heart:hover {
-    color: grey;
-}
-
-#lbl-heart::selection, #lbl-heart::-moz-selection {
-    color: none;
-    background: transparent;
-}
-
-#heart:checked  + label {
-    color: #e2264d;
-}
-/* End Like button */

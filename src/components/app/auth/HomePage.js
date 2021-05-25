@@ -1,18 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 import { NavBar } from '../../layout/NavBar';
 import { getAlbums } from '../../redux/actions/album';
-import { DeleteComponent } from './components/Albums/DeleteComponent';
-import { EditComponent } from './components/Albums/EditComponent';
 import { FormModal } from './FormModal';
 import { types } from '../../redux/types/types';
 import { InfoUser } from './components/User/InfoUser';
 import { AlbumCard } from './components/Albums/AlbumCard';
-
-
-import './Album.css';
 
 export const HomePage = ({ history }) => 
 {
@@ -63,22 +57,7 @@ export const HomePage = ({ history }) =>
                 {
                     (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
                     (
-                        <li key={uid} className="card">
-                            <p className="date">{creation_date}</p>
-                            <NavLink className="card-image" to={`/home/${name}`}>
-                                <img className="pointer" src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
-                            </NavLink>
-                            <span className="card-description">
-                                <h2 className="title">{name}</h2>
-                                <p className="text-justify mx-3">
-                                    {description}
-                                    </p>
-                                <div className="d-flex justify-content-around w-100 bottom mb-2">
-                                    <EditComponent action="Editar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
-                                    <DeleteComponent action="Eliminar" image={image} name={name} description={description} uid={uid} creation_date={creation_date} />
-                                </div>
-                            </span>
-                        </li>
+                        <AlbumCard key={uid} uid={uid} image={image} name={name} description={description} creation_date={creation_date} user_name={user_name} />
 
                     )) : <h2 className="text-light">Parece que no tienes ningún álbum... ¡Prueba a crear uno!</h2>
                 } 

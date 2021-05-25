@@ -1,0 +1,25 @@
+.avatar {
+    position: relative;
+    max-width: 205px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (min-width: 992px) {
+    .avatar {
+        max-width: 205px;
+    }
+    
+    .image {
+        width: 200px;
+        height: 200px;
+    }
+}

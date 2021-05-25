@@ -43,8 +43,7 @@ export const DeleteComponent = ({ action, uid, image}) =>
             className="btn btn-danger h-75"
             onClick={openModal}
         >
-            <i className="fa fa-trash-alt" aria-hidden="true"></i>
-            <span> {action}</span>
+            <i className="bi bi-trash"></i>
         </button>
     )
 }

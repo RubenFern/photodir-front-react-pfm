@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { previewImage } from '../../../../../helpers/previewImage';
 import { useForm } from '../../../../../hooks/useForm';
 import { addPhoto } from '../../../../redux/actions/photo';
+import { Picture } from '../Picture';
 
 export const AddPhotoForm = ({closeModal, album}) => 
 {
@@ -36,10 +38,18 @@ export const AddPhotoForm = ({closeModal, album}) =>
         closeModal();
     }
 
+    // Path de la imagen del formulario
+    const [path, setpath] = useState('');
+
     return (
         <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
             <h3 className="text-center mb-3">Selecciona tu fotografía</h3>
             <div className="form-group">
+                {(path !== '') &&
+                    <div className="form-group centrado">
+                        <Picture path={path} image="preview.png" photo={true} />
+                    </div>}
+                
                 <label htmlFor="name">Título: <small className="small">(Opcional)</small></label>
                 <input 
                     type="text" 
@@ -75,7 +85,7 @@ export const AddPhotoForm = ({closeModal, album}) =>
                     className={`form-control ${ (!valid) && "is-invalid" } `} 
                     id="image"
                     name="image"
-                    onChange={(e) => setimage(e.target.files[0])}
+                    onChange={(e) => previewImage(e, setimage, setpath)}
                 />    
                 <div className="invalid-feedback">
                     Debes subir una imagen

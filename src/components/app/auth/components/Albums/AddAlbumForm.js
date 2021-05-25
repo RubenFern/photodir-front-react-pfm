@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { previewImage } from '../../../../../helpers/previewImage';
 
 import { useForm } from '../../../../../hooks/useForm';
 import { addAlbum } from '../../../../redux/actions/album';
+import { Picture } from '../Picture';
+
 
 export const AddAlbumForm = ({ closeModal }) => 
 {
@@ -43,11 +46,18 @@ export const AddAlbumForm = ({ closeModal }) =>
         closeModal();
     }
 
+    // Path de la imagen del formulario
+    const [path, setpath] = useState('');
 
     return (
         <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
             <h3 className="text-center mb-3">Completa los datos del álbum</h3>
             <div className="form-group">
+                {(path !== '') &&
+                    <div className="form-group centrado">
+                        <Picture path={path} image="preview.png" />
+                    </div>}
+
                 <label htmlFor="name">Nombre:</label>
                 <input 
                     type="text" 
@@ -89,7 +99,7 @@ export const AddAlbumForm = ({ closeModal }) =>
                     className="form-control"
                     id="image"
                     name="image"
-                    onChange={(e) => setimage(e.target.files[0])}
+                    onChange={(e) => previewImage(e, setimage, setpath)}
                 />    
             </div>
             <br />

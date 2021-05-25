@@ -27,8 +27,7 @@ export const EditComponent = ({action, uid, title, description}) =>
             className="btn bg-main-color text-light h-75"
             onClick={openModal}
         >
-            <i className="fa fa-edit" aria-hidden="true"></i>
-            <span> {action}</span>
+            <i className="bi bi-pencil"></i>
         </button>
     )
 }

@@ -11,6 +11,8 @@ import { DeleteComponent } from './components/Photos/DeleteComponent';
 import { EditComponent } from './components/Photos/EditComponent';
 import { FormModal } from './FormModal';
 
+import './PhotoItem.css';
+
 export const PhotoPage = ({ history }) => 
 {
     const { photo } = useParams();
@@ -41,7 +43,15 @@ export const PhotoPage = ({ history }) =>
             <NavBar />
 
             <div className="container">
-                <div className="gallery mt-3">
+                <div className="d-flex justify-content-end mt-4">
+                    <div className="h-25">
+                        <EditComponent action="Editar" uid={uid} title={title} description={description} image={image} />
+                    </div>
+                    <div className="h-25 ms-3 mx-5">
+                        <DeleteComponent action="Eliminar" uid={uid} image={image} />
+                    </div>
+                </div>
+                <div className="photo-item mt-3">
                     <h1 className="title-img container">{title}</h1>
                     <div className="only-item animate__animated animate__fadeIn">
                         <img 
@@ -50,19 +60,18 @@ export const PhotoPage = ({ history }) =>
                             alt={image}
                             onClick={() => back(history)}
                         />
-                        <Like likes={likes} image={image} />
                     </div>
-                    <p className="text-light mt-3 text-justify w-75">
-                        {description}
-                    </p>
-                </div>
-                <div className="d-flex justify-content-end mt-4">
-                    <div className="h-25">
-                        <EditComponent action="Editar" uid={uid} title={title} description={description} image={image} />
+                    <div className="d-flex flex-column flex-md-row justify-content-center description">
+                        <div className="like">
+                            <Like likes={likes} image={image} />
+                        </div>
+                        <div className="mx-md-3 mt-3">
+                            <p className="text-light text-justify">
+                                {description}
+                            </p>
+                        </div>
                     </div>
-                    <div className="h-25 ms-3 mx-5">
-                        <DeleteComponent action="Eliminar" uid={uid} image={image} />
-                    </div>
+                    
                 </div>
             </div>
             

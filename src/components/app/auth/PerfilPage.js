@@ -4,11 +4,14 @@ import { useForm } from '../../../hooks/useForm';
 
 import { NavBar } from '../../layout/NavBar';
 import { editUser } from '../../redux/actions/user';
+import { Avatar } from './components/User/Avatar';
 import { DeleteUser } from './components/User/DeleteUser';
+import { Picture } from './components/Picture';
+import { previewImage } from '../../../helpers/previewImage';
 
 export const PerfilPage = ({ history }) => 
 {
-    const { user: { user_name, name: oldName, image: oldImage } } = useSelector(state => state.auth);
+    const { user: { user_name, name: oldName, image: oldImage, creation_date } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const [valid, setvalid] = useState(true);
@@ -35,24 +38,41 @@ export const PerfilPage = ({ history }) =>
         dispatch(editUser({ name, password, image, oldImage }, history));
     }
 
+    // Path de la imagen del formulario
+    const [path, setpath] = useState('');
+
     return (
         <>
             <NavBar />
 
-            <div className="container mt-5">
+            <div className="container-fluid mt-5">
 
                 {
                     // Cabecera con la información del usuario
                 }
-                <div className="container">
-                    
-                </div>    
+                <div className="d-flex container flex-column flex-md-row justify-content-between align-items-center">
+                    <div className="d-flex">
+                        <div>
+                            <Avatar user_name={user_name} image={image} />
+                        </div>
+                        <div className="ms-3 d-flex flex-column justify-content-center">
+                            <h3 className="text-light fw-bold">{ user_name }</h3>
+                            <h5 className="text-grey-cs">{ name }</h5>
+                            <small className="text-light">Cuenta creada: </small>
+                            <h4 className="text-grey-cs mx-3">{ creation_date }</h4>
+                        </div>
+                    </div>
+
+                    <div>
+                        <DeleteUser history={history} />
+                    </div>
+                </div> 
                 
                 {
                     // Formulario para editar el usuario
                 }
-                <div className="container d-flex justify-content-center">
-                <form className="form-login w-50" onSubmit={onSubmit} encType="multipart/formdata">
+                <div className="container d-flex align-items-center flex-column">
+                <form className="form-perfil" onSubmit={onSubmit} encType="multipart/formdata">
                     <div className="form-group d-flex justify-content-md-around mb-3">
                         <div className="upload-image">
                             <button className="button">Editar Imagen</button>
@@ -60,7 +80,7 @@ export const PerfilPage = ({ history }) =>
                                 type="file"
                                 id="image"
                                 name="image" 
-                                onChange={(e) => setimage(e.target.files[0])}
+                                onChange={(e) => previewImage(e, setimage, setpath)}
                             />
                         </div>
                         <div>
@@ -69,9 +89,10 @@ export const PerfilPage = ({ history }) =>
                     </div>
                     
                     <div className="form-group centrado">
-                        <div className="radius-image">
-                            <img id="img" src={`http://localhost:3010/api/upload/avatar/${user_name}/${image}`} alt={image} />
-                        </div>
+                        {(path !== '') &&
+                        <div className="form-group centrado">
+                            <Picture path={path} image="preview.png" />
+                        </div>}
                     </div>
 
                     <div className="form-group">
@@ -126,10 +147,9 @@ export const PerfilPage = ({ history }) =>
                         
                         <span>Editar</span>
                     </button>
-                </form>    
+                </form> 
                 </div>
-                
-                <DeleteUser history={history} />
+                   
             </div>
         </>
     )

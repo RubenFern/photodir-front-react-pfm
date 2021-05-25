@@ -6,7 +6,9 @@ import { types } from '../../redux/types/types';
 import { AlbumModal } from './components/Albums/AlbumModal';
 import { PhotoModal } from './components/Photos/PhotoModal';
 
-// CSS de React-Modal
+import './Modal.css';
+
+// Dimensión de React-Modal
 const customStyles = 
 {
     content: 
@@ -47,7 +49,5 @@ export const FormModal = ({tipo, album = {}}) =>
             (tipo === 'album') ? <AlbumModal key={album.uid} closeModal={closeModal} /> : <PhotoModal key={album.uid} closeModal={closeModal} album={album} />
         }
         </ReactModal>
-
-        
     )
 }

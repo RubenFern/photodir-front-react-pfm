@@ -1,4 +1,6 @@
+import Swal from "sweetalert2";
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
+import { validateUpload } from "../../../helpers/validateUpload";
 import { types } from "../types/types";
 
 
@@ -33,6 +35,15 @@ const addAlbum = (data) =>
         // Si el usuario añadió una imagen la guardo, si no le asigno la imagen por defecto mediante la API
         if (infoImage)
         {
+            const type = infoImage.type;
+
+            // Realizo una segunda comprobación
+            if (!validateUpload(type))
+            {
+                Swal.fire('Ups', 'El archivo que has subido no es válido', 'error');
+                return;
+            }
+
             // Almaceno la imagen en la API 
             const resSaveImage = await fetchImage('upload/album', infoImage, 'POST');
             const { resp: { nameImgUpload } } = await resSaveImage.json();
@@ -43,17 +54,28 @@ const addAlbum = (data) =>
 
         // Almaceno el álbum en la base de datos
         const res = await fetchWithToken('albumes', {name, description, image}, 'POST');
-        const album = await res.json();
-            
-        dispatch({
-            type: types.addAlbum,
-            payload: album
-        });
+        const { success = false, message, album, errors = [] } = await res.json();
 
-        // Activo la recarga
-        dispatch({
-            type: types.reloadTrue
-        });
+        if (success)
+        {
+            dispatch({
+                type: types.addAlbum,
+                payload: album
+            });
+
+            // Activo la recarga
+            dispatch({
+                type: types.reloadTrue
+            });
+        } 
+        else if (errors.length > 0)
+        {
+            Swal.fire('Ups', errors[0].msg, 'error');
+        } 
+        else
+        {
+            Swal.fire('Ups', message, 'error');
+        }
     }
 }
 

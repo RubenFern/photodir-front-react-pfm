@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { types } from '../../../../redux/types/types';
 
-export const AddComponent = ({action}) => 
+export const AddComponent = ({ action }) => 
 {
     const dispatch = useDispatch();
 
@@ -20,8 +20,8 @@ export const AddComponent = ({action}) =>
             className="btn btn-danger h-75"
             onClick={openModal}
         >
-            <i className="fa fa-plus-square" aria-hidden="true"></i>
-            <span> {action}</span>
+            <i className="bi bi-plus-lg"></i>
+            <span> { action }</span>
         </button>
     )
 }

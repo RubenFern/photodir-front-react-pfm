@@ -1,0 +1,32 @@
+.picture {
+    position: relative;
+    max-width: 205px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.photo {
+    width: 100%;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 5%;
+}
+
+@media screen and (min-width: 992px) {
+    .picture {
+        max-width: 205px;
+    }
+    
+    .image {
+        width: 200px;
+        height: 200px;
+    }
+}

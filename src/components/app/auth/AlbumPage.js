@@ -44,7 +44,7 @@ export const AlbumPage = ({ history }) =>
                     <div className="d-flex align-items-center">
                         <h1 className="text-light text-center"><i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i> {album}</h1>
                     </div>
-                    <AddComponent action="Añadir Fotografía" />
+                    <AddComponent />
                 </div>
                 
 

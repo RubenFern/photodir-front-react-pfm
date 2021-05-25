@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { previewImage } from '../../../../../helpers/previewImage';
 
 import { useForm } from '../../../../../hooks/useForm';
 import { editAlbum } from '../../../../redux/actions/album';
+import { Picture } from '../Picture';
 
 export const EditAlbumForm = ({ closeModal }) => 
 {
@@ -48,6 +50,10 @@ export const EditAlbumForm = ({ closeModal }) =>
     }
 
 
+    // Path de la imagen del formulario
+    const [path, setpath] = useState(`http://localhost:3010/api/upload/album/${user_name}/${image}`);
+
+
     return (
         (modalOpen) &&
         <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
@@ -58,7 +64,7 @@ export const EditAlbumForm = ({ closeModal }) =>
                         type="file"
                         id="image"
                         name="image" 
-                        onChange={(e) => setimage(e.target.files[0])}
+                        onChange={(e) => previewImage(e, setimage, setpath)}
                     />
                 </div>
                 <div>
@@ -67,9 +73,7 @@ export const EditAlbumForm = ({ closeModal }) =>
             </div>
             
             <div className="form-group centrado">
-                <div className="radius-image">
-                    <img id="img" src={`http://localhost:3010/api/upload/album/${user_name}/${image}`} alt={image} />
-                </div>
+                <Picture path={path} image={image} />
             </div>
 
             <div className="form-group">
