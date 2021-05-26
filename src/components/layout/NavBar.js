@@ -11,7 +11,7 @@ export const NavBar = () =>
 {
     const dispatch = useDispatch();
 
-    const { logged, user: { user_name, is_admin } } = useSelector(state => state.auth);
+    const { logged, user: { user_name } } = useSelector(state => state.auth);
 
     const logout = () =>
     {

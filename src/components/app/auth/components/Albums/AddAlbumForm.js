@@ -50,7 +50,7 @@ export const AddAlbumForm = ({ closeModal }) =>
     const [path, setpath] = useState('');
 
     return (
-        <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
+        <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
             <h3 className="text-center mb-3">Completa los datos del álbum</h3>
             <div className="form-group">
                 {(path !== '') &&

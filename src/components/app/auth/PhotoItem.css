@@ -53,6 +53,13 @@
     width: 75%;
 }
 
+.date {
+	text-decoration: none;
+	color: #fff;
+	position: absolute;
+	margin: .5rem 1rem;
+}
+
 @media screen and (max-width: 992px) {
     .description {
         width: 100%;

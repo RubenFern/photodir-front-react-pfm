@@ -5,13 +5,13 @@ import { Avatar } from './Avatar';
 
 import './InfoUser.css';
 
-export const InfoUser = ({ user, numAlbums }) => 
+export const InfoUser = ({ user, numAlbums, home = false }) => 
 {
-    const { name, user_name, image, creation_date } = user;
+    const { name, user_name, image } = user;
 
     return (
         <div className="d-flex container flex-column flex-md-row justify-content-between align-items-center">
-            <div className="d-flex">
+            <div className="d-flex mb-3">
                 <div>
                     <Avatar user_name={user_name} image={image} />
                 </div>
@@ -22,7 +22,8 @@ export const InfoUser = ({ user, numAlbums }) =>
                 </div>
             </div>
             
-            <AddComponent action="Crear Álbum" />
+            {(home) && <AddComponent action="Crear Álbum" />}
+            
         </div>
     )
 }

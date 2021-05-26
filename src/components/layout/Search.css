@@ -1,9 +1,61 @@
-.searchbar {
-    margin-top: 1rem;
+.searchbox {
+    width: 100%;
+    margin: 0 3rem 0 3rem;
 }
 
-@media screen and (min-width: 990px) {
-    .searchbar {
-        margin: 0 2rem 0 2rem;
+.searchbar {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: .4rem .6rem .6rem rgba(0, 0, 0, 0.4);
+}
+
+.searchbar > input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.searchbar > .icon {
+    height: 55px;
+    width: 55px;
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.searchbar > .results {
+    /*padding: 10px 8px;*/
+    max-height: 280px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.results > .li {
+    text-decoration: none;
+    list-style: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.results > .li:hover {
+    background-color: #efefef;
+    color: #000;
+}
+
+@media screen and (max-width: 992px) {
+    .searchbox {
+        margin: 1rem 0;
     }
 }
+

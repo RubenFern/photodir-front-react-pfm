@@ -11,13 +11,13 @@ import { previewImage } from '../../../helpers/previewImage';
 
 export const PerfilPage = ({ history }) => 
 {
-    const { user: { user_name, name: oldName, image: oldImage, creation_date } } = useSelector(state => state.auth);
+    const { user: { user_name, image: oldImage, creation_date } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const [valid, setvalid] = useState(true);
 
     const [state, handleInputChange] = useForm({
-        name: oldName,
+        name: '',
         password: '',
         password2: '',
     });
@@ -34,6 +34,9 @@ export const PerfilPage = ({ history }) =>
             setvalid(false);
             return;
         }
+
+        // Si los campos están vacíos no hago la petición
+        if (name === '' && password === '') return;
 
         dispatch(editUser({ name, password, image, oldImage }, history));
     }
@@ -72,7 +75,7 @@ export const PerfilPage = ({ history }) =>
                     // Formulario para editar el usuario
                 }
                 <div className="container d-flex align-items-center flex-column">
-                <form className="form-perfil" onSubmit={onSubmit} encType="multipart/formdata">
+                <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
                     <div className="form-group d-flex justify-content-md-around mb-3">
                         <div className="upload-image">
                             <button className="button">Editar Imagen</button>

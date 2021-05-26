@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { searchUsers } from '../redux/actions/user';
 import { types } from '../redux/types/types';
 
-
+import './Search.css';
 
 export const Search = () => 
 {
@@ -41,37 +41,44 @@ export const Search = () =>
 
 
     return (
-        <div className="d-flex w-100 flex-column searchbar mx-lg-5 mt-2 mt-lg-0">
-            <input 
-                id="search"
-                name="search"
-                value={search}
-                onChange={handleInputChange}
-                autoComplete="off"
-                type="search"
-                placeholder="Busca un usuario..."
-                className="form-control"
-            />
+        <div className="searchbox">
+            <div className="searchbar">
+                <input
+                    id="search"
+                    name="search"
+                    value={search}
+                    onChange={handleInputChange}
+                    autoComplete="off"
+                    type="text" 
+                    placeholder="Busca a un usuario..."
+                    className="form-control"
+                />
+
             {
             (users.length > 0) 
             ? 
-            <div id="results" className="list-group">
+                <div className="results">
                 {
                 users.map( ({ user_name }) =>
                 (
                     <NavLink 
-                        className="bg-success list-group-item" 
+                        className="li list-group-item" 
                         to={`/explore/${user_name}`} 
                         key={user_name}
                     >
-                        <h3>{user_name}</h3>
+                        {user_name}
                     </NavLink>
                 ))
                 }
-            </div>
+                </div>
             :
-            <div></div>
+                <div></div>
             }
+
+                <div className="icon">
+                    <i className="bi bi-search"></i>
+                </div>
+            </div>     
         </div>
     )
 }

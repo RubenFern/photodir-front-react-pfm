@@ -54,6 +54,7 @@ export const PhotoPage = ({ history }) =>
                 <div className="photo-item mt-3">
                     <h1 className="title-img container">{title}</h1>
                     <div className="only-item animate__animated animate__fadeIn">
+                        <p className="date">{creation_date}</p>
                         <img 
                             className="only-img" 
                             src={`http://localhost:3010/api/upload/photo/${user_name}/${image}`} 
@@ -70,8 +71,7 @@ export const PhotoPage = ({ history }) =>
                                 {description}
                             </p>
                         </div>
-                    </div>
-                    
+                    </div> 
                 </div>
             </div>
             

@@ -4,14 +4,14 @@ import { useParams } from 'react-router';
 import { NavBar } from '../../layout/NavBar';
 import { getPhoto } from '../../redux/actions/photo';
 import { types } from '../../redux/types/types';
-import { Like } from '../auth/components/Like';
+
+import './../auth/PhotoItem.css';
 
 export const PhotoUserPage = ({ history }) => 
 {
-    const { username, album, photo } = useParams();
+    const { username, photo } = useParams();
 
-    const { logged } = useSelector(state => state.auth);
-    const { title, description, image, creation_date, likes } = useSelector(state => state.photos);
+    const { title, description, image, creation_date } = useSelector(state => state.photos);
     const reload = useSelector(state => state.reload);
 
     const dispatch = useDispatch();
@@ -48,18 +48,24 @@ export const PhotoUserPage = ({ history }) =>
             <NavBar />
             
             <div className="container">
-                <div className="gallery mt-3">
+            <div className="photo-item mt-3">
+                    <h1 className="title-img container">{title}</h1>
                     <div className="only-item animate__animated animate__fadeIn">
+                        <p className="date">{creation_date}</p>
                         <img 
                             className="only-img" 
                             src={`http://localhost:3010/api/upload/photo/${username}/${image}`} 
                             alt={image}
-                            onClick={back}
+                            onClick={() => back(history)}
                         />
-                    { (logged) && <Like likes={likes} image={image} /> }
                     </div>
-                    <h1 className="title-img container">{title}</h1>
-                    
+                    <div className="d-flex flex-column flex-md-row justify-content-center description">
+                        <div className="mx-md-3 mt-3">
+                            <p className="text-light text-justify">
+                                {description}
+                            </p>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </>

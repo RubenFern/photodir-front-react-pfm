@@ -38,7 +38,7 @@ export const EditPhotoForm = ({closeModal}) =>
 
     return (
         (modalOpen) &&
-        <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
+        <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
             <h3 className="text-center mb-3">¿Qué quieres editar?</h3>
             <div className="form-group">
                 <label htmlFor="name">Título: </label>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Avatar.css';
 
-export const Avatar = ({ user_name, image }) => 
+export const Avatar = ({ user_name = '', image = '' }) => 
 {
     return (
         <div className="avatar">

@@ -7,6 +7,7 @@ import { FormModal } from './FormModal';
 import { types } from '../../redux/types/types';
 import { InfoUser } from './components/User/InfoUser';
 import { AlbumCard } from './components/Albums/AlbumCard';
+import { NoItems } from './components/NoItems/NoItems';
 
 export const HomePage = ({ history }) => 
 {
@@ -51,15 +52,15 @@ export const HomePage = ({ history }) =>
 
             <div className="container-fluid mt-5">
 
-                <InfoUser user={user} numAlbums={album.length} />
+                <InfoUser user={user} numAlbums={album.length} home={true} />
 
                 <ul className="container-fluid card-list animate__animated animate__fadeIn mt-3">
                 {
                     (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
                     (
-                        <AlbumCard key={uid} uid={uid} image={image} name={name} description={description} creation_date={creation_date} user_name={user_name} />
+                        <AlbumCard key={uid} uid={uid} image={image} name={name} description={description} creation_date={creation_date} user_name={user_name} home={true} />
 
-                    )) : <h2 className="text-light">Parece que no tienes ningún álbum... ¡Prueba a crear uno!</h2>
+                    )) : <NoItems object="album" />
                 } 
                 </ul>
 

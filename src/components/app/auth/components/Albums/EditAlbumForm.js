@@ -9,7 +9,7 @@ import { Picture } from '../Picture';
 export const EditAlbumForm = ({ closeModal }) => 
 {
     // Recibo los datos del álbum desde el state
-    const { modalOpen, data: { name: oldName, image: oldImage, description: oldDescription, creation_date } } = useSelector(state => state.modal);
+    const { modalOpen, data: { name: oldName, image: oldImage, description: oldDescription } } = useSelector(state => state.modal);
     const { user: { user_name } } = useSelector(state => state.auth);
 
     // Creo el state para validar los campos del formulario
@@ -56,7 +56,7 @@ export const EditAlbumForm = ({ closeModal }) =>
 
     return (
         (modalOpen) &&
-        <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
+        <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
             <div className="form-group d-flex justify-content-md-around mb-3">
                 <div className="upload-image">
                     <button className="button">Editar Imagen</button>
