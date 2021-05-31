@@ -18,7 +18,7 @@ export const PhotoPage = ({ history }) =>
     const { photo } = useParams();
     
     const { user: { user_name } } = useSelector(state => state.auth);
-    const { uid, title, description, image, creation_date, likes } = useSelector(state => state.photos);
+    const { uid, title, description, image, fileImage, creation_date, likes } = useSelector(state => state.photos);
     const reload = useSelector(state => state.reload);
 
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const PhotoPage = ({ history }) =>
     useLayoutEffect(() => 
     {
         // Obtengo los datos de la imagen para no depender de la página anterior y poder recargar los datos al editar  
-        dispatch(getPhoto(photo, history));
+        dispatch(getPhoto({ image: photo, user_name }, history));
         console.log('recargaphoto')
 
         // Finalizo el renderizado desactivando el reload
@@ -36,14 +36,14 @@ export const PhotoPage = ({ history }) =>
                 type: types.reloadFalse
             });
         }   
-    }, [photo, dispatch, history, reload]);
+    }, [photo, dispatch, history, reload, user_name]);
 
     return (
         <>
             <NavBar />
 
             <div className="container">
-                <div className="d-flex justify-content-end mt-4">
+                <div className="d-flex justify-content-end  mt-4">
                     <div className="h-25">
                         <EditComponent action="Editar" uid={uid} title={title} description={description} image={image} />
                     </div>
@@ -51,14 +51,14 @@ export const PhotoPage = ({ history }) =>
                         <DeleteComponent action="Eliminar" uid={uid} image={image} />
                     </div>
                 </div>
-                <div className="photo-item mt-3">
+                <div className="photo-item animate__animated animate__fadeIn mt-3">
                     <h1 className="title-img container">{title}</h1>
-                    <div className="only-item animate__animated animate__fadeIn">
+                    <div className="only-item">
                         <p className="date">{creation_date}</p>
                         <img 
                             className="only-img" 
-                            src={`http://localhost:3010/api/upload/photo/${user_name}/${image}`} 
-                            alt={image}
+                            src={fileImage} 
+                            alt={fileImage}
                             onClick={() => back(history)}
                         />
                     </div>

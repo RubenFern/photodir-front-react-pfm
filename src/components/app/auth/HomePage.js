@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NavBar } from '../../layout/NavBar';
@@ -22,6 +22,14 @@ export const HomePage = ({ history }) =>
     }
 
     const dispatch = useDispatch();
+
+    const [loading, setloading] = useState(true);
+
+    // Le doy margen de carga a las imágenes
+    setTimeout(() => 
+    {
+        setloading(false);
+    }, 100);
 
     const album = useSelector(state => state.album);
     const reload = useSelector(state => state.reload);
@@ -54,15 +62,25 @@ export const HomePage = ({ history }) =>
 
                 <InfoUser user={user} numAlbums={album.length} home={true} />
 
+                {
+                (loading)
+                ?
+                <div className="container-fluid gallery pointer mt-3">
+                    <div className="spinner-border text-light" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                : 
                 <ul className="container-fluid card-list animate__animated animate__fadeIn mt-3">
                 {
-                    (album !== undefined && album.length > 0) ? album.reverse().map( ({image, uid = '', name, description, creation_date}) => 
+                    (album !== undefined && album.length > 0) ? album.reverse().map( ({image, fileImage, uid = '', name, description, creation_date}) => 
                     (
-                        <AlbumCard key={uid} uid={uid} image={image} name={name} description={description} creation_date={creation_date} user_name={user_name} home={true} />
+                        <AlbumCard key={uid} uid={uid} image={image} fileImage={fileImage} name={name} description={description} creation_date={creation_date} user_name={user_name} home={true} />
 
                     )) : <NoItems object="album" />
                 } 
                 </ul>
+                }
 
             </div>
 

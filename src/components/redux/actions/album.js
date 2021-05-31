@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
+import { getImage } from "../../../helpers/getImage";
 import { validateUpload } from "../../../helpers/validateUpload";
 import { types } from "../types/types";
 
@@ -11,6 +12,8 @@ const getAlbums = (path, history) =>
         // Uso un path variable para usar la función en el home del usuario conectado, y cuando se busque por usuario
         const res = await fetchNoToken(`albumes/${path}`);
         const { albums } = await res.json();
+
+        await getImage({ type: albums, user_name: path, folder: 'album' });
 
         if (albums === undefined)
         {

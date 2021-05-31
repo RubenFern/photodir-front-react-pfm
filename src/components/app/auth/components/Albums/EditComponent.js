@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { types } from '../../../../redux/types/types';
 
 
-export const EditComponent = ({ uid, image, name, description, creation_date}) => 
+export const EditComponent = ({ uid, image, fileImage, name, description, creation_date}) => 
 {
     const dispatch = useDispatch();
 
@@ -17,7 +17,8 @@ export const EditComponent = ({ uid, image, name, description, creation_date}) =
             data: {
                 uid,
                 name, 
-                image, 
+                image,
+                fileImage,
                 description,
                 creation_date
             }

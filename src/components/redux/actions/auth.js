@@ -65,7 +65,7 @@ const startRegister = (data) =>
     }
 }
 
-const startLogout = () =>
+const startLogout = (history) =>
 {
     return async(dispatch) =>
     {
@@ -77,6 +77,11 @@ const startLogout = () =>
         }
 
         localStorage.clear();
+
+        if (history)
+        {
+            history.replace('/login');
+        }
 
         dispatch({ type: types.logout });
     }

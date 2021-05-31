@@ -9,8 +9,7 @@ import { Picture } from '../Picture';
 export const EditAlbumForm = ({ closeModal }) => 
 {
     // Recibo los datos del álbum desde el state
-    const { modalOpen, data: { name: oldName, image: oldImage, description: oldDescription } } = useSelector(state => state.modal);
-    const { user: { user_name } } = useSelector(state => state.auth);
+    const { modalOpen, data: { name: oldName, image: oldImage, fileImage, description: oldDescription } } = useSelector(state => state.modal);
 
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
@@ -51,7 +50,7 @@ export const EditAlbumForm = ({ closeModal }) =>
 
 
     // Path de la imagen del formulario
-    const [path, setpath] = useState(`http://localhost:3010/api/upload/album/${user_name}/${image}`);
+    const [path, setpath] = useState(fileImage);
 
 
     return (

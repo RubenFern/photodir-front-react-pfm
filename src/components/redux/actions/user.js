@@ -26,6 +26,7 @@ const editUser = (data, history) =>
     return async(dispatch) =>
     {
         const { name, password, image: fileImage, oldImage } = data;
+        console.log('edita')
 
         // En caso de no subir la imagen dejo la imagen antigua como está
         let image = oldImage;

@@ -11,7 +11,7 @@ import { previewImage } from '../../../helpers/previewImage';
 
 export const PerfilPage = ({ history }) => 
 {
-    const { user: { user_name, image: oldImage, creation_date } } = useSelector(state => state.auth);
+    const { user: { user_name, name: oldName, image: oldImage, creation_date } } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const [valid, setvalid] = useState(true);
@@ -29,14 +29,13 @@ export const PerfilPage = ({ history }) =>
     {
         e.preventDefault();
 
+        console.log(1)
+
         if (password !== '' && (password !== password2))
         {
             setvalid(false);
             return;
         }
-
-        // Si los campos están vacíos no hago la petición
-        if (name === '' && password === '') return;
 
         dispatch(editUser({ name, password, image, oldImage }, history));
     }
@@ -60,9 +59,8 @@ export const PerfilPage = ({ history }) =>
                         </div>
                         <div className="ms-3 d-flex flex-column justify-content-center">
                             <h3 className="text-light fw-bold">{ user_name }</h3>
-                            <h5 className="text-grey-cs">{ name }</h5>
-                            <small className="text-light">Cuenta creada: </small>
-                            <h4 className="text-grey-cs mx-3">{ creation_date }</h4>
+                            <h5 className="text-grey-cs">{ oldName }</h5>
+                            <h4 className="text-grey-cs"><small className="text-light">Cuenta creada: </small> { creation_date }</h4>
                         </div>
                     </div>
 
@@ -75,7 +73,7 @@ export const PerfilPage = ({ history }) =>
                     // Formulario para editar el usuario
                 }
                 <div className="container d-flex align-items-center flex-column">
-                <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
+                <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
                     <div className="form-group d-flex justify-content-md-around mb-3">
                         <div className="upload-image">
                             <button className="button">Editar Imagen</button>

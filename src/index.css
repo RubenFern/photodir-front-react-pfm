@@ -9,6 +9,10 @@ body, .dropdown-menu {
     font-family: 'Poppins', sans-serif;
 }
 
+.animate__animated.animate__fadeIn {
+    --animate-duration: 1s;
+}
+
 .bg-header {
     background-color: #1C2329;
 }

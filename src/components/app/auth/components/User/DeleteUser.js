@@ -23,13 +23,11 @@ export const DeleteUser = ({ history }) =>
         {
             if (res.isConfirmed) 
             {
-                dispatch(deleteUser());
+                dispatch(deleteUser(history));
 
                 localStorage.clear();
 
                 Swal.fire('Eliminado', 'Tu cuenta ha sido borrada completamente', 'success');
-
-                history.replace('/login');
             }
         });
     }
