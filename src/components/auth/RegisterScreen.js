@@ -59,7 +59,7 @@ export const RegisterScreen = ({ history }) =>
             <NavBar />
 
             <div className="text-white center-content bg-image">
-                <form className="form-login" onSubmit={register}>
+                <form className="mt-5 form-login" onSubmit={register}>
                     <h1 className="text-center">¡Regístrate!</h1>
                     <div className="form-group">
                         <label htmlFor="name">Nombre:</label>

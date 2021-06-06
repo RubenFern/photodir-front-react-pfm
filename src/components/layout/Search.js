@@ -13,6 +13,7 @@ export const Search = () =>
      * Mediante el estado de la búsqueda, cada vez que cambia realizo una petición a la API para listar los usuarios
      */
     const [search, setSearch] = useState('');
+    const [show, setshow] = useState(false);
     const dispatch = useDispatch();
     
     // recojo los usarios buscados
@@ -29,6 +30,7 @@ export const Search = () =>
         if (search !== '')
         {
             dispatch(searchUsers(search));
+            setshow(true);
         } else
         {
             dispatch({
@@ -42,7 +44,13 @@ export const Search = () =>
     useEffect(() => 
     {
         setSearch('');        
-    }, [])
+    }, []);
+
+    // Al pinchar fuera del buscador cierro la sugerencia
+    const closeAutocomplete = () =>
+    {
+        setshow(false);
+    }
 
     return (
         <div className="searchbox">
@@ -52,6 +60,7 @@ export const Search = () =>
                     name="search"
                     value={search}
                     onChange={handleInputChange}
+                    onBlur={closeAutocomplete}
                     autoComplete="off"
                     type="text" 
                     placeholder="Busca a un usuario..."
@@ -59,18 +68,38 @@ export const Search = () =>
                 />
 
             {
-            (users.length > 0) 
+            (users.length > 0 && show) 
             ? 
                 <div className="results">
                 {
-                users.map( ({ user_name }) =>
+                users.map( ({ user_name, image, private_profile }) =>
                 (
                     <NavLink 
                         className="li list-group-item" 
                         to={`/explore/${user_name}`} 
                         key={user_name}
                     >
-                        {user_name}
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div>
+                            <img 
+                                className="image_user" 
+                                src={`http://localhost:3010/api/upload/avatar/${user_name}/${image}`} 
+                                alt={image} 
+                                />
+                                
+                                <span className="mx-2">{user_name}</span>  
+                            </div>
+                            <div>
+                                {
+                                (private_profile)
+                                ?
+                                <i className="bi bi-lock-fill"></i>
+                                :
+                                <i className="bi bi-unlock-fill"></i>
+                                }
+                            </div>
+                            
+                        </div>
                     </NavLink>
                 ))
                 }

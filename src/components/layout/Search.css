@@ -53,6 +53,21 @@
     color: #000;
 }
 
+.image_user {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.list-group-item.active {
+    background-color: #6B6B6B;
+    border-color: #6B6B6B;
+}
+
 @media screen and (max-width: 992px) {
     .searchbox {
         margin: 1rem 0;

@@ -20,7 +20,7 @@ export const NavBar = () =>
 
     return (
         <>
-        <header className="page-header sticky-top bg-header">
+        <header className="sticky-top bg-header">
             <nav className="navbar navbar-expand-lg navbar-dark bg-header">
                 <div className="container">
                     <NavLink className="navbar-brand" exact to="/"><img className="logo" src="/logo.svg" alt="logo.png" /> PhotoDir</NavLink>
