@@ -23,7 +23,7 @@ export const NavBar = () =>
         <header className="page-header sticky-top bg-header">
             <nav className="navbar navbar-expand-lg navbar-dark bg-header">
                 <div className="container">
-                    <NavLink className="navbar-brand" exact to="/">PhotoDir</NavLink>
+                    <NavLink className="navbar-brand" exact to="/"><img className="logo" src="/logo.svg" alt="logo.png" /> PhotoDir</NavLink>
                     
                     <div className="d-flex">
                         {(logged) &&  
@@ -65,7 +65,7 @@ export const NavBar = () =>
                             </NavLink>
                         </ul>
                         :
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 w-25">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <NavLink to="/login" className="nav-item nav-link">
                                 Iniciar Sesión
                             </NavLink>

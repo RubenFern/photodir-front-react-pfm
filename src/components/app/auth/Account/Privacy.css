@@ -1,0 +1,12 @@
+.privacy {
+    font-size: 3rem;
+}
+
+.on {
+    color: #05C8EA;
+}
+
+.off {
+    color: #CACACA;
+    transform: rotateY(180deg);
+}

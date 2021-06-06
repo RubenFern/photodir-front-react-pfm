@@ -71,7 +71,7 @@ export const AlbumPage = ({ history }) =>
                 <div className="container-fluid gallery pointer mt-3 animate__animated animate__fadeIn">
                     {(photos !== undefined && photos.length > 0) ? photos.reverse().map( ({ image, fileImage, uid = '' }) => 
                     (
-                        <PhotoCard key={uid} uid={uid} album={album} image={image} fileImage={fileImage} user_name={user_name} home={true} />
+                        <PhotoCard key={uid} uid={uid} album={album} image={image} fileImage={fileImage} />
 
                     )) : <NoItems object="photo" />}
                 </div>

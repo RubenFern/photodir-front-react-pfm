@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
-import { getImage } from "../../../helpers/getImage";
+import { getImageToken } from "../../../helpers/getImage";
 import { validateUpload } from "../../../helpers/validateUpload";
 import { types } from "../types/types";
 
@@ -13,7 +13,7 @@ const getAlbums = (path, history) =>
         const res = await fetchNoToken(`albumes/${path}`);
         const { albums } = await res.json();
 
-        await getImage({ type: albums, user_name: path, folder: 'album' });
+        await getImageToken({ type: albums, user_name: path, folder: 'album' });
 
         if (albums === undefined)
         {

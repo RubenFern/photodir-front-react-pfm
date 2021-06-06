@@ -1,6 +1,6 @@
 import { types } from "../types/types";
 
-const initialState = [];
+const initialState = {};
 
 export const userReducer = (state = initialState, action) =>
 {

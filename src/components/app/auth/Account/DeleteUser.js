@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from "sweetalert2";
 
-import { deleteUser } from '../../../../redux/actions/user';
+import { deleteUser } from '../../../redux/actions/user';
 
 export const DeleteUser = ({ history }) => 
 {
@@ -16,9 +16,11 @@ export const DeleteUser = ({ history }) =>
             text: 'Se eliminarán todos los álbumes y fotografías que has creado.',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            focusCancel: true
         }).then( (res) =>
         {
             if (res.isConfirmed) 

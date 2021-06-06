@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const PhotoCard = ({ uid, album, image, fileImage }) => 
+export const PhotoCardExplore = ({ uid, album, image, fileImage, user_name }) => 
 {
     return (
-        <NavLink to={`/home/${album}/${image}`} className="gallery-item" key={uid}>
+        <NavLink to={`/explore/${user_name}/${album}/${image}`} className="gallery-item" key={uid}>
             <img 
                 className="gallery-img" 
                 src={fileImage} 

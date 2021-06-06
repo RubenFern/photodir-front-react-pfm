@@ -28,17 +28,21 @@ export const Search = () =>
     {
         if (search !== '')
         {
-            dispatch(searchUsers(search));    
+            dispatch(searchUsers(search));
         } else
         {
             dispatch({
                 type: types.viewUsers,
                 payload: []
             });
-        }
-        
-    }, [dispatch, search])
+        }   
+    }, [dispatch, search]);
 
+    // Elimino el contenido del buscador al renderizar la página
+    useEffect(() => 
+    {
+        setSearch('');        
+    }, [])
 
     return (
         <div className="searchbox">

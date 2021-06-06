@@ -6,7 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import { NavBar } from '../layout/NavBar';
 import { startLogin } from '../redux/actions/auth';
 
-export const LoginScreen = ({ history }) => 
+export const LoginScreen = () => 
 {
     // Llamo al dispatch de Redux
     const dispatch = useDispatch();

@@ -57,6 +57,10 @@ body, .dropdown-menu {
     color: #fff;
 }
 
+.text-gray {
+    color: #acacac;
+}
+
 .centrado {
     display: flex;
     justify-content: center;
@@ -102,6 +106,10 @@ body, .dropdown-menu {
 
     .form-perfil {
         max-width: 40vw;
+    }
+
+    .private {
+        font-size: 20rem;
     }
 }
 
@@ -155,4 +163,8 @@ body, .dropdown-menu {
     font-size: 20px;
     font-weight: bold;
     cursor: default;
+}
+
+.private {
+    font-size: 10rem;
 }

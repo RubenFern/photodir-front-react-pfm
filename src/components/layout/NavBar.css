@@ -6,6 +6,16 @@
     display: block;
 }
 
+.logo {
+    width: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    white-space: nowrap;
+}
+
 @media screen and (min-width: 990px) {
     .settings {
         display: block;

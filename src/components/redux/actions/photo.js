@@ -1,5 +1,5 @@
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
-import { getImage } from "../../../helpers/getImage";
+import { getImageToken } from "../../../helpers/getImage";
 import { types } from "../types/types";
 
 const getPhotos = (path, history) =>
@@ -19,7 +19,7 @@ const getPhotos = (path, history) =>
             return;
         }
 
-        await getImage({ type: photos, user_name, folder: 'photo' });
+        await getImageToken({ type: photos, user_name, folder: 'photo' });
 
         dispatch({
             type: types.viewPhotos,
@@ -44,7 +44,7 @@ const getPhoto = (path, history) =>
             return;
         }
 
-        await getImage({ type: photo, user_name, folder: 'photo' });
+        await getImageToken({ type: photo, user_name, folder: 'photo' });
 
         // Guardo los likes de la imagen
         const res2 = await fetchNoToken(`likesphoto/${photo.image}`);

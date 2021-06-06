@@ -9,7 +9,7 @@ import { AdminRoute } from './AdminRoutes'
 // Exporto las ruta de los componentes por legibilidad
 import { routes } from './componentsRoutes';
 
-const { LoginScreen, RegisterScreen, HomePage, AlbumPage, PhotoPage, HomeUserPage, AlbumUserPage, AdminPage, PhotoUserPage, PerfilPage } = routes;
+const { LoginScreen, RegisterScreen, HomePage, AlbumPage, PhotoPage, HomeUserPage, AlbumUserPage, AdminPage, PhotoUserPage, AccountPage } = routes;
 
 export const AppRouter = () => 
 {
@@ -27,7 +27,7 @@ export const AppRouter = () =>
                     <AuthRoutes exact path='/registro' isAuth={logged} isAdmin={is_admin} component={RegisterScreen} />
 
                     <PrivateRoute exact path="/home" isAuth={logged} component={HomePage} />
-                    <PrivateRoute exact path="/home/perfil" isAuth={logged} component={PerfilPage} />
+                    <PrivateRoute exact path="/home/perfil" isAuth={logged} component={AccountPage} />
                     <PrivateRoute exact path="/home/:album" isAuth={logged} component={AlbumPage} />
                     <PrivateRoute exact path="/home/:album/:photo" isAuth={logged} component={PhotoPage} />
 

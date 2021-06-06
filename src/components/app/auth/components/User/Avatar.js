@@ -6,7 +6,14 @@ export const Avatar = ({ user_name = '', image = '' }) =>
 {
     return (
         <div className="avatar">
-            <div className="image" style={{ backgroundImage: `url(http://localhost:3010/api/upload/avatar/${user_name}/${image})` }}></div>
+            { 
+                (user_name !== '')
+                &&
+                <div 
+                    className="image" 
+                    style={{ backgroundImage: `url(http://localhost:3010/api/upload/avatar/${user_name}/${image})` }}>    
+                </div>
+            }
         </div>
     )
 }

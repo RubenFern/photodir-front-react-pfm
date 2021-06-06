@@ -75,7 +75,7 @@ export const HomePage = ({ history }) =>
                 {
                     (album !== undefined && album.length > 0) ? album.reverse().map( ({image, fileImage, uid = '', name, description, creation_date}) => 
                     (
-                        <AlbumCard key={uid} uid={uid} image={image} fileImage={fileImage} name={name} description={description} creation_date={creation_date} user_name={user_name} home={true} />
+                        <AlbumCard key={uid} uid={uid} image={image} fileImage={fileImage} name={name} description={description} creation_date={creation_date} />
 
                     )) : <NoItems object="album" />
                 } 
