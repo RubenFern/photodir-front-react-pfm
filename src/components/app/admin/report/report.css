@@ -1,0 +1,21 @@
+.report {
+    width: 100%;
+}
+
+.image-rep {
+    width: 15rem;
+}
+
+.rounded-5 {
+    border-radius: 20px;
+}
+
+.bg-report {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+@media screen and (max-width: 990px) {
+    .image-rep {
+        width: 100%;
+    }
+}

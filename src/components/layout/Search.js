@@ -37,19 +37,20 @@ export const Search = () =>
                 type: types.viewUsers,
                 payload: []
             });
-        }   
+        } 
     }, [dispatch, search]);
 
     // Elimino el contenido del buscador al renderizar la página
     useEffect(() => 
     {
-        setSearch('');        
+        setSearch('');
+        
     }, []);
 
-    // Al pinchar fuera del buscador cierro la sugerencia
-    const closeAutocomplete = () =>
+    // Al tocar el body se cierra el buscador si está desplegado
+    if (document.getElementById('root'))
     {
-        setshow(false);
+        document.getElementById('root').onclick = () => setshow(false);
     }
 
     return (
@@ -60,7 +61,7 @@ export const Search = () =>
                     name="search"
                     value={search}
                     onChange={handleInputChange}
-                    onBlur={closeAutocomplete}
+                    
                     autoComplete="off"
                     type="text" 
                     placeholder="Busca a un usuario..."

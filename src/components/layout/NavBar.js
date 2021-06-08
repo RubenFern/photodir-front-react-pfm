@@ -11,7 +11,7 @@ export const NavBar = () =>
 {
     const dispatch = useDispatch();
 
-    const { logged, user: { user_name } } = useSelector(state => state.auth);
+    const { logged, user: { user_name, is_admin } } = useSelector(state => state.auth);
 
     const logout = () =>
     {
@@ -26,7 +26,7 @@ export const NavBar = () =>
                     <NavLink className="navbar-brand" exact to="/"><img className="logo" src="/logo.svg" alt="logo.png" /> PhotoDir</NavLink>
                     
                     <div className="d-flex">
-                        {(logged) &&  
+                        {(logged && !is_admin) &&  
                         <NavLink to="/home/perfil" className="nav-item nav-link settings-rs">
                             <i className="bi bi-gear-fill text-light"></i>
                         </NavLink>}
@@ -60,9 +60,12 @@ export const NavBar = () =>
                                     </li>
                                 </ul>
                             </li>
-                            <NavLink to="/home/perfil" className="nav-item nav-link settings">
-                                <i className="bi bi-gear-fill text-light"></i>
-                            </NavLink>
+                            {
+                                (!is_admin) &&
+                                <NavLink to="/home/perfil" className="nav-item nav-link settings">
+                                    <i className="bi bi-gear-fill text-light"></i>
+                                </NavLink>
+                            }
                         </ul>
                         :
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

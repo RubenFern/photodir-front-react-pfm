@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Redirect, Route } from 'react-router';
+import { Redirect, Route, useHistory } from 'react-router';
 
-export const PrivateRoute = ({isAuth, component: Component, ...rest}) => 
+export const PrivateRoute = ({isAuth, isAdmin, component: Component, ...rest}) => 
 {
-    // Almaceno la última página visitada
-    //localStorage.setItem('lastPage', rest.location.pathname);
+    const history = useHistory();
+
+    // Si es admin su home es el panel
+    if (isAdmin)
+    {
+        history.replace('/panel');
+    }
 
     return (
         <Route {...rest}

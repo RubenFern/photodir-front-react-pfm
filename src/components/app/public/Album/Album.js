@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
@@ -9,6 +9,14 @@ import { PhotoCardExplore } from './PhotoCardExplore';
 
 export const Album = ({ user_name, album }) => 
 {
+    const [loading, setloading] = useState(true);
+
+    // Le doy margen de carga a las imágenes
+    setTimeout(() => 
+    {
+        setloading(false);
+    }, 100);
+
     const photos = useSelector(state => state.photos);
 
     const dispatch = useDispatch();
@@ -33,17 +41,26 @@ export const Album = ({ user_name, album }) =>
                 </div>
             </div>                
 
+        {
+            (loading)
+            ?
             <div className="container-fluid gallery pointer mt-3">
-
+                <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            :
+            <div className="container-fluid gallery pointer mt-3">
             {
             (photos !== undefined && photos.length > 0) ? photos.reverse().map( ({ image, fileImage, uid = '' }) => 
             (
                 <PhotoCardExplore key={uid} uid={uid} album={album} image={image} fileImage={fileImage} user_name={user_name} />
 
             )) : <NoItemsExplore object="photo" />
-            }
-                
+            }   
             </div>
+        }
+            
         </div>
     )
 }

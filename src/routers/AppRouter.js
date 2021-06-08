@@ -26,10 +26,10 @@ export const AppRouter = () =>
                     <AuthRoutes exact path='/login' isAuth={logged} isAdmin={is_admin} component={LoginScreen} />
                     <AuthRoutes exact path='/registro' isAuth={logged} isAdmin={is_admin} component={RegisterScreen} />
 
-                    <PrivateRoute exact path="/home" isAuth={logged} component={HomePage} />
-                    <PrivateRoute exact path="/home/perfil" isAuth={logged} component={AccountPage} />
-                    <PrivateRoute exact path="/home/:album" isAuth={logged} component={AlbumPage} />
-                    <PrivateRoute exact path="/home/:album/:photo" isAuth={logged} component={PhotoPage} />
+                    <PrivateRoute exact path="/home" isAuth={logged} isAdmin={is_admin} component={HomePage} />
+                    <PrivateRoute exact path="/home/perfil" isAuth={logged} isAdmin={is_admin} component={AccountPage} />
+                    <PrivateRoute exact path="/home/:album" isAuth={logged} isAdmin={is_admin} component={AlbumPage} />
+                    <PrivateRoute exact path="/home/:album/:photo" isAuth={logged} isAdmin={is_admin} component={PhotoPage} />
 
                     <AdminRoute exact path="/panel" isAdmin={is_admin} component={AdminPage} />
 

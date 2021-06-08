@@ -13,13 +13,7 @@ export const HomePage = ({ history }) =>
 {
     // Obtengo el nombre de usuario del usuario conectado
     const { user } = useSelector(state => state.auth);
-    const { user_name, is_admin } = user;
-
-    if (is_admin)
-    {
-        // Si es admin redirecciono a su home si la posibilidad de ir hacia atrás
-        history.replace('/panel');
-    }
+    const { user_name } = user;
 
     const dispatch = useDispatch();
 

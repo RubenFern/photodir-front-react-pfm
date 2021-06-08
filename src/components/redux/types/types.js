@@ -29,5 +29,7 @@ export const types =
     reloadFalse: '[Reload] reloadFalse',
 
     like: '[Like] like',
-    notlike: '[Like] notLike'
+    notlike: '[Like] notLike',
+
+    reports: '[Report] reports'
 }

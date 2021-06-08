@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
 import thunk from 'redux-thunk';
+
 import { albumReducer } from '../reducers/albumReducer';
 import { authReducer } from '../reducers/authReducer';
 import { exploreReducer } from '../reducers/exploreReducer';
@@ -9,6 +10,7 @@ import { photoReducer } from '../reducers/photoReducer';
 import { reloadReducer } from '../reducers/reloadReducer';
 import { userReducer } from '../reducers/userReducer';
 import { userLikedReducer } from '../reducers/userLikedReducer';
+import { reportReducer } from '../reducers/reportReducer';
 
 /**
  * Habilito la herramienta de desarrollo de redux tools y además aplico el middleware de thunk para
@@ -29,7 +31,8 @@ const reducers = combineReducers(
     reload: reloadReducer,
     user: userReducer,
     explore: exploreReducer,
-    userliked: userLikedReducer
+    userliked: userLikedReducer,
+    reports: reportReducer
 });
 
 export const store = createStore(
