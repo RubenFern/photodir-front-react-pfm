@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import { approve, reject } from '../../../redux/actions/report';
+import { changeState } from '../../../redux/actions/report';
 
 // Reportes pendientes de aprobar o rechazar
 export const Pending = ({ pending }) => 
@@ -19,14 +19,14 @@ export const Pending = ({ pending }) =>
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
+            confirmButtonText: 'Aprobar',
             cancelButtonText: 'Cancelar',
             focusCancel: true
         }).then( (res) =>
         {
             if (res.isConfirmed) 
             {
-                dispatch(approve(uid_image_reported));
+                dispatch(changeState(uid_image_reported, 'approved'));
             }
         });
     }
@@ -41,14 +41,14 @@ export const Pending = ({ pending }) =>
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
+            confirmButtonText: 'Rechazar',
             cancelButtonText: 'Cancelar',
             focusCancel: true
         }).then( (res) =>
         {
             if (res.isConfirmed) 
             {
-                dispatch(reject(uid_image_reported));
+                dispatch(changeState(uid_image_reported, 'rejected'));
             }
         });
     }

@@ -43,39 +43,16 @@ const getReports = () =>
     }
 }
 
-const approve = (uid_image_reported) =>
+const changeState = (uid_image_reported, state) =>
 {
     return async(dispatch) =>
     {
-        const res = await fetchWithToken(`report/`, { uid_image_reported, state: 'approved' }, 'PUT');
+        const res = await fetchWithToken(`report/`, { uid_image_reported, state }, 'PUT');
         const data = await res.json();
 
         if (data.message)
         {
-            Swal.fire('Reporte aprobado', `${data.message}`, 'success');
-
-            dispatch({
-                type: types.stateReport,
-                payload: data.report
-            });
-
-            dispatch({
-                type: types.reloadTrue
-            });
-        }
-    }
-}
-
-const reject = (uid_image_reported) =>
-{
-    return async(dispatch) =>
-    {
-        const res = await fetchWithToken(`report/`, { uid_image_reported, state: 'rejected' }, 'PUT');
-        const data = await res.json();
-
-        if (data.message)
-        {
-            Swal.fire('Reporte rechazado', `${data.message}`, 'success');
+            Swal.fire(`Reporte ${ (state === 'approved') ? 'aprobado' : 'rechazado' }`, `${data.message}`, 'success');
 
             dispatch({
                 type: types.stateReport,
@@ -93,6 +70,5 @@ export
 {
     addReport, 
     getReports,
-    approve,
-    reject
+    changeState
 }
