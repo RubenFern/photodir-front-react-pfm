@@ -17,6 +17,12 @@ const searchUsers = (search) =>
                 type: types.viewUsers,
                 payload: user
             });
+        } else
+        {
+            // Si no encuentra usuarios vacío el buscador
+            dispatch({
+                type: types.emptyUsers
+            });
         }
     }
 }

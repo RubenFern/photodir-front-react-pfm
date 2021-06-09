@@ -8,6 +8,12 @@ export const reportReducer = (state = initialState, action) =>
         case types.reports:
             return action.payload
 
+        case types.stateReport:
+            return state.map(
+                // Si el id del reporte es igual al que cambié, devuelvo el cambiado, si no el reporte original
+                report => (report.uid === action.payload.uid) ? action.payload : report
+            )
+
         default:
             return state;
     }

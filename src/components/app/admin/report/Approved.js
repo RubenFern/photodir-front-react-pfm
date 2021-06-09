@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 // Reportes aprobados
 export const Approved = ({ approved }) => 
 {
-    const reload = useSelector(state => state.reload);
-
-    useEffect(() => {}, [reload]);
-
     return (
         <>
             <h2 className="mt-4 text-light text-center">Reportes Aprobados <i className="bi bi-check-circle text-success"></i></h2>
 
-            <div className="report mt-2">
+            <div className="animate__animated animate__fadeIn report mt-2">
             {
                 approved.map( ({ uid, user_reported, reporting_user, description, creation_date }) => 
                 (
@@ -32,11 +27,13 @@ export const Approved = ({ approved }) =>
                                 </div>
                             </div>
                 
-                            <div className="text-light text-center">
-                                <p>
+                            <div className="text-light d-flex flex-column justify-content-center     align-items-center mx-md-5">
+                                <h4 className="text-gray">Motivo:</h4>
+                                <p className="text-justify">
                                     { description }
                                 </p>
                             </div>
+
                             <div className="d-flex flex-column justify-content-around align-items-center">
                                 <p className="text-light">{ creation_date }</p>
                             </div>

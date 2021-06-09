@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 
 import { approve, reject } from '../../../redux/actions/report';
@@ -8,10 +8,6 @@ import { approve, reject } from '../../../redux/actions/report';
 export const Pending = ({ pending }) => 
 {
     const dispatch = useDispatch();
-
-    const reload = useSelector(state => state.reload);
-
-    useEffect(() => {}, [reload]);
 
     const approveReport = (uid_image_reported) =>
     {
@@ -59,8 +55,9 @@ export const Pending = ({ pending }) =>
 
     return (
         <>
-            <div className="report mt-4">
+            <div className="animate__animated animate__fadeIn report mt-4">
             {
+                
                 pending.map( ({ uid, user_reported, uid_image_reported, reporting_user, name_image_reported, fileImage, description, creation_date }) => 
                 (
                     <div key={uid} className="bg-report mb-2 rounded-5">
@@ -79,12 +76,14 @@ export const Pending = ({ pending }) =>
                                         </div> 
                                     </div>
                                 </div>
-                    
-                                <div className="text-light text-center">
-                                    <p>
+
+                                <div className="text-light d-flex flex-column justify-content-center     align-items-center mx-md-5">
+                                    <h4 className="text-gray">Motivo:</h4>
+                                    <p className="text-justify">
                                         { description }
                                     </p>
                                 </div>
+
                                 <div className="d-flex flex-column justify-content-around align-items-center">
                                     <p className="text-light">{ creation_date }</p>
 
@@ -96,7 +95,7 @@ export const Pending = ({ pending }) =>
                             </div>
                         </div>
                     </div>
-                ))
+                ))             
             }
             </div>
         </>

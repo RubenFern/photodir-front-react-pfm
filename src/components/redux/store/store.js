@@ -8,7 +8,7 @@ import { exploreReducer } from '../reducers/exploreReducer';
 import { modalReducer } from '../reducers/modalReducer';
 import { photoReducer } from '../reducers/photoReducer';
 import { reloadReducer } from '../reducers/reloadReducer';
-import { userReducer } from '../reducers/userReducer';
+import { searchReducer } from '../reducers/searchReducer';
 import { userLikedReducer } from '../reducers/userLikedReducer';
 import { reportReducer } from '../reducers/reportReducer';
 
@@ -29,7 +29,7 @@ const reducers = combineReducers(
     modal: modalReducer,
     photos: photoReducer,
     reload: reloadReducer,
-    user: userReducer,
+    search: searchReducer,
     explore: exploreReducer,
     userliked: userLikedReducer,
     reports: reportReducer

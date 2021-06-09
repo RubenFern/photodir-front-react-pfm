@@ -22,6 +22,7 @@ export const types =
     deletePhoto: '[Photo] deletePhoto',
 
     viewUsers: '[Users] viewUsers',
+    emptyUsers: '[Users] emptyUsers',
 
     explore: '[Explore] explore',
 
@@ -31,5 +32,6 @@ export const types =
     like: '[Like] like',
     notlike: '[Like] notLike',
 
-    reports: '[Report] reports'
+    reports: '[Report] reports',
+    stateReport: '[Report] stateReport',
 }

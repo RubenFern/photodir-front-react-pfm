@@ -17,7 +17,7 @@ export const Search = () =>
     const dispatch = useDispatch();
     
     // recojo los usarios buscados
-    const users = useSelector(state => state.user);
+    const users = useSelector(state => state.search);
 
     const handleInputChange = ({ target }) =>
     {
@@ -35,7 +35,7 @@ export const Search = () =>
         {
             dispatch({
                 type: types.viewUsers,
-                payload: []
+                payload: {}
             });
         } 
     }, [dispatch, search]);

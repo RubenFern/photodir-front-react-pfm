@@ -18,7 +18,9 @@ export const DeleteComponent = ({ image, name, description, uid, creation_date }
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            focusCancel: true
         }).then( (res) =>
         {
             if (res.isConfirmed) 

@@ -56,7 +56,9 @@ export const HomeUserPage = ({ history }) =>
         <NavBar />
 
         <div className="container-fluid mt-4">
-            <div data-bs-toggle="tooltip" data-bs-html="true" title="Reporta el avatar del usuario"><ReportImage /></div>
+            <div data-bs-toggle="tooltip" data-bs-html="true" title="Reporta el avatar del usuario">
+                <ReportImage category='avatar' image={user.image} user_reported={user.user_name} />
+            </div>
             <div className="container">
                 <i className="bi bi-arrow-left-circle text-light pointer fs-1" onClick={() => back(history)}></i>
             </div>

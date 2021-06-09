@@ -60,12 +60,16 @@ export const NavBar = () =>
                                     </li>
                                 </ul>
                             </li>
-                            {
-                                (!is_admin) &&
+                            
+                                {(!is_admin) &&
                                 <NavLink to="/home/perfil" className="nav-item nav-link settings">
                                     <i className="bi bi-gear-fill text-light"></i>
-                                </NavLink>
-                            }
+                                </NavLink>}
+                                
+                                {(is_admin) &&
+                                <NavLink to="/panel/usuarios" className="nav-item nav-link" activeClassName="active">
+                                    <i className="bi bi-people-fill"></i> Usuarios
+                                </NavLink>}
                         </ul>
                         :
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

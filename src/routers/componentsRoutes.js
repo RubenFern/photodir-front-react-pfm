@@ -8,6 +8,7 @@ import { PhotoPage } from '../components/app/auth/PhotoPage';
 import { AdminPage } from '../components/app/admin/AdminPage';
 import { PhotoUserPage } from '../components/app/public/PhotoUserPage';
 import { AccountPage } from '../components/app/auth/AccountPage';
+import { UsersPage } from '../components/app/admin/UsersPage';
 
 export const routes =
 {
@@ -20,5 +21,6 @@ export const routes =
     PhotoUserPage,
     AdminPage,
     AlbumUserPage,
-    AccountPage
+    AccountPage,
+    UsersPage
 }

@@ -23,6 +23,8 @@ const getReports = () =>
         const res = await fetchWithToken('report/');
         const { reports } = await res.json();
 
+        if (!reports) { return; }
+
         // Realizo las peticiones a la ruta del administrador para obtener la imagen
         for(let i in reports) 
         {
@@ -43,14 +45,23 @@ const getReports = () =>
 
 const approve = (uid_image_reported) =>
 {
-    return async() =>
+    return async(dispatch) =>
     {
         const res = await fetchWithToken(`report/`, { uid_image_reported, state: 'approved' }, 'PUT');
-        const { message } = await res.json();
+        const data = await res.json();
 
-        if (message)
+        if (data.message)
         {
-            Swal.fire('Reporte aprobado', `${message}`, 'success');
+            Swal.fire('Reporte aprobado', `${data.message}`, 'success');
+
+            dispatch({
+                type: types.stateReport,
+                payload: data.report
+            });
+
+            dispatch({
+                type: types.reloadTrue
+            });
         }
     }
 }
@@ -59,7 +70,22 @@ const reject = (uid_image_reported) =>
 {
     return async(dispatch) =>
     {
-        
+        const res = await fetchWithToken(`report/`, { uid_image_reported, state: 'rejected' }, 'PUT');
+        const data = await res.json();
+
+        if (data.message)
+        {
+            Swal.fire('Reporte rechazado', `${data.message}`, 'success');
+
+            dispatch({
+                type: types.stateReport,
+                payload: data.report
+            });
+
+            dispatch({
+                type: types.reloadTrue
+            });
+        }
     }
 }
 
