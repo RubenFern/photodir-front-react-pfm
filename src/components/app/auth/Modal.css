@@ -36,4 +36,8 @@
     max-width: 600px;
     outline: none;
     padding: 10px;
+    overflow: scroll;
 }
+
+/* Deshabilito la barra de scrolling */
+.modal::-webkit-scrollbar {display: none;}

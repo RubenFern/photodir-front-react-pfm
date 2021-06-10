@@ -95,7 +95,7 @@ export const Pending = ({ pending }) =>
                             </div>
                         </div>
                     </div>
-                ))             
+                ))
             }
             </div>
         </>

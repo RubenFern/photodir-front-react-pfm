@@ -15,7 +15,7 @@ export const HomeUserPage = ({ history }) =>
     // Monto el componente
     const mounted = useRef(true);
 
-    // Si al entrar en la página se monta y seguidameete se desmonta el componete limpio el proceso
+    // Si al entrar en la página se monta y seguidamente se desmonta el componete limpio el proceso
     useEffect(() => 
     {
         return () => 

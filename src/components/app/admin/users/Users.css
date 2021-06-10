@@ -1,0 +1,17 @@
+.mv-image-user {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+}
+
+.bg-users {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+@media screen and (min-width: 600px) {
+    .mv-image-user {
+        width: 9rem;
+        height: 9rem;
+    }
+}

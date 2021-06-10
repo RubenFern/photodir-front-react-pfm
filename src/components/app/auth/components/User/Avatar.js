@@ -9,10 +9,7 @@ export const Avatar = ({ user_name = '', image = '' }) =>
             { 
                 (user_name !== '')
                 &&
-                <div 
-                    className="image" 
-                    style={{ backgroundImage: `url(http://localhost:3010/api/upload/avatar/${user_name}/${image})` }}>    
-                </div>
+                <img className="circular-image" src={`http://localhost:3010/api/upload/avatar/${user_name}/${image}`} alt={image} />   
             }
         </div>
     )
