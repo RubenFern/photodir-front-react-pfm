@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-import { getAlbums } from '../../../redux/actions/admin';
+import { deleteAlbum, getAlbums } from '../../../redux/actions/admin';
 
 export const Albums = () => 
 {
@@ -31,6 +32,27 @@ export const Albums = () =>
 
     }, [dispatch, username]);
 
+    const removeAlbum = (name, image) =>
+    {
+        Swal.fire(
+        {
+            title: `Eliminar álbum del usuario ${username}`,
+            text: 'Se eliminará el álbum y todas sus fotografías ¿Estás seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+            focusCancel: true
+        }).then( (res) =>
+        {
+            if (res.isConfirmed) 
+            {
+                dispatch(deleteAlbum({ user_name: username, album: name, image }));
+            }
+        });
+    }
 
     return (
         <ul className="container-fluid card-list animate__animated animate__fadeIn">
@@ -47,6 +69,8 @@ export const Albums = () =>
                     <p className="text-justify">
                         {description}
                     </p>
+
+                    <i className="bi bi-trash-fill text-danger delete bottom" onClick={ () => removeAlbum(name, image) }></i>
                 </span>
             </li>
         ))         

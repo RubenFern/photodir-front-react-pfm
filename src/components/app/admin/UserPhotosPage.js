@@ -38,14 +38,17 @@ export const UserPhotosPage = ({ history }) =>
             mounted.current = false;
         }
 
-    }, [dispatch, username]);
+    }, [dispatch, username, album]);
 
     return (
         <>
             <NavBar />
 
             <div className="container mt-3 pb-4">
-                <h1 className="text-gray mb-4">Imágenes del álbum <span className="text-light">{ album }</span> del usuario <span className="text-light">{ username }</span></h1>
+                <h1 className="text-gray mb-4">
+                    <i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}> </i>
+                    Fotografías del álbum <span className="text-light">{ album }</span> del usuario <span className="text-light">{ username }</span>
+                </h1>
 
                 <Photos />
             </div>

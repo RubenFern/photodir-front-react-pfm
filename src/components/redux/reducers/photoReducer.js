@@ -24,6 +24,10 @@ export const photoReducer = (state = initialState, action) =>
             //return state.filter( photo => photo.uid !== action.payload.uid);
             return action.payload
 
+        // Case para eliminar fotografrías desde el panel de administrador
+        case types.deletePhotoFromUser:
+            return state.filter( photo => photo.uid !== action.payload.uid);
+
         default:
             return state;
     }

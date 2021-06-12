@@ -95,12 +95,11 @@ export const Users = () =>
         {
         users.map( ({ uid, name, user_name, email, is_admin, private_profile, image, creation_date }) => 
         (
-            <NavLink 
-                to={ (!is_admin) ? `/panel/usuarios/${user_name}` : '' } 
-                key={uid} 
-                className={`bg-users p-2 mb-2 rounded-3 d-flex flex-column flex-lg-row justify-content-between nav-item nav-link ${ (is_admin) && 'pe-none' }`}
-            >
-                <div className="d-flex justify-content-around justify-content-lg-center mx-lg-5">
+            <div key={uid} className="bg-users p-2 mb-2 rounded-3 d-flex flex-column flex-lg-row justify-content-between">
+                <NavLink 
+                    to={ (!is_admin) ? `/panel/usuarios/${user_name}` : '' }  
+                    className={`d-flex justify-content-around justify-content-lg-center mx-lg-5 nav-item nav-link ${ (is_admin) && 'pe-none' }`}
+                >
                     <img className="mv-image-user" src={`http://localhost:3010/api/upload/avatar/${user_name}/${image}`} alt={image} />
                     
                     <div className="d-flex flex-column justify-content-around mx-2">
@@ -113,7 +112,7 @@ export const Users = () =>
                         <div className="text-gray">{ email }</div>
                         <div className="text-gray">{ creation_date }</div>
                     </div>
-                </div>
+                </NavLink>
 
                 <div className="d-flex align-items-center justify-content-center mx-lg-5 my-3 my-lg-0">
                     <div className="mx-2">
@@ -129,7 +128,7 @@ export const Users = () =>
                         </button>
                     </div>
                 </div>
-            </NavLink>
+            </div>
         ))         
         }
         </>

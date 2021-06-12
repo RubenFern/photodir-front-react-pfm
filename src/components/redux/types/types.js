@@ -38,4 +38,5 @@ export const types =
     getUsers: '[User - Admin] getUsers',
     setRole: '[User - Admin] setRole',
     deleteUser: '[User - Admin] deleteUser',
+    deletePhotoFromUser: '[Photo - Admin] deletePhotoFromUser'
 }

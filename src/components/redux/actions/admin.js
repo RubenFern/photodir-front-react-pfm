@@ -121,12 +121,58 @@ const deleteUser = (user_name) =>
             Swal.fire(`${message}`, 'Se han borrado todos sus datos de Photodir', 'success');
 
             dispatch({
-                type: types.reloadTrue
-            });
-
-            dispatch({
                 type: types.deleteUser,
                 payload: user_name
+            });
+        }
+    }
+}
+
+const deleteAlbum = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { user_name, album, image } = data;
+
+        const res = await fetchWithToken(`panel/album/${album}`, { user_name, image }, 'DELETE');
+        const resp = await res.json();
+
+        if (resp.success)
+        {
+            const { message, albumRemove } = resp;
+
+            Swal.fire(`${message}`, `Se ha eliminado el álbum del usuario ${user_name}`, 'success');
+
+            dispatch({
+                type: types.deleteAlbum,
+                payload: albumRemove
+            });
+        } else
+        {
+            // Devuelvo un error en caso de no poder el álbum
+            const { message } = resp;
+
+            Swal.fire('Ups', `${ (message) ? message : 'Ha ocurrido un error' }`, 'error');
+        }
+    }
+}
+
+const deletePhoto = (data) =>
+{
+    return async(dispatch) =>
+    {
+        const { user_name, album, image } = data;
+
+        const res = await fetchWithToken(`panel/photo/${image}`, { user_name, album }, 'DELETE');
+        const { message, photo } = await res.json();
+
+        if (message)
+        {
+            Swal.fire(`${message}`, `Se ha eliminado la fotografía del usuario ${user_name}`, 'success');
+
+            dispatch({
+                type: types.deletePhotoFromUser,
+                payload: photo
             });
         }
     }
@@ -164,5 +210,7 @@ export
     getAlbums,
     getPhotos,
     setRole,
-    deleteUser
+    deleteUser,
+    deleteAlbum,
+    deletePhoto
 }

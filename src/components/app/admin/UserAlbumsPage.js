@@ -45,7 +45,10 @@ export const UserAlbumsPage = ({ history }) =>
         <NavBar />
 
         <div className="container mt-3 pb-4">
-            <h1 className="text-gray mb-4">Álbums del usuario <span className="text-light">{ username }</span></h1>
+            <h1 className="text-gray mb-4">
+                <i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}> </i>
+                Álbumes del usuario <span className="text-light">{ username }</span>
+            </h1>
 
             <Albums />
         </div>
