@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import { deleteUser, getUsers, setRole } from '../../../redux/actions/admin';
@@ -94,7 +95,11 @@ export const Users = () =>
         {
         users.map( ({ uid, name, user_name, email, is_admin, private_profile, image, creation_date }) => 
         (
-            <div key={uid} className="bg-users p-2 mb-2 rounded-3 d-flex flex-column flex-lg-row justify-content-between">
+            <NavLink 
+                to={ (!is_admin) ? `/panel/usuarios/${user_name}` : '' } 
+                key={uid} 
+                className={`bg-users p-2 mb-2 rounded-3 d-flex flex-column flex-lg-row justify-content-between nav-item nav-link ${ (is_admin) && 'pe-none' }`}
+            >
                 <div className="d-flex justify-content-around justify-content-lg-center mx-lg-5">
                     <img className="mv-image-user" src={`http://localhost:3010/api/upload/avatar/${user_name}/${image}`} alt={image} />
                     
@@ -124,7 +129,7 @@ export const Users = () =>
                         </button>
                     </div>
                 </div>
-            </div>
+            </NavLink>
         ))         
         }
         </>

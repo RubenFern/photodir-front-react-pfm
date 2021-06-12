@@ -10,7 +10,7 @@ export const AlbumCardExplore = ({ uid, user_name, image, fileImage, name, descr
         <li key={uid} className="card">
             <p className="date">{creation_date}</p>
             <NavLink className="card-image" to={`/explore/${user_name}/${name}`}>
-                <img className="pointer" src={fileImage} alt={fileImage} />
+                <img className="pointer" src={fileImage} alt={image} />
             </NavLink>
             <span className="card-description">
                 <h2 className="title text-light">{name}</h2>

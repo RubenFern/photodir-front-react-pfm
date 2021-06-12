@@ -1,19 +1,81 @@
 import { types } from "../types/types";
 import { fetchWithToken } from "../../../helpers/fetch";
 import Swal from "sweetalert2";
+import { back } from "../../../helpers/back";
 
 const getUsers = () =>
 {
-    return async(disptach) =>
+    return async(dispatch) =>
     {
         const res = await fetchWithToken('panel/users');
         const { users } = await res.json();
 
         if (users)
         {
-            disptach({
+            dispatch({
                 type: types.getUsers,
                 payload: users
+            });
+        }
+    }
+}
+
+const getUser = (user_name, history) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken(`panel/user/${user_name}`);
+        const { user } = await res.json();
+
+        // Si no existe el usuario vuelvo hacia atrás
+        if (!user)
+        {
+            back(history);
+            return;
+        }
+
+        dispatch({
+            type: types.explore,
+            payload: user
+        });
+    }
+}
+
+const getAlbums = (user_name) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken(`panel/albums/${user_name}`);
+        const { albums } = await res.json();
+
+        if (albums)
+        {
+            // Obtengo las imágenes del usuario aunque tenga el perfil privado
+            await getImages(albums, user_name, 'album');
+
+            dispatch({
+                type: types.viewAlbums,
+                payload: albums
+            });
+        }
+    }
+}
+
+const getPhotos = (user_name, album) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken(`panel/photos/${user_name}/${album}`);
+        const { photos } = await res.json();
+
+        if (photos)
+        {
+            // Obtengo las imágenes del usuario aunque tenga el perfil privado
+            await getImages(photos, user_name, 'photo');
+
+            dispatch({
+                type: types.viewPhotos,
+                payload: photos
             });
         }
     }
@@ -70,9 +132,37 @@ const deleteUser = (user_name) =>
     }
 }
 
+const getImages = async(type = [], user_name, folder) =>
+{
+    // Hago la petición 
+    if (type.length > 0)
+    {
+        for(let i in type) 
+        {
+            const res2 = await fetchWithToken(`panel/image/${user_name}/${folder}/${type[i].image}`);
+            const pathImage = await res2.blob();
+
+            const image = URL.createObjectURL(pathImage);
+
+            type[i].fileImage = image;
+        }
+    } else
+    {
+        const res2 = await fetchWithToken(`panel/image/${user_name}/${folder}/${type.image}`);
+        const pathImage = await res2.blob();
+
+        const image = URL.createObjectURL(pathImage);
+
+        type.fileImage = image;
+    }
+}
+
 export
 {
     getUsers,
+    getUser,
+    getAlbums,
+    getPhotos,
     setRole,
     deleteUser
 }

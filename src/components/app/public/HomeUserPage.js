@@ -27,7 +27,7 @@ export const HomeUserPage = ({ history }) =>
     const { username } = useParams();
 
     const user = useSelector(state => state.explore);
-    const album = useSelector(state => state.album);
+    const album = useSelector(state => state.album); // Obtengo los álbumes en el componente Home
 
     // Compruebo si el usuario tiene el perfil público
     const { private_profile } = user;
