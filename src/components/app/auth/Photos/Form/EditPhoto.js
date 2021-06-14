@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../../../hooks/useForm';
 import { editPhoto } from '../../../../redux/actions/photo';
 
-export const EditPhotoForm = ({closeModal}) => 
+export const EditPhoto = ({ closeModal }) => 
 {
     // Recojo los datos del state
     const { modalOpen, data: { uid, title: oldTitle, description: oldDescription } } = useSelector(state => state.modal);
-
+    const { user: { user_name } } = useSelector(state => state.auth);
 
     const [state, handleInputChange] = useForm({
         title: oldTitle,
@@ -31,7 +31,7 @@ export const EditPhotoForm = ({closeModal}) =>
         }
 
         // Realizo las peticiones a la API para guardar el álbum
-        dispatch(editPhoto({uid, title, description}));
+        dispatch(editPhoto({user_name, uid, title, description}));
 
         closeModal();
     }

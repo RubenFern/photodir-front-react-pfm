@@ -1,15 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { DeleteComponent } from './DeleteComponent';
-import { EditComponent } from './EditComponent';
-
-import './AlbumCard.css';
+import { Delete } from './Delete';
+import { Edit } from '../components/Edit';
 
 export const AlbumCard = ({ uid, image, fileImage, name, description, creation_date }) => 
 {
     return (
-        <li key={uid} className="card">
+        <>
             <p className="date">{creation_date}</p>
             <NavLink className="card-image" to={`/home/${name}`}>
                 <img className="pointer" src={fileImage} alt={fileImage} />
@@ -22,13 +20,13 @@ export const AlbumCard = ({ uid, image, fileImage, name, description, creation_d
                 
                 <div className="d-flex justify-content-end w-100 bottom mb-2">
                     <div>
-                        <EditComponent image={image} fileImage={fileImage} name={name} description={description} uid={uid} creation_date={creation_date} />
+                        <Edit image={image} fileImage={fileImage} name={name} description={description} uid={uid} creation_date={creation_date} />
                     </div>
                     <div className="mx-3">
-                        <DeleteComponent image={image} fileImage={fileImage} name={name} description={description} uid={uid} creation_date={creation_date} />
+                        <Delete image={image} fileImage={fileImage} name={name} description={description} uid={uid} creation_date={creation_date} />
                     </div>
                 </div>
             </span>
-        </li>
+        </>
     )
 }

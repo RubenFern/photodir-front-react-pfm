@@ -1,6 +1,7 @@
 import React from 'react';
+import { Add } from '../components/Add';
 
-import { AddComponent } from '../helpers/AddComponent';
+
 import { Avatar } from './Avatar';
 
 import './InfoUser.css';
@@ -22,7 +23,7 @@ export const InfoUser = ({ user, numAlbums, home = false }) =>
                 </div>
             </div>
             
-            {(home) && <AddComponent action="Crear Álbum" />}
+            {(home) && <Add action="Crear Álbum" />}
             
         </div>
     )

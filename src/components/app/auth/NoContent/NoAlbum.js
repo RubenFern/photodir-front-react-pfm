@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const AlbumNI = () => 
+export const NoAlbum = () => 
 {
     return (
         <div className="d-flex flex-column flex-md-row">

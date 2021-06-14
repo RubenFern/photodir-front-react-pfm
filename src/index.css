@@ -179,3 +179,8 @@ body, .dropdown-menu {
 .private {
     font-size: 10rem;
 }
+
+.emoji {
+    color: #fff;
+    font-size: 14rem;
+}

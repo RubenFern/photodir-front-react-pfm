@@ -25,14 +25,15 @@ export const Home = ({ username }) =>
         if (mounted.current)
         {
             dispatch(getAlbums(username, history));
+            console.log("imprimo albums")
         }
 
-        console.log("imprimo albums")
 
         // Desmonto el componente al salir
         return () => 
         {
             mounted.current = false;
+            console.log("salgo")
         }
 
     }, [dispatch, history, username]);

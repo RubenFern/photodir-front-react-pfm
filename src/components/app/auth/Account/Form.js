@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+
 import { useForm } from '../../../../hooks/useForm';
 import { editUser } from '../../../redux/actions/user';
 import { Picture } from '../components/Picture';

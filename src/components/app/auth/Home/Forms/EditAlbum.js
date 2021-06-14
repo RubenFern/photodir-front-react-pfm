@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { previewImage } from '../../../../../helpers/previewImage';
-
 import { useForm } from '../../../../../hooks/useForm';
-import { addAlbum } from '../../../../redux/actions/album';
-import { Picture } from '../Picture';
+import { editAlbum } from '../../../../redux/actions/album';
+import { Picture } from '../../components/Picture';
 
-
-export const AddAlbumForm = ({ closeModal }) => 
+export const EditAlbum = ({ closeModal }) => 
 {
+    const { user: { user_name } } = useSelector(state => state.auth);
+
+    // Recibo los datos del álbum desde el state
+    const { modalOpen, data: { name: oldName, image: oldImage, fileImage, description: oldDescription } } = useSelector(state => state.modal);
+
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
 
     const [state, handleInputChange] = useForm({
-        name: '',
-        description: '',
+        name: oldName,
+        description: oldDescription,
     });
 
-    const [infoImage, setimage] = useState(null);
+    const [image, setimage] = useState(oldImage);
     const { name, description } = state;
 
     const dispatch = useDispatch();
@@ -40,30 +44,45 @@ export const AddAlbumForm = ({ closeModal }) =>
             return;
         }
 
-        // Realizo las peticiones a la API para guardar el álbum
-        dispatch(addAlbum({name, description, infoImage}));
+        // Realizo las peticiones a la API para editar el álbum
+        dispatch(editAlbum({user_name, name, description, image, oldName, oldImage}));
 
         closeModal();
     }
 
+
     // Path de la imagen del formulario
-    const [path, setpath] = useState('');
+    const [path, setpath] = useState(fileImage);
 
     return (
+        (modalOpen) &&
         <form className="form" onSubmit={onSubmit} encType="multipart/formdata">
-            <h3 className="text-center mb-3">Completa los datos del álbum</h3>
-            <div className="form-group">
-                {(path !== '') &&
-                    <div className="form-group centrado">
-                        <Picture path={path} image="preview.png" />
-                    </div>}
+            <div className="form-group d-flex justify-content-md-around mb-3">
+                <div className="upload-image">
+                    <button className="button">Editar Imagen</button>
+                    <input 
+                        type="file"
+                        id="image"
+                        name="image" 
+                        onChange={(e) => previewImage(e, setimage, setpath)}
+                    />
+                </div>
+                <div>
+                    <button className="button">Eliminar Imagen</button>
+                </div>
+            </div>
+            
+            <div className="form-group centrado">
+                <Picture path={path} image={image} />
+            </div>
 
+            <div className="form-group">
                 <label htmlFor="name">Nombre:</label>
                 <input 
                     type="text" 
                     id="name" 
                     name="name"
-                    className={`form-control ${ (!valid && name === '') && "is-invalid" } `} 
+                    className={`form-control ${ (!valid && oldName === '') && "is-invalid" } `}
                     placeholder="¿Cómo quieres llamar al álbum?"
                     autoComplete="off"
                     onChange={handleInputChange}
@@ -79,8 +98,8 @@ export const AddAlbumForm = ({ closeModal }) =>
                 <textarea 
                     id="description" 
                     name="description"
-                    rows="6"
-                    className={`form-control ${ (!valid && description.length > 180) && "is-invalid" } `}
+                    rows="4"
+                    className={`form-control ${ (!valid && description.length > 180) && "is-invalid" } `} 
                     placeholder="Añade una descripción"
                     autoComplete="off"
                     onChange={handleInputChange}
@@ -92,23 +111,12 @@ export const AddAlbumForm = ({ closeModal }) =>
                 </div>
             </div>
             <br />
-            <div className="form-group">
-                <label htmlFor="image">Imagen del álbum: <small className="small">(Opcional)</small></label>
-                <input
-                    type="file"
-                    className="form-control"
-                    id="image"
-                    name="image"
-                    onChange={(e) => previewImage(e, setimage, setpath)}
-                />    
-            </div>
-            <br />
             <button
                 type="submit"
                 className="btn btn-warning w-100 bg-secondary-color"
             >
                 
-                <span> Crear</span>
+                <span>Editar</span>
             </button>
         </form>
     )

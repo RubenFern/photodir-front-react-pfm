@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
-import { deleteAlbum } from '../../../../redux/actions/album';
+import { deleteAlbum } from '../../../redux/actions/album';
 
-export const DeleteComponent = ({ image, name, description, uid, creation_date }) => 
+export const Delete = ({ image, name, description, uid, creation_date }) => 
 {
     const dispatch = useDispatch();
 

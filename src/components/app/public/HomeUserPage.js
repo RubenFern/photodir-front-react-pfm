@@ -1,19 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import { back } from '../../../helpers/back';
 import { NavBar } from '../../layout/NavBar';
 import { getUser } from '../../redux/actions/explore';
-import { InfoUser } from '../auth/components/User/InfoUser';
+import { InfoUser } from '../auth/User/InfoUser';
 import { ReportImage } from './components/ReportImage';
 import { Home } from './Home/Home';
 import { PrivateProfile } from './PrivateProfile';
 
-export const HomeUserPage = ({ history }) => 
+export const HomeUserPage = () => 
 {
     // Monto el componente
     const mounted = useRef(true);
+    const history = useHistory();
 
     // Si al entrar en la página se monta y seguidamente se desmonta el componete limpio el proceso
     useEffect(() => 
@@ -25,6 +27,7 @@ export const HomeUserPage = ({ history }) =>
     }, []);
 
     const { username } = useParams();
+    console.log(username)
 
     const user = useSelector(state => state.explore);
     const album = useSelector(state => state.album); // Obtengo los álbumes en el componente Home
@@ -43,11 +46,6 @@ export const HomeUserPage = ({ history }) =>
         }
         
         console.log("Home usuarios")
-
-        return () => 
-        {
-            mounted.current = false;
-        }
 
     }, [dispatch, history, username]);
 

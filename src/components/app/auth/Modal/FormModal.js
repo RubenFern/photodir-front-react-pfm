@@ -2,9 +2,10 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { types } from '../../redux/types/types';
-import { AlbumModal } from './components/Albums/AlbumModal';
-import { PhotoModal } from './components/Photos/PhotoModal';
+import { types } from '../../../redux/types/types';
+
+import { PhotoModal } from './PhotoModal';
+import { AlbumModal } from './AlbumModal';
 
 import './Modal.css';
 

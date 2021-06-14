@@ -6,11 +6,13 @@ import { NavBar } from '../../layout/NavBar';
 import { Album } from './Album/Album';
 import { PrivateProfile } from './PrivateProfile';
 import { getUser } from '../../redux/actions/explore';
+import { useHistory } from 'react-router-dom';
 
 
-export const AlbumUserPage = ({ history }) => 
+export const AlbumUserPage = () => 
 {
     const { username, album } = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.explore);

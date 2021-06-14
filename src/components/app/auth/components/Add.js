@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { types } from '../../../../redux/types/types';
+import { types } from '../../../redux/types/types';
 
-export const AddComponent = ({ action }) => 
+export const Add = ({ action }) => 
 {
     const dispatch = useDispatch();
 

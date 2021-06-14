@@ -25,8 +25,8 @@ export const AdminPage = () =>
         if (mounted.current || reload)
         {
             dispatch(getReports());
+            console.log("AdminPage")
         }
-console.log("AdminPage")
         return () => 
         {
             mounted.current = false;

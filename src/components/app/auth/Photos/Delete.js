@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import Swal from "sweetalert2";
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-import { deletePhoto } from '../../../../redux/actions/photo';
+import { deletePhoto } from '../../../redux/actions/photo';
 
-export const DeleteComponent = ({ action, uid, image}) => 
+export const Delete = ({ uid, image }) => 
 {
     const dispatch = useDispatch();
     const history = useHistory();

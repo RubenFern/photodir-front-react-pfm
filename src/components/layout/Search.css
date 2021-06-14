@@ -41,6 +41,8 @@
     border-radius: 5px;
 }
 
+.results::-webkit-scrollbar {display: none;}
+
 .results > .li {
     text-decoration: none;
     list-style: none;

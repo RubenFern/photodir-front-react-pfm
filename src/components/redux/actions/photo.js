@@ -1,5 +1,5 @@
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
-import { getImageToken } from "../../../helpers/getImage";
+import { getImageNoToken, getImageToken } from "../../../helpers/getImage";
 import { types } from "../types/types";
 
 const getPhotos = (path, history) =>
@@ -63,7 +63,7 @@ const addPhoto = (data, album) =>
 {
     return async(dispatch) =>
     {
-        const { title, description, image } = data;
+        const { user_name, title, description, image } = data;
 
         // Sólo creo la publicación si subió una imagen
         if (image !== null)
@@ -74,16 +74,14 @@ const addPhoto = (data, album) =>
             
             // Almaceno el álbum en la base de datos
             const res = await fetchWithToken(`fotografias/${album}`, {title, description, image: nameImgUpload}, 'POST');
-            const photo = await res.json();
+            const { photo } = await res.json();
+
+            // Creo la ruta de la nueva imagen
+            await getImageNoToken({ type: photo, user_name, folder: 'photo' });
                 
             dispatch({
                 type: types.addPhoto,
                 payload: photo
-            });
-
-            // Activo la recarga
-            dispatch({
-                type: types.reloadTrue
             });
         } 
     }
@@ -93,20 +91,26 @@ const editPhoto = (data) =>
 {
     return async(dispatch) =>
     {
-        const { uid, title, description } = data;
+        const { user_name, uid, title, description } = data;
 
         const res = await fetchWithToken(`fotografias/${uid}`, {title, description}, 'PUT');
         const { photo } = await res.json();
 
-        dispatch({
-            type: types.editPhoto,
-            payload: photo
-        });
+        if (photo)
+        {
+            // Creo la ruta de la nueva imagen
+            await getImageNoToken({ type: photo, user_name, folder: 'photo' });
 
-        // Activo la recarga
-        dispatch({
-            type: types.reloadTrue
-        });
+            dispatch({
+                type: types.editPhoto,
+                payload: photo
+            });
+
+            // Activo la recarga
+            dispatch({
+                type: types.reloadTrue
+            });
+        }
     }
 }
 
@@ -122,11 +126,6 @@ const deletePhoto = (data) =>
         dispatch({
             type: types.deletePhoto,
             payload: photo
-        });
-
-        // Activo la recarga
-        dispatch({
-            type: types.reloadTrue
         });
     }
 }

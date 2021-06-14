@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { types } from '../../../../redux/types/types';
+import { types } from '../../../redux/types/types';
 
-
-export const EditComponent = ({action, uid, title, description}) => 
+export const Edit = ({ uid, image, fileImage, name, description, creation_date}) => 
 {
     const dispatch = useDispatch();
 
@@ -16,15 +15,18 @@ export const EditComponent = ({action, uid, title, description}) =>
             payload: 'editar',
             data: {
                 uid,
-                title, 
+                name, 
+                image,
+                fileImage,
                 description,
+                creation_date
             }
         });
     }
 
     return (
         <button 
-            className="btn bg-main-color text-light h-75"
+            className="btn bg-main-color text-light"
             onClick={openModal}
         >
             <i className="bi bi-pencil"></i>

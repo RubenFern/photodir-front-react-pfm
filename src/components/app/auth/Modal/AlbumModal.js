@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { AddAlbumForm } from './AddAlbumForm';
-import { EditAlbumForm } from './EditAlbumForm';
+import { AddAlbum } from '../Home/Forms/AddAlbum';
+import { EditAlbum } from '../Home/Forms/EditAlbum';
 
 export const AlbumModal = ({ closeModal }) => 
 {
@@ -13,6 +13,6 @@ export const AlbumModal = ({ closeModal }) =>
     const { action } = useSelector(state => state.modal);
 
     return (
-        (action === 'añadir') ? <AddAlbumForm closeModal={closeModal} /> : <EditAlbumForm  closeModal={closeModal} />
+        (action === 'añadir') ? <AddAlbum closeModal={closeModal} /> : <EditAlbum  closeModal={closeModal} />
     )
 }

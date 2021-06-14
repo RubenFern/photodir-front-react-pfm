@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Avatar } from '../components/User/Avatar';
+import { Avatar } from '../User/Avatar';
 import { SetPrivacy } from './SetPrivacy';
 
 export const InfoAccount = ({ user_name, image, oldName, creation_date, private_profile }) => 

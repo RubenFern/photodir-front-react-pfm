@@ -32,7 +32,7 @@ const addAlbum = (data) =>
 {
     return async(dispatch) =>
     {
-        const { name, description, infoImage } = data;
+        const { user_name, name, description, infoImage } = data;
         let image = undefined;
 
         // Si el usuario añadió una imagen la guardo, si no le asigno la imagen por defecto mediante la API
@@ -61,14 +61,12 @@ const addAlbum = (data) =>
 
         if (success)
         {
+            // Obtengo su imagen
+            await getImageToken({ type: album, user_name, folder: 'album' });
+
             dispatch({
                 type: types.addAlbum,
                 payload: album
-            });
-
-            // Activo la recarga
-            dispatch({
-                type: types.reloadTrue
             });
         } 
         else if (errors.length > 0)
@@ -86,7 +84,7 @@ const editAlbum = (data) =>
 {
     return async(dispatch) =>
     {
-        const { name, image: fileImage, description, oldName, oldImage } = data;
+        const { user_name, name, image: fileImage, description, oldName, oldImage } = data;
         let image = oldImage;
 
         // Si modificó la imagen elimino la anterior y la cambio por la nueva la almaceno en la API
@@ -103,16 +101,13 @@ const editAlbum = (data) =>
 
         // Modifico los campos
         const res = await fetchWithToken(`albumes/${oldName}`, {name, image, description}, 'PUT');
-        const album = await res.json();
+        const { album } = await res.json();
+
+        await getImageToken({ type: album, user_name, folder: 'album' });
 
         dispatch({
             type: types.editAlbum,
             payload: album
-        });
-
-        // Activo la recarga
-        dispatch({
-            type: types.reloadTrue
         });
     }
 }
@@ -128,11 +123,6 @@ const deleteAlbum = (data) =>
         dispatch({
             type: types.deleteAlbum,
             payload: album
-        });
-
-        // Activo la recarga
-        dispatch({
-            type: types.reloadTrue
         });
     }
 }
