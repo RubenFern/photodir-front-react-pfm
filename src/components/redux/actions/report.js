@@ -28,12 +28,21 @@ const getReports = () =>
         // Realizo las peticiones a la ruta del administrador para obtener la imagen
         for(let i in reports) 
         {
+            const mimeValid = ['image/png', 'image/gif', 'image/svg', 'image/jpeg'];
+
             const res2 = await fetchWithToken(`panel/image/${reports[i].user_reported}/${reports[i].category}/${reports[i].name_image_reported}`);
             const pathImage = await res2.blob();
 
-            const image = URL.createObjectURL(pathImage);
+            // Compruebo si la imagen blob es válida, si lo es retorno la imagen, sino undefined
+            if (mimeValid.includes(pathImage.type))
+            {
+                const image = URL.createObjectURL(pathImage);
 
-            reports[i].fileImage = image;
+                reports[i].fileImage = image;
+            } else
+            {
+                reports[i].fileImage = undefined;
+            }
         }
 
         dispatch({

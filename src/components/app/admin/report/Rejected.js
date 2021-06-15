@@ -15,7 +15,7 @@ export const Rejected = ({ rejected }) =>
                     <div className="card-body rounded-5">
                         <div className="d-flex justify-content-between flex-column flex-lg-row">
                             <div className="d-flex flex-column flex-lg-row ">
-                                <img className="image-rep rounded-5" src={fileImage} alt={name_image_reported} />
+                                {( fileImage ) && <img className="image-rep rounded-5" src={fileImage} alt={name_image_reported} />}
                                 <div className="mt-2 mt-lg-0 text-light mx-3 d-flex flex-row flex-lg-column justify-content-around justify-content-lg-center">
                                     <div>
                                         <span>Usuario reportado:</span>
