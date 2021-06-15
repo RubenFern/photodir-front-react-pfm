@@ -1,7 +1,6 @@
 import React from 'react';
+
 import { Add } from '../components/Add';
-
-
 import { Avatar } from './Avatar';
 
 import './InfoUser.css';

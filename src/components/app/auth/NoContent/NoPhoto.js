@@ -8,9 +8,9 @@ export const NoPhoto = () =>
                 <i className="bi bi-emoji-frown emoji"></i>
             </div>
             <div className="d-flex flex-column justify-content-center align-items-center w-100">
-                <h2 className="text-light text-center">Parace que no tienes ningún álbum</h2>
+                <h2 className="text-light text-center">Parace que no tienes ninguna fotografía</h2>
                 <p className="text-light text-center">
-                    ¡Prueba a crear uno! Podrás guardar todas las fotografías que quieras.
+                    ¡Prueba a subir una!
                 </p>
             </div>
         </div>

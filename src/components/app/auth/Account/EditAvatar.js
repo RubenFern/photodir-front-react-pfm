@@ -1,11 +1,11 @@
 import React from 'react';
 import { previewImage } from '../../../../helpers/previewImage';
 
-export const EditImage = ({ setimage, setpath }) => 
+export const EditAvatar = ({ setimage, setpath }) => 
 {
     return (
         <div className="upload-image">
-            <button className="button">Editar Imagen</button>
+            <button className="button">Editar Avatar</button>
             <input 
                 type="file"
                 id="image"

@@ -37,7 +37,6 @@ export const FormModal = ({tipo, album = {}}) =>
     return (
         <ReactModal
             isOpen={modalOpen}
-            //onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
             closeTimeoutMS={250}

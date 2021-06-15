@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { back } from '../../../../helpers/back';
 
+import { back } from '../../../../helpers/back';
 import { getPhotos } from '../../../redux/actions/photo';
 import { Add } from '../components/Add';
 import { FormModal } from '../Modal/FormModal';
@@ -54,11 +54,10 @@ export const Album = () =>
     {
         photos.sort( (a, b) =>
         {
-            return new Date(a.creation_date) - new Date(b.creation_date);
+            return new Date(b.datems) - new Date(a.datems);
         });
     }
     
-
     return (
         <>
         <div className="container-fluid w-img mt-5">
@@ -82,11 +81,11 @@ export const Album = () =>
             </div>
             :
             <div className="container-fluid gallery pointer mt-3 animate__animated animate__fadeIn">
-                {(photos !== undefined && photos.length > 0) ? photos.reverse().map( ({ image, fileImage, uid = '' }) => 
+                {(photos !== undefined && photos.length > 0) ? photos.map( (photo) => 
                 (
-                    <PhotoCard key={uid} uid={uid} album={album} image={image} fileImage={fileImage} />
+                    <PhotoCard key={photo.uid} photo={photo} album={album} />
 
-                )) : <NoPhoto object="photo" />}
+                )) : <NoPhoto />}
             </div>
             
             }

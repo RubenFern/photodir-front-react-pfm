@@ -81,9 +81,34 @@ const deleteUser = () =>
     }
 }
 
+const deleteAvatar = () =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken('user/avatar', {}, 'DELETE');
+        const { message, user, error } = await res.json();
+
+        if (message)
+        {
+            // Sobreeescribo los datos de usuario para almacenar el nuevo avatar
+            dispatch({
+                type: types.login,
+                payload: user
+            });
+        } else if (error)
+        {
+            Swal.fire('Ups', error, 'error');
+        } else
+        {
+            Swal.fire('Ups', 'Ha ocurrido un error', 'error');
+        }
+    }
+}
+
 export
 {
     searchUsers,
     editUser,
-    deleteUser
+    deleteUser,
+    deleteAvatar
 }

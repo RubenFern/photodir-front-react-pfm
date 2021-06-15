@@ -56,7 +56,7 @@ export const Photo = () =>
                     <img 
                         className="only-img" 
                         src={fileImage} 
-                        alt={fileImage}
+                        alt={image}
                         onClick={() => back(history)}
                     />
                 </div>

@@ -5,7 +5,8 @@ import { useHistory } from 'react-router';
 import { useForm } from '../../../../hooks/useForm';
 import { editUser } from '../../../redux/actions/user';
 import { Picture } from '../components/Picture';
-import { EditImage } from './EditImage';
+import { DeleteAvatar } from './DeleteAvatar';
+import { EditAvatar } from './EditAvatar';
 
 export const Form = ({ oldName, image, oldImage, setimage }) => 
 {
@@ -44,18 +45,16 @@ export const Form = ({ oldName, image, oldImage, setimage }) =>
     }
 
     return (
-        <form className="form-login" onSubmit={onSubmit} encType="multipart/formdata">
+        <form className="form-login mt-5" onSubmit={onSubmit} encType="multipart/formdata">
             <div className="form-group d-flex justify-content-md-around mb-3">
-                <EditImage setimage={setimage} setpath={setpath} />
-                <div>
-                    <button className="button">Eliminar Imagen</button>
-                </div>
+                <EditAvatar setimage={ setimage } setpath={ setpath } />
+                <DeleteAvatar image={ oldImage } />
             </div>
             
             <div className="form-group centrado">
                 {(path !== '') &&
                 <div className="form-group centrado">
-                    <Picture path={path} image="preview.png" />
+                    <Picture path={path} image="preview.png" avatar={true} />
                 </div>}
             </div>
 

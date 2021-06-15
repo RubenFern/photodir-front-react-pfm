@@ -4,8 +4,12 @@ import { NavLink } from 'react-router-dom';
 import { Delete } from './Delete';
 import { Edit } from '../components/Edit';
 
-export const AlbumCard = ({ uid, image, fileImage, name, description, creation_date }) => 
+import './AlbumCard.css';
+
+export const AlbumCard = ({ album }) => 
 {
+    const { uid, image, fileImage, name, description, creation_date } = album;
+
     return (
         <>
             <p className="date">{creation_date}</p>

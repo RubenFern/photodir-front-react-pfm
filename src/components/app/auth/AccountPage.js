@@ -20,7 +20,7 @@ export const AccountPage = ({ history }) =>
                 {
                     // Cabecera con la información del usuario
                 }
-                <InfoAccount user_name={user_name} image={image} oldName={oldName} creation_date={creation_date} private_profile={private_profile} />
+                <InfoAccount user_name={user_name} image={oldImage} oldName={oldName} creation_date={creation_date} private_profile={private_profile} />
                 
                 {
                     // Formulario para editar el usuario
