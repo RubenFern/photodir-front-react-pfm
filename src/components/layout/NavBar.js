@@ -74,9 +74,11 @@ export const NavBar = () =>
                         :
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <NavLink to="/login" className="nav-item nav-link">
+                                <i className="bi bi-box-arrow-in-right"> </i>
                                 Iniciar Sesión
                             </NavLink>
                             <NavLink to="/registro" className="nav-item nav-link">
+                                <i className="bi bi-person-plus-fill"> </i>
                                 Regístrate
                             </NavLink>
                         </ul>

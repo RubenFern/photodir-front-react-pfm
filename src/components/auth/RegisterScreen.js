@@ -145,6 +145,7 @@ export const RegisterScreen = ({ history }) =>
                     <br />
                     <div className="form-group submit">
                         <button className="btn btn-danger">
+                            <i className="bi bi-person-plus-fill"> </i>
                             Regístrate
                         </button>
                     </div>

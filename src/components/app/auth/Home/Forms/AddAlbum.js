@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { previewImage } from '../../../../../helpers/previewImage';
+import { useCharacter } from '../../../../../hooks/useCharacter';
 import { useForm } from '../../../../../hooks/useForm';
 import { addAlbum } from '../../../../redux/actions/album';
 import { Picture } from '../../components/Picture';
@@ -12,7 +13,9 @@ export const AddAlbum = ({ closeModal }) =>
 
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
+    const maxCharacters = 180;
 
+    // Hook para los campos del formulario
     const [state, handleInputChange] = useForm({
         name: '',
         description: '',
@@ -20,6 +23,9 @@ export const AddAlbum = ({ closeModal }) =>
 
     const [infoImage, setimage] = useState(null);
     const { name, description } = state;
+
+    // Hook para contar los caracteres
+    const [characters, countCharacters] = useCharacter(description);
 
     const dispatch = useDispatch();
 
@@ -35,7 +41,7 @@ export const AddAlbum = ({ closeModal }) =>
         }
 
         // Compruebo que no use más de 180 caracteres
-        if (description.length > 180)
+        if (description.length > maxCharacters)
         {
             setvalid(false);
             return;
@@ -85,11 +91,13 @@ export const AddAlbum = ({ closeModal }) =>
                     placeholder="Añade una descripción"
                     autoComplete="off"
                     onChange={handleInputChange}
+                    onKeyUp={() => countCharacters(description)}
                     value={description}
                 >
                 </textarea>
+                <small className={`${(characters > maxCharacters) && 'text-danger'}`}>{characters} / {maxCharacters} caracteres</small>
                 <div className="invalid-feedback">
-                    Has superado el límite de 180 caracteres
+                    Has superado el límite de {maxCharacters} caracteres
                 </div>
             </div>
             <br />

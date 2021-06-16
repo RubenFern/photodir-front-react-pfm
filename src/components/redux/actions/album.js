@@ -56,7 +56,7 @@ const addAlbum = (data) =>
         }
 
         // Almaceno el álbum en la base de datos
-        const res = await fetchWithToken('albumes', {name, description, image}, 'POST');
+        const res = await fetchWithToken('albumes', { name, description, image }, 'POST');
         const { success = false, message, album, errors = [] } = await res.json();
 
         if (success)
@@ -100,7 +100,7 @@ const editAlbum = (data) =>
         }
 
         // Modifico los campos
-        const res = await fetchWithToken(`albumes/${oldName}`, {name, image, description}, 'PUT');
+        const res = await fetchWithToken(`albumes/${oldName}`, { name, image, description }, 'PUT');
         const { album } = await res.json();
 
         await getImageToken({ type: album, user_name, folder: 'album' });
@@ -117,7 +117,7 @@ const deleteAlbum = (data) =>
     return async(dispatch) =>
     {
         const { image, name } = data;
-        const res = await fetchWithToken(`albumes/${name}`, {image}, 'DELETE');
+        const res = await fetchWithToken(`albumes/${name}`, { image }, 'DELETE');
         const { album } = await res.json();
 
         dispatch({
@@ -127,10 +127,37 @@ const deleteAlbum = (data) =>
     }
 }
 
+const deleteImage = (user_name, name) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchWithToken(`albumes/image/${name}`, { }, 'DELETE');
+        const { album, error } = await res.json();
+
+        if (album)
+        {
+            await getImageToken({ type: album, user_name, folder: 'album' });
+
+            // Sobreeescribo los datos de usuario para almacenar el nuevo avatar
+            dispatch({
+                type: types.editAlbum,
+                payload: album
+            });
+        } else if (error)
+        {
+            Swal.fire('Ups', error, 'error');
+        } else
+        {
+            Swal.fire('Ups', 'Ha ocurrido un error', 'error');
+        }
+    }
+}
+
 export 
 {
     getAlbums,
     addAlbum,
     editAlbum,
-    deleteAlbum
+    deleteAlbum,
+    deleteImage
 }

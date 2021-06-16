@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { previewImage } from '../../../../../helpers/previewImage';
+import { useCharacter } from '../../../../../hooks/useCharacter';
 import { useForm } from '../../../../../hooks/useForm';
 import { editAlbum } from '../../../../redux/actions/album';
 import { Picture } from '../../components/Picture';
+import { DeleteImage } from '../DeleteImage';
 
 export const EditAlbum = ({ closeModal }) => 
 {
@@ -15,6 +17,7 @@ export const EditAlbum = ({ closeModal }) =>
 
     // Creo el state para validar los campos del formulario
     const [valid, setvalid] = useState(true);
+    const maxCharacters = 180;
 
     const [state, handleInputChange] = useForm({
         name: oldName,
@@ -23,6 +26,9 @@ export const EditAlbum = ({ closeModal }) =>
 
     const [image, setimage] = useState(oldImage);
     const { name, description } = state;
+
+    // Hook para contar los caracteres
+    const [characters, countCharacters] = useCharacter(description);
 
     const dispatch = useDispatch();
 
@@ -67,9 +73,7 @@ export const EditAlbum = ({ closeModal }) =>
                         onChange={(e) => previewImage(e, setimage, setpath)}
                     />
                 </div>
-                <div>
-                    <button className="button">Eliminar Imagen</button>
-                </div>
+                <DeleteImage user_name={ user_name } image={ oldImage } album={ oldName } />
             </div>
             
             <div className="form-group centrado">
@@ -103,11 +107,13 @@ export const EditAlbum = ({ closeModal }) =>
                     placeholder="Añade una descripción"
                     autoComplete="off"
                     onChange={handleInputChange}
+                    onKeyUp={() => countCharacters(description)}
                     value={description}
                 >
                 </textarea>
+                <small className={`${(characters > maxCharacters) && 'text-danger'}`}>{characters} / {maxCharacters} caracteres</small>
                 <div className="invalid-feedback">
-                    Has superado el límite de 180 caracteres
+                    Has superado el límite de {maxCharacters} caracteres
                 </div>
             </div>
             <br />

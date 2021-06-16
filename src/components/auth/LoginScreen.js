@@ -79,6 +79,7 @@ export const LoginScreen = () =>
                     <br />
                     <div className="form-group submit">
                         <button className="btn btn-danger">
+                            <i className="bi bi-box-arrow-in-right"> </i>
                             Iniciar Sesión
                         </button>
                     </div>
