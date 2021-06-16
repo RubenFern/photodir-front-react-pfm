@@ -37,11 +37,13 @@ export const NavBar = () =>
                     
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <Search />
-
                     {
                         (logged) ? // Condición de si está logueado el usuario
                         <ul className="navbar-nav ms-auto ">
-
+                            <NavLink to="/home/favoritas" className="nav-item nav-link" activeClassName="active">
+                                <i className="bi bi-images"> </i>
+                                Favoritas
+                            </NavLink>
                             <li className="nav-item dropdown mt-2 mt-lg-0">
                                 <span className="nav-link dropdown-toggle user" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className="bi bi-person-circle"></i>

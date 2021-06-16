@@ -6,7 +6,7 @@ import { types } from '../../../redux/types/types';
 
 import './Like.css';
 
-export const Like = ({ likes, image }) => 
+export const Like = ({ user_name, likes, image }) => 
 {
     const userliked = useSelector(state => state.userliked);
     
@@ -34,7 +34,7 @@ export const Like = ({ likes, image }) =>
         // Si se da like creo el like en la publiación
         if (target.checked)
         {
-            dispatch(addLike(image));
+            dispatch(addLike(user_name, image));
         } else
         {
             dispatch(removeLike(image));

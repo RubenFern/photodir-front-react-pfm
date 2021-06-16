@@ -62,7 +62,7 @@ export const Photo = () =>
                 </div>
                 <div className="d-flex flex-column flex-md-row justify-content-center description">
                     <div className="like">
-                        <Like likes={likes} image={image} />
+                        <Like user_name={user_name} likes={likes} image={image} />
                     </div>
                     <div className="mx-md-3 mt-3">
                         <p className="text-light text-justify">

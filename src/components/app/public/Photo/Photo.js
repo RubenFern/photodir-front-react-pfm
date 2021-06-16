@@ -5,13 +5,17 @@ import { useHistory } from 'react-router';
 import { back } from '../../../../helpers/back';
 import { getPhoto } from '../../../redux/actions/explore';
 import { types } from '../../../redux/types/types';
+import { Like } from '../../auth/components/Like';
 
 export const Photo = ({ user_name, photo }) => 
 {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const { title, description, fileImage, image, creation_date } = useSelector(state => state.photos);
+    // Si el usuario está logueado muestro el botón de Like
+    const { logged } = useSelector(state => state.auth);
+
+    const { title, description, fileImage, image, creation_date, likes } = useSelector(state => state.photos);
     const reload = useSelector(state => state.reload);
 
     useLayoutEffect(() => 
@@ -43,6 +47,9 @@ export const Photo = ({ user_name, photo }) =>
                 />
             </div>
             <div className="d-flex flex-column flex-md-row justify-content-center description">
+                <div className="like">
+                {(logged) && <Like user_name={user_name} likes={likes} image={image} />}
+                </div>
                 <div className="mx-md-3 mt-3">
                     <p className="text-light text-justify">
                         {description}

@@ -53,8 +53,35 @@ const getImageNoToken = async(data) =>
     }
 }
 
+const getImagesFavorites = async(data = []) =>
+{
+console.log(data)
+
+    if (data.length > 0)
+    {
+        for(let i in data) 
+        {
+            const res2 = await fetchNoToken(`upload/notoken/photo/${data[i].user_name}/${data[i].image}`);
+            const pathImage = await res2.blob();
+
+            const image = URL.createObjectURL(pathImage);
+
+            data[i].fileImage = image;
+        }
+    } else
+    {
+        const res2 = await fetchNoToken(`upload/notoken/photo/${data.user_name}/${data.image}`);
+        const pathImage = await res2.blob();
+
+        const image = URL.createObjectURL(pathImage);
+
+        data.fileImage = image;
+    }
+}
+
 export
 {
     getImageToken,
-    getImageNoToken
+    getImageNoToken,
+    getImagesFavorites
 }

@@ -8,6 +8,7 @@ import { AdminRoute } from './AdminRoutes'
 
 // Exporto las ruta de los componentes por legibilidad
 import { routes } from './componentsRoutes';
+import { FavImageHome } from '../components/app/auth/FavImageHome';
 
 const 
 { 
@@ -43,6 +44,7 @@ export const AppRouter = () =>
 
                     <PrivateRoute exact path="/home" isAuth={logged} isAdmin={is_admin} component={HomePage} />
                     <PrivateRoute exact path="/home/perfil" isAuth={logged} isAdmin={is_admin} component={AccountPage} />
+                    <PrivateRoute exact path="/home/favoritas" isAuth={logged} isAdmin={is_admin} component={FavImageHome} />
                     <PrivateRoute exact path="/home/:album" isAuth={logged} isAdmin={is_admin} component={AlbumPage} />
                     <PrivateRoute exact path="/home/:album/:photo" isAuth={logged} isAdmin={is_admin} component={PhotoPage} />
 

@@ -1,4 +1,5 @@
-import { fetchWithToken } from "../../../helpers/fetch";
+import { fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
+import { getImagesFavorites } from "../../../helpers/getImage";
 import { types } from "../types/types";
 
 
@@ -23,11 +24,11 @@ const checkLike = (image) =>
     }
 }
 
-const addLike = (image) =>
+const addLike = (user_name, image) =>
 {
     return async(dispatch) =>
     {
-        const res = await fetchWithToken('likesphoto/addlike', {image}, 'POST');
+        const res = await fetchWithToken('likesphoto/addlike', {user_name, image}, 'POST');
         await res.json();
 
         // Recargo la página
@@ -51,9 +52,31 @@ const removeLike = (image) =>
     }
 }
 
+const getFavImages = (user_name) =>
+{
+    return async(dispatch) =>
+    {
+        const res = await fetchNoToken(`likesphoto/imagesliked/${user_name}`);
+        const { photos } = await res.json();
+
+        console.log(photos)
+
+        if (photos.length)
+        {
+            await getImagesFavorites(photos);
+
+            dispatch({
+                type: types.viewPhotos,
+                payload: photos
+            });
+        }
+    }
+}
+
 export
 {
     checkLike,
     addLike,
-    removeLike
+    removeLike,
+    getFavImages
 }
