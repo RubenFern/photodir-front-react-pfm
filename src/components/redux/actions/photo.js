@@ -1,5 +1,5 @@
 import { fetchImage, fetchNoToken, fetchWithToken } from "../../../helpers/fetch";
-import { getImageNoToken, getImageToken } from "../../../helpers/getImage";
+import { getImageToken } from "../../../helpers/getImage";
 import { types } from "../types/types";
 
 const getPhotos = (path, history) =>
@@ -77,7 +77,7 @@ const addPhoto = (data, album) =>
             const { photo } = await res.json();
 
             // Creo la ruta de la nueva imagen
-            await getImageNoToken({ type: photo, user_name, folder: 'photo' });
+            await getImageToken({ type: photo, user_name, folder: 'photo' });
                 
             dispatch({
                 type: types.addPhoto,
@@ -99,7 +99,7 @@ const editPhoto = (data) =>
         if (photo)
         {
             // Creo la ruta de la nueva imagen
-            await getImageNoToken({ type: photo, user_name, folder: 'photo' });
+            await getImageToken({ type: photo, user_name, folder: 'photo' });
 
             dispatch({
                 type: types.editPhoto,

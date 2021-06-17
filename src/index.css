@@ -17,7 +17,7 @@ body, .dropdown-menu {
     --animate-duration: 1s;
 }
 
-.bg-header, .bg-footer {
+.bg-header {
     background-color: #1C2329;
 }
 
