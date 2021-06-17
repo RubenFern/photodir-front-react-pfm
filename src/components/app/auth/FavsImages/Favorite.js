@@ -44,7 +44,7 @@ export const Favorite = () =>
 
     return (
         <>
-        <div className="container-fluid w-img mt-5">
+        <div className="container-fluid w-img mt-5 pb-4">
             <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
                 <div className="d-flex align-items-center">
                     <h1 className="text-light text-center">

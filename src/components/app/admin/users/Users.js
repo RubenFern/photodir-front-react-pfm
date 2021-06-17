@@ -48,10 +48,10 @@ export const Users = () =>
             text: `${ (is_admin) ? '¿Estás seguro de quitar los permisos de administrador a ' + user_name + '?' : '¿Estás seguro de asignar permisos de administrador a ' + user_name + '?' }`, // Concateno porque falla el compilador de llaves
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, Hazlo',
-            cancelButtonText: 'Mejor no',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
             focusCancel: true
         }).then( (res) =>
         {
@@ -76,10 +76,10 @@ export const Users = () =>
             text: '¿Estás seguro? Se borrarán todos sus datos de la aplicación',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
             focusCancel: true
         }).then( (res) =>
         {

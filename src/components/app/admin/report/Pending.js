@@ -17,8 +17,8 @@ export const Pending = ({ pending }) =>
             text: 'Se eliminará la imagen del usuario',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
             confirmButtonText: 'Aprobar',
             cancelButtonText: 'Cancelar',
             focusCancel: true
@@ -39,8 +39,8 @@ export const Pending = ({ pending }) =>
             text: 'La imagen del usuario no tendrá ningún cambio',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
             confirmButtonText: 'Rechazar',
             cancelButtonText: 'Cancelar',
             focusCancel: true

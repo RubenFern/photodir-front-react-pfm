@@ -21,8 +21,8 @@ export const DeleteAvatar = ({ image }) =>
                 text: 'La imagen se borrará de la aplicación',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#0C6492',
+                cancelButtonColor: '#0C9291',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'No',
                 focusCancel: true

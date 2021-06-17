@@ -18,9 +18,10 @@ export const Delete = ({ uid, image }) =>
             text: 'Se eliminará por completo y no la podrás recuperar. ¿Estás seguro?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No'
         }).then( (res) =>
         {
             if (res.isConfirmed) 

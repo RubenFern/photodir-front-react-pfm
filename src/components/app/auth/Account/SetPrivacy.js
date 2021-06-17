@@ -17,10 +17,10 @@ export const SetPrivacy = ({ private_profile }) =>
             text: `${ (private_profile) ? 'Todo el mundo podrá ver tus álbumes y fotografías.' : 'Nadie podrá ver tus álbumes y fotografías.' }`,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Cambiar',
-            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
             focusCancel: true
         }).then( (res) =>
         {

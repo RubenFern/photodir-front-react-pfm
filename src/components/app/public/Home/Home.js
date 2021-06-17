@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { getAlbums } from '../../../redux/actions/explore';
 import { NoItemsExplore } from '../NoItems/NoItemsExplore';
 import { AlbumCardExplore } from './AlbumCardExplore';
 
@@ -18,13 +17,14 @@ export const Home = ({ username }) =>
     const history = useHistory();
 
     const album = useSelector(state => state.album);
+    const reload = useSelector(state => state.reload)
 
     useEffect(() => 
     {
         // Si el componente está montado realizo la petición
-        if (mounted.current)
+        if (reload)
         {
-            dispatch(getAlbums(username, history));
+            //dispatch(getAlbums(username, history));
         }
 
 
@@ -34,7 +34,7 @@ export const Home = ({ username }) =>
             mounted.current = false;
         }
 
-    }, [dispatch, history, username]);
+    }, [dispatch, history, reload, username]);
 
     // Le doy margen de carga a las imágenes
     setTimeout(() => 

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { back } from '../../../helpers/back';
 import { NavBar } from '../../layout/NavBar';
-import { getUser } from '../../redux/actions/explore';
+import { getAlbums, getUser } from '../../redux/actions/explore';
 import { InfoUser } from '../auth/User/InfoUser';
 import { ReportImage } from './components/ReportImage';
 import { Home } from './Home/Home';
@@ -29,6 +29,7 @@ export const HomeUserPage = () =>
     {
         // Realizo las peticiones para obtener la información de usuario
         dispatch(getUser(username, history));
+        dispatch(getAlbums(username, history)); 
         
     }, [dispatch, history, username]);
 

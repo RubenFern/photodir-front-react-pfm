@@ -16,10 +16,10 @@ export const Delete = ({ image, name, description, uid, creation_date }) =>
             text: 'Se eliminarán todas las imágenes que estén dentro de él',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
             focusCancel: true
         }).then( (res) =>
         {

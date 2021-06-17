@@ -16,10 +16,10 @@ export const DeleteUser = ({ history }) =>
             text: 'Se eliminarán todos los álbumes y fotografías que has creado.',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
             focusCancel: true
         }).then( (res) =>
         {

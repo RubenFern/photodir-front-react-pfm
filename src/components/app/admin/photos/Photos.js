@@ -66,8 +66,8 @@ export const Photos = () =>
             text: 'Se eliminará la fotografía y sus me gusta ¿Estás seguro?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#0C6492',
+            cancelButtonColor: '#0C9291',
             confirmButtonText: 'Sí',
             cancelButtonText: 'No',
             focusCancel: true
