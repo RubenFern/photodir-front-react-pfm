@@ -6,6 +6,7 @@ import { back } from '../../../../helpers/back';
 import { getPhoto } from '../../../redux/actions/explore';
 import { types } from '../../../redux/types/types';
 import { Like } from '../../auth/components/Like';
+import { ReportImage } from '../components/ReportImage';
 
 export const Photo = ({ user_name, photo }) => 
 {
@@ -26,16 +27,24 @@ export const Photo = ({ user_name, photo }) =>
         // Finalizo el renderizado desactivando el reload
         return () =>
         {
-            dispatch({
-                type: types.reloadFalse
+            dispatch({ type: types.reloadFalse });
+
+            dispatch({ 
+                type: types.viewFavorites, 
+                payload: [] 
             });
         }   
 
     }, [photo, dispatch, history, user_name, reload]);
 
     return (
-        <div className="photo-item mt-3">
+        <>
+        <div className="mt-2">
+        <ReportImage category='photo' image={image} user_reported={user_name} />
+        </div>
+        <div className="photo-item mt-3 pb-4">
             <h1 className="title-img container">{title}</h1>
+            
             <div className="only-item animate__animated animate__fadeIn">
                 <p className="date">{creation_date}</p>
                 <img 
@@ -56,5 +65,6 @@ export const Photo = ({ user_name, photo }) =>
                 </div>
             </div> 
         </div>
+        </>
     )
 }

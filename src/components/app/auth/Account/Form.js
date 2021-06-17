@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import Swal from 'sweetalert2';
 
 import { useForm } from '../../../../hooks/useForm';
 import { editUser } from '../../../redux/actions/user';
@@ -39,6 +40,15 @@ export const Form = ({ oldName, image, oldImage, setimage }) =>
         {
             setvalid(false);
             return;
+        }
+
+        // Si introdujo contraseña y es menor de 6 caracteres
+        if (password !== '' && password.length < 6)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ups',
+                text: 'La contraseña debe tener como mínimo 6 caracteres'});
         }
 
         dispatch(editUser({ name, password, image, oldImage }, history));

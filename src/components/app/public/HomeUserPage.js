@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
@@ -13,8 +13,6 @@ import { PrivateProfile } from './PrivateProfile';
 
 export const HomeUserPage = () => 
 {
-    // Monto el componente
-    const mounted = useRef(true);
     const history = useHistory();
 
     const { username } = useParams();
@@ -29,16 +27,8 @@ export const HomeUserPage = () =>
 
     useEffect(() => 
     {
-        if (mounted.current)
-        {
-            // Realizo las peticiones para obtener la información de usuario
-            dispatch(getUser(username, history));
-        }
-
-        return () => 
-        {
-            mounted.current = false;
-        }
+        // Realizo las peticiones para obtener la información de usuario
+        dispatch(getUser(username, history));
         
     }, [dispatch, history, username]);
 
@@ -46,7 +36,7 @@ export const HomeUserPage = () =>
         <>
         <NavBar />
 
-        <div className="container-fluid mt-4">
+        <div className="container-fluid mt-4 pb-4">
             <div data-bs-toggle="tooltip" data-bs-html="true" title="Reporta el avatar del usuario">
                 <ReportImage category='avatar' image={user.image} user_reported={user.user_name} />
             </div>

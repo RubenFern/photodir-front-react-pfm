@@ -60,7 +60,7 @@ export const Home = () =>
     
     return (
         <>
-        <div className="container-fluid mt-5">
+        <div className="container-fluid mt-5 pb-4">
 
             <InfoUser user={user} numAlbums={album.length} home={true} />
 

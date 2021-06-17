@@ -25,6 +25,7 @@ export const types =
     emptyUsers: '[Search] emptyUsers',
 
     explore: '[Explore] explore',
+    emptyExplore: '[Explore] emptyExplore',
 
     reloadTrue: '[Reload] reloadTrue',
     reloadFalse: '[Reload] reloadFalse',

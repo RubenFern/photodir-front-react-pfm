@@ -101,14 +101,24 @@ const editAlbum = (data) =>
 
         // Modifico los campos
         const res = await fetchWithToken(`albumes/${oldName}`, { name, image, description }, 'PUT');
-        const { album } = await res.json();
+        const { success = false, album, message, errors = [] } = await res.json();
 
-        await getImageToken({ type: album, user_name, folder: 'album' });
+        if (success)
+        {
+            await getImageToken({ type: album, user_name, folder: 'album' });
 
-        dispatch({
-            type: types.editAlbum,
-            payload: album
-        });
+            dispatch({
+                type: types.editAlbum,
+                payload: album
+            });
+        } else if (errors.length > 0)
+        {
+            Swal.fire('Ups', errors[0].msg, 'error');
+        } 
+        else
+        {
+            Swal.fire('Ups', message, 'error');
+        }
     }
 }
 

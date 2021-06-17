@@ -10,6 +10,11 @@ const reportImage = async(dispatch, category, image, user_reported, reporting_us
         return Swal.fire('Ups', 'No puedes reportar las imágenes asignadas por defecto', 'error');
     }
 
+    if (user_reported === reporting_user)
+    {
+        return Swal.fire('Ups', '¡No te puedes reportar a tí mismo!', 'error');
+    }
+
     Swal.fire(
     {
         input: 'textarea',

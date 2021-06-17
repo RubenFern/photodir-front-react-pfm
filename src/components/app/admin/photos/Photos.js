@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { deletePhoto, getPhotos } from '../../../redux/actions/admin';
+import { types } from '../../../redux/types/types';
 import { NoPhoto } from '../NoContent/NoPhoto';
 
 import './Photo.css';
@@ -30,6 +31,11 @@ export const Photos = () =>
         return () => 
         {
             mounted.current = false;
+
+            dispatch({
+                type: types.viewPhotos,
+                payload: []
+            });
         }
 
     }, [dispatch, username, album]);
@@ -41,7 +47,7 @@ export const Photos = () =>
          {
              setloading(false);
          }
-     }, 100);
+     }, 200);
 
     // Ordeno los álbumes por fecha
     if (photos.length > 0)
@@ -75,7 +81,7 @@ export const Photos = () =>
     }
 
     return (
-        <div className="container-fluid gallery mt-3 animate__animated animate__fadeIn">
+        <>
         {
         (loading)
         ?
@@ -85,23 +91,26 @@ export const Photos = () =>
             </div>
         </div>
         :
-        (photos !== undefined && photos.length > 0) 
-        ? 
-        photos.reverse().map( ({ image, fileImage, uid = '' }) => 
-        (
-            <div className="gallery-item" key={uid}>
-                <i className="bi bi-trash-fill text-danger delete" onClick={ () => removePhoto(image) }></i>
-                <img 
-                    className="gallery-img" 
-                    src={fileImage} 
-                    alt={image}
-                />
-            </div>
+        <div className="container-fluid gallery mt-3 animate__animated animate__fadeIn">
+            {(photos !== undefined && photos.length > 0) 
+            ? 
+            photos.map( ({ image, fileImage, uid = '' }) => 
+            (
+                <div className="gallery-item" key={uid}>
+                    <i className="bi bi-trash-fill text-danger delete" onClick={ () => removePhoto(image) }></i>
+                    <img 
+                        className="gallery-img" 
+                        src={fileImage} 
+                        alt={image}
+                    />
+                </div>
 
-        )) 
-        : 
-        <NoPhoto />
-        } 
+            ))
+            : 
+            <NoPhoto />
+            }
         </div>
+        } 
+        </>
     )
 }

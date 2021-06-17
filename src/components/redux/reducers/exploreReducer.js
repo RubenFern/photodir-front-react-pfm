@@ -8,8 +8,8 @@ export const exploreReducer = (state = initialState, action) =>
         case types.explore:
             return action.payload
             
-        //case types.emptyGlobal:
-        //    return initialState;
+        case types.emptyExplore:
+            return initialState;
 
         default:
             return state;

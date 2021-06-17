@@ -41,3 +41,10 @@
 
 /* Deshabilito la barra de scrolling */
 .modal::-webkit-scrollbar {display: none;}
+
+@media screen and (max-height: 800px) {
+    .modal {
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+    }
+}

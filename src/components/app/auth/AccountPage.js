@@ -30,7 +30,7 @@ export const AccountPage = ({ history }) =>
                 </div>
                    
 
-                <div className="container d-flex justify-content-end mt-5">
+                <div className="container d-flex justify-content-end mt-5 pb-4">
                     <DeleteUser history={history} />
                 </div>
             </div>

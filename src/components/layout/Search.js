@@ -79,6 +79,7 @@ export const Search = () =>
                         className="li list-group-item" 
                         to={`/explore/${user_name}`} 
                         key={user_name}
+                        onClick={ () => setSearch('') }
                     >
                         <div className="d-flex justify-content-between align-items-center">
                             <div>

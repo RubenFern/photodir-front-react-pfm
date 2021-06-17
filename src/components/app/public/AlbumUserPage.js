@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
@@ -11,9 +11,6 @@ import { useHistory } from 'react-router-dom';
 
 export const AlbumUserPage = () => 
 {
-    // Monto el componente. Si al entrar en la página se monta y seguidameete se desmonta el componete limpio el proceso
-    const mounted = useRef(true);
-
     const { username, album } = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -23,17 +20,8 @@ export const AlbumUserPage = () =>
 
     useEffect(() => 
     {
-        if (mounted.current)
-        {
-            // Realizo las peticiones para obtener la información de usuario
-            dispatch(getUser(username, history));
-        }
-
-        // Desmonto el componente al salir
-        return () => 
-        {
-            mounted.current = false;
-        }
+        // Realizo las peticiones para obtener la información de usuario
+        dispatch(getUser(username, history));
 
     }, [dispatch, history, username]);
     

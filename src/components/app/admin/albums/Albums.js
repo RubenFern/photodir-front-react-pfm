@@ -75,9 +75,8 @@ export const Albums = () =>
     }
 
     return (
-        <ul className="container-fluid card-list animate__animated animate__fadeIn">
-        {
-        (loading)
+        <>
+        {(loading)
         ?
         <div className="container-fluid gallery pointer mt-3">
             <div className="spinner-border text-light" role="status">
@@ -87,27 +86,29 @@ export const Albums = () =>
         :
         (albums !== undefined && albums.length > 0)
         ?
-        albums.map( ({ uid, name, fileImage, image, description, creation_date }) => 
-        (
-            <li key={uid} className="card">
-                <p className="date">{creation_date}</p>
-                <NavLink className="card-image" to={`/panel/usuarios/${username}/${name}`}>
-                    <img className="pointer" src={fileImage} alt={image} />
-                </NavLink>
-                <span className="card-description">
-                    <h2 className="title text-light">{name}</h2>
-                    <p className="text-justify">
-                        {description}
-                    </p>
+        <ul className="container-fluid card-list animate__animated animate__fadeIn">
+            {albums.map( ({ uid, name, fileImage, image, description, creation_date }) => 
+            (
+                
+                <li key={uid} className="card">
+                    <p className="date">{creation_date}</p>
+                    <NavLink className="card-image" to={`/panel/usuarios/${username}/${name}`}>
+                        <img className="pointer" src={fileImage} alt={image} />
+                    </NavLink>
+                    <span className="card-description">
+                        <h2 className="title text-light">{name}</h2>
+                        <p className="text-justify">
+                            {description}
+                        </p>
 
-                    <i className="bi bi-trash-fill text-danger delete bottom" onClick={ () => removeAlbum(name, image) }></i>
-                </span>
-            </li>
-        ))
+                        <i className="bi bi-trash-fill text-danger delete bottom" onClick={ () => removeAlbum(name, image) }></i>
+                    </span>
+                </li>
+            ))}
+        </ul>
         :
         <NoAlbum />
         }
-        
-        </ul>
+        </>
     )
 }

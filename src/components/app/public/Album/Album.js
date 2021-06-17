@@ -42,7 +42,7 @@ export const Album = ({ user_name, album }) =>
     }, [dispatch, user_name, album, history]);
 
     return (
-        <div className="container-fluid w-img mt-5 animate__animated animate__fadeIn">
+        <div className="container-fluid w-img mt-5 animate__animated animate__fadeIn pb-4">
             <div className="d-flex flex-column flex-md-row justify-content-md-around align-items-center">
                 <div className="d-flex align-items-center">
                     <h1 className="text-light text-center">
