@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
@@ -9,6 +9,9 @@ import { PhotoCardExplore } from './PhotoCardExplore';
 
 export const Album = ({ user_name, album }) => 
 {
+    // Monto el componente. Si al entrar en la página se monta y seguidameete se desmonta el componete limpio el proceso
+    const mounted = useRef(true);
+
     const [loading, setloading] = useState(true);
 
     // Le doy margen de carga a las imágenes
@@ -24,8 +27,17 @@ export const Album = ({ user_name, album }) =>
 
     useEffect(() => 
     {
-        // Busco las imágenes del álbum del usuario
-        dispatch(getPhotos({user_name, album}, history));
+        if (mounted.current)
+        {
+            // Busco las imágenes del álbum del usuario
+            dispatch(getPhotos({user_name, album}, history));
+        }
+
+        // Desmonto el componente al salir
+        return () => 
+        {
+            mounted.current = false;
+        }
 
     }, [dispatch, user_name, album, history]);
 

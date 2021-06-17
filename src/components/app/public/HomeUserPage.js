@@ -17,15 +17,6 @@ export const HomeUserPage = () =>
     const mounted = useRef(true);
     const history = useHistory();
 
-    // Si al entrar en la página se monta y seguidamente se desmonta el componete limpio el proceso
-    useEffect(() => 
-    {
-        return () => 
-        {
-            mounted.current = false;
-        }
-    }, []);
-
     const { username } = useParams();
 
     const user = useSelector(state => state.explore);
@@ -42,6 +33,11 @@ export const HomeUserPage = () =>
         {
             // Realizo las peticiones para obtener la información de usuario
             dispatch(getUser(username, history));
+        }
+
+        return () => 
+        {
+            mounted.current = false;
         }
         
     }, [dispatch, history, username]);
