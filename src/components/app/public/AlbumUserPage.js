@@ -22,7 +22,6 @@ export const AlbumUserPage = () =>
     {
         // Realizo las peticiones para obtener la información de usuario
         dispatch(getUser(username, history));
-        console.log('fotos usuarios explore')
 
     }, [dispatch, history, username]);
     

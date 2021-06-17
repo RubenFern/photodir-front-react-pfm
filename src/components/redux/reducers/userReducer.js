@@ -18,6 +18,9 @@ export const userReducer = (state = initialState, action) =>
             // Elimino al usuario de Redux
             return state.filter( user => user.user_name !== action.payload);
 
+        case types.emptyGlobal:
+            return initialState;
+
         default:
             return state;
     }

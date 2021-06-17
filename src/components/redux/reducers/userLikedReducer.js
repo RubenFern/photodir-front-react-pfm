@@ -11,6 +11,9 @@ export const userLikedReducer = (state = initialState, action) =>
         case types.notlike:
             return false;
 
+        case types.emptyGlobal:
+            return initialState;
+
         default:
             return state;
     }

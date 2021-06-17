@@ -31,7 +31,6 @@ export const Home = () =>
         if (mounted.current)
         {
             dispatch(getAlbums(user_name, history));
-            console.log('recarga')
         }
         
         // Limpio el componente

@@ -22,7 +22,6 @@ export const Photo = ({ user_name, photo }) =>
     {
         // Obtengo los datos de la imagen para no depender de la página anterior y poder recargar los datos al editar  
         dispatch(getPhoto({ image: photo, user_name }, history));
-        console.log('FOTO de usuario')
 
         // Finalizo el renderizado desactivando el reload
         return () =>

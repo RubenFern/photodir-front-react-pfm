@@ -59,14 +59,12 @@ const getFavImages = (user_name) =>
         const res = await fetchNoToken(`likesphoto/imagesliked/${user_name}`);
         const { photos } = await res.json();
 
-        console.log(photos)
-
         if (photos.length)
         {
             await getImagesFavorites(photos);
 
             dispatch({
-                type: types.viewPhotos,
+                type: types.viewFavorites,
                 payload: photos
             });
         }

@@ -6,7 +6,7 @@ export const albumReducer = (state = initialState, action) =>
 {
     switch (action.type) {
         case types.viewAlbums:
-            return action.payload
+            return action.payload;
             
         case types.addAlbum:
             return [
@@ -23,6 +23,9 @@ export const albumReducer = (state = initialState, action) =>
         case types.deleteAlbum:
             // Filtro para no añadir el álbum que coincida con el eliminado
             return state.filter( album => album.uid !== action.payload.uid);
+
+        case types.emptyGlobal:
+            return initialState;
 
         default:
             return state;

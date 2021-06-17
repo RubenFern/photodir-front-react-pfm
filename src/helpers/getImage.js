@@ -55,8 +55,6 @@ const getImageNoToken = async(data) =>
 
 const getImagesFavorites = async(data = []) =>
 {
-console.log(data)
-
     if (data.length > 0)
     {
         for(let i in data) 

@@ -33,7 +33,7 @@ export const modalReducer = (state = initialState, action) =>
                     image: '',
                     description: ''
                 }
-            };    
+            };
 
         default:
             return state;

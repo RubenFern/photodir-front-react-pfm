@@ -27,7 +27,6 @@ export const HomeUserPage = () =>
     }, []);
 
     const { username } = useParams();
-    console.log(username)
 
     const user = useSelector(state => state.explore);
     const album = useSelector(state => state.album); // Obtengo los álbumes en el componente Home
@@ -45,8 +44,6 @@ export const HomeUserPage = () =>
             dispatch(getUser(username, history));
         }
         
-        console.log("Home usuarios")
-
     }, [dispatch, history, username]);
 
     return (

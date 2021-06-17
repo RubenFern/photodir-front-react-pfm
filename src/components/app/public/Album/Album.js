@@ -26,7 +26,6 @@ export const Album = ({ user_name, album }) =>
     {
         // Busco las imágenes del álbum del usuario
         dispatch(getPhotos({user_name, album}, history));
-        console.log("Albums users")
 
     }, [dispatch, user_name, album, history]);
 

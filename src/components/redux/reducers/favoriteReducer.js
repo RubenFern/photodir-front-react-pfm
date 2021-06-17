@@ -1,15 +1,12 @@
 import { types } from "../types/types";
 
-const initialState = {};
+const initialState = [];
 
-export const searchReducer = (state = initialState, action) =>
+export const favoriteReducer = (state = initialState, action) =>
 {
     switch (action.type) {
-        case types.viewUsers:
+        case types.viewFavorites:
             return action.payload
-
-        case types.emptyUsers:
-            return {};
 
         case types.emptyGlobal:
             return initialState;

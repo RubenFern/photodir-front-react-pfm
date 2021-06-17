@@ -31,7 +31,6 @@ export const Album = () =>
         if (mounted.current)
         {
             dispatch(getPhotos({ user_name, album }, history));
-            console.log('recargaphoto')
         }
 
         return () => 

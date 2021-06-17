@@ -40,10 +40,16 @@ export const NavBar = () =>
                     {
                         (logged) ? // Condición de si está logueado el usuario
                         <ul className="navbar-nav ms-auto ">
+                            {(is_admin) 
+                            ?
+                            <NavLink to="/panel/usuarios" className="nav-item nav-link" activeClassName="active">
+                                <i className="bi bi-people-fill"></i> Usuarios
+                            </NavLink>
+                            :
                             <NavLink to="/home/favoritas" className="nav-item nav-link" activeClassName="active">
                                 <i className="bi bi-images"> </i>
                                 Favoritas
-                            </NavLink>
+                            </NavLink>}
                             <li className="nav-item dropdown mt-2 mt-lg-0">
                                 <span className="nav-link dropdown-toggle user" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className="bi bi-person-circle"></i>
@@ -66,11 +72,6 @@ export const NavBar = () =>
                                 {(!is_admin) &&
                                 <NavLink to="/home/perfil" className="nav-item nav-link settings">
                                     <i className="bi bi-gear-fill text-light"></i>
-                                </NavLink>}
-                                
-                                {(is_admin) &&
-                                <NavLink to="/panel/usuarios" className="nav-item nav-link" activeClassName="active">
-                                    <i className="bi bi-people-fill"></i> Usuarios
                                 </NavLink>}
                         </ul>
                         :

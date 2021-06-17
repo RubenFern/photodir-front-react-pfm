@@ -23,7 +23,7 @@ export const Users = () =>
         {
             dispatch(getUsers());
         }
-        console.log('usuarios de photodir')
+        
         return () => 
         {
            mounted.current = false;

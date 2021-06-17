@@ -25,7 +25,6 @@ export const Home = ({ username }) =>
         if (mounted.current)
         {
             dispatch(getAlbums(username, history));
-            console.log("imprimo albums")
         }
 
 
@@ -33,7 +32,6 @@ export const Home = ({ username }) =>
         return () => 
         {
             mounted.current = false;
-            console.log("salgo")
         }
 
     }, [dispatch, history, username]);

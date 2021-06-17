@@ -25,7 +25,6 @@ export const Photo = () =>
     {
         // Obtengo los datos de la imagen para no depender de la página anterior y poder recargar los datos al editar  
         dispatch(getPhoto({ image: photo, user_name }, history));
-        console.log('recargaphoto')
         
         // Limpio el componente
         return () =>
@@ -33,15 +32,13 @@ export const Photo = () =>
             dispatch({
                 type: types.reloadFalse
             });
-
-            console.log("salgo")
         }
     }, [photo, dispatch, history, reload, user_name]);
 
     return (
         <>
-        <div className="container">
-            <div className="d-flex justify-content-end  mt-4">
+        <div className="container photopage pb-5">
+            <div className="d-flex justify-content-end my-4">
                 <div className="h-25">
                     <Edit action="Editar" uid={uid} title={title} description={description} image={image} />
                 </div>

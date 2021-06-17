@@ -84,6 +84,8 @@ const startLogout = (history) =>
         }
 
         dispatch({ type: types.logout });
+
+        dispatch({ type: types.emptyGlobal });
     }
 }
 

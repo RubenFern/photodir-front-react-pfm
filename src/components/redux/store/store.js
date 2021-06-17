@@ -12,6 +12,7 @@ import { searchReducer } from '../reducers/searchReducer';
 import { userLikedReducer } from '../reducers/userLikedReducer';
 import { reportReducer } from '../reducers/reportReducer';
 import { userReducer } from '../reducers/userReducer';
+import { favoriteReducer } from '../reducers/favoriteReducer';
 
 /**
  * Habilito la herramienta de desarrollo de redux tools y además aplico el middleware de thunk para
@@ -34,7 +35,8 @@ const reducers = combineReducers(
     explore: exploreReducer,
     userliked: userLikedReducer,
     reports: reportReducer,
-    users: userReducer
+    users: userReducer,
+    favorite: favoriteReducer
 });
 
 export const store = createStore(

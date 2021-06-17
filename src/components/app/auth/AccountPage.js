@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Footer } from '../../layout/Footer';
 
 import { NavBar } from '../../layout/NavBar';
 import { DeleteUser } from './Account/DeleteUser';
@@ -34,6 +35,8 @@ export const AccountPage = ({ history }) =>
                     <DeleteUser history={history} />
                 </div>
             </div>
+
+            <Footer />
         </>
     )
 }

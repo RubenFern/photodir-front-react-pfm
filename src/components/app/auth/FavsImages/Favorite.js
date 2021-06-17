@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 import { back } from '../../../../helpers/back';
 import { getFavImages } from '../../../redux/actions/like';
-import { types } from '../../../redux/types/types';
 import { PhotoCardExplore } from '../../public/Album/PhotoCardExplore';
 
 export const Favorite = () => 
@@ -16,7 +15,7 @@ export const Favorite = () =>
 
     const { user: { user_name } } = useSelector(state => state.auth);
 
-    const photos = useSelector(state => state.photos);
+    const photos = useSelector(state => state.favorite);
 
     const [loading, setloading] = useState(true);
 
@@ -26,17 +25,11 @@ export const Favorite = () =>
         if (mounted.current)
         {
             dispatch(getFavImages(user_name));
-            console.log('recargaphoto')
         }
 
         return () => 
         {
             mounted.current = false;
-
-            dispatch({
-                type: types.viewPhotos,
-                payload: []
-            });
         }
     }, [user_name, dispatch]);
 
@@ -56,7 +49,9 @@ export const Favorite = () =>
                 <div className="d-flex align-items-center">
                     <h1 className="text-light text-center">
                         <i className="bi bi-arrow-left-circle text-light pointer" onClick={() => back(history)}></i>
-                        <span className="text-white-50"> Imágenes que te han gustado</span>
+                        <span className="text-white-50"> 
+                        { (photos !== undefined && photos.length > 0) ? ' Imágenes que te han gustado' : ' Parece que no te gusta ninguna imagen...' }
+                        </span>
                     </h1>
                 </div>
             </div>
@@ -74,7 +69,11 @@ export const Favorite = () =>
                 (
                     <PhotoCardExplore key={uid} uid={uid} album={album_name} image={image} fileImage={fileImage} user_name={username} />
 
-                )) : <div className="text-light">No tienes ninguna fotografía favorita</div>}
+                )) : <div className="text-light mt-4">
+                        <h2 className="text-center">
+                            ¡Usa el buscador para mirar las fotografías de otros usuarios! <i className="bi bi-globe"></i>
+                        </h2>
+                    </div>}
             </div>
             
             }

@@ -31,8 +31,6 @@ export const UserPhotosPage = ({ history }) =>
             dispatch(getPhotos(username, album));
         }
         
-        console.log("albums del usuario")
-
         return () => 
         {
             mounted.current = false;

@@ -28,6 +28,9 @@ export const photoReducer = (state = initialState, action) =>
         case types.deletePhotoFromUser:
             return state.filter( photo => photo.uid !== action.payload.uid);
 
+        case types.emptyGlobal:
+            return initialState;    
+
         default:
             return state;
     }

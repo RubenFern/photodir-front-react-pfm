@@ -14,6 +14,9 @@ export const reportReducer = (state = initialState, action) =>
                 report => (report.uid === action.payload.uid) ? action.payload : report
             )
 
+        case types.emptyGlobal:
+            return initialState;
+
         default:
             return state;
     }
