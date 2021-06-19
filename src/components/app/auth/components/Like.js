@@ -1,13 +1,15 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 import { checkLike, addLike, removeLike } from '../../../redux/actions/like';
 import { types } from '../../../redux/types/types';
 
 import './Like.css';
 
-export const Like = ({ user_name, likes, image }) => 
+export const Like = ({ user_name, likes, image, home = false }) => 
 {
+    const { user: { private_profile } } = useSelector(state => state.auth);
     const userliked = useSelector(state => state.userliked);
     
     const dispatch = useDispatch();
@@ -34,6 +36,12 @@ export const Like = ({ user_name, likes, image }) =>
         // Si se da like creo el like en la publiación
         if (target.checked)
         {
+            if (private_profile && home)
+            {
+                Swal.fire('Ups', 'Tu perfil es privado y no puedes dar me gusta a las imágenes', 'error');
+                return;
+            }
+
             dispatch(addLike(user_name, image));
         } else
         {
