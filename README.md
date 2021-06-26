@@ -1,4 +1,4 @@
-# Interfaces en React :zap:
+# Interfaz en React :zap:
 
 Este proyecto es la parte del front-end del proyecto fin de módulo. Contiene las interfaces de usuario y se encarga de realizar las peticiones a la [API Rest](https://github.com/RubenFern/Photodir-PFM) para obtener y mostrar los datos de la aplicación.
 
